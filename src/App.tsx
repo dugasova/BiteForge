@@ -19,9 +19,7 @@ export default function App() {
         {
           path: '/contact', element: <ContactRouter />
         },
-
       ]
-
     }
   ])
   return (
