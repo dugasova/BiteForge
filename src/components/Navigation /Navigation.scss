@@ -1,0 +1,17 @@
+.navigation {
+    width: 50%;
+    display: flex;
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__item {
+        font-size: 24px;
+        font-weight: 700;
+        color: #000;
+    }
+}
