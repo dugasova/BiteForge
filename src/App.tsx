@@ -4,6 +4,7 @@ import Home from './components/Home/Home';
 import Layout from './pages/Layout';
 import AboutRouter from './routes/AboutRouter';
 import ContactRouter from './routes/ContactRouter';
+import ErrorRoute from './routes/ErrorRoute';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -19,7 +20,8 @@ export default function App() {
         {
           path: '/contact', element: <ContactRouter />
         },
-      ]
+      ],
+      errorElement: <ErrorRoute />
     }
   ])
   return (

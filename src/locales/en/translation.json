@@ -3,5 +3,27 @@
         "home": "Home",
         "about": "About",
         "contact": "Contact"
+    },
+    "footer": {
+        "description": "Unleash your inner chef and build the perfect burger. Fresh ingredients, unlimited possibilities.",
+        "connect": "Connect with us"
+    },
+    "ingredients": {
+        "title": "Add ingredients"
+    },
+    "prices": {
+        "title": "Our prices",
+        "bacon": "Bacon",
+        "ketchup": "Ketchup",
+        "mayonnaise": "Mayonnaise",
+        "lettuce": "Lettuce",
+        "cheese": "Swiss cheese",
+        "pickles": "Pickles",
+        "sausage": "Sausage",
+        "onions": "Onions",
+        "pepper": "Pepper",
+        "tomato": "Tomato",
+        "mustard": "Mustard",
+        "patty": "Patty"
     }
 }
