@@ -96,6 +96,12 @@
   }
 }
 
+.ingredient-quantity {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+}
+
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .ingredient-control {
