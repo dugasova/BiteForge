@@ -42,7 +42,7 @@ export default function Burger() {
                   className={`burger-ingredient ${ingredientName}`}
                   src={itemData.img}
                   alt={ingredientName}
-                  style={{ bottom: 46 + index * 9, zIndex: index + 1 }}
+                  style={{ bottom: 10 + index * 9, zIndex: index + 1 }}
                 />
               );
             })
