@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './SingleControl.scss';
-import BurgerContext from '../../context/BurgerContext';
+import { BurgerContext } from '../../context/BurgerContext';
 
 interface SingleControlProps {
   img: string;
@@ -8,9 +8,14 @@ interface SingleControlProps {
 }
 
 export default function SingleControl({ img, name }: SingleControlProps) {
-  const { addIngredient, removeIngredient, stateBuilder } = useContext(BurgerContext);
+  const context = useContext(BurgerContext);
+  const { addIngredient, removeIngredient, stateBuilder } = context || {
+    addIngredient: () => {},
+    removeIngredient: () => {},
+    stateBuilder: { ingredients: {} as { [key: string]: number }, sequence: [], totalPrice: 0 }
+  };
 
-  const quantity = stateBuilder?.ingredients?.[name] || 0;
+  const quantity = (stateBuilder?.ingredients as { [key: string]: number })?.[name] || 0;
 
   return (
     <li className='ingredient-control'>

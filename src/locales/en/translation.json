@@ -25,5 +25,23 @@
         "tomato": "Tomato",
         "mustard": "Mustard",
         "patty": "Patty"
+    },
+    "burger": {
+        "addIngredients": "Add some ingredients",
+        "totalPrice": "Total price",
+        "checkout": "Checkout",
+        "reset": "Reset"
+    },
+    "checkout": {
+        "title": "Your Order Summary",
+        "noIngredients": "No ingredients added yet.",
+        "ingredients": "Ingredients",
+        "confirmOrder": "Confirm Order",
+        "fullName": "Full Name",
+        "email": "Email Address",
+        "phoneNumber": "Phone Number",
+        "deliveryAddress": "Delivery Address",
+        "total": "Total",
+        "fastDelivery": "Fast Delivery"
     }
 }

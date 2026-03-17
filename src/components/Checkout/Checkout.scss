@@ -12,7 +12,7 @@
   align-items: center;
   padding: 1rem;
   font-family: 'Inter', 'Roboto', sans-serif;
-  
+
   /* Fade-in animation for the overlay */
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -25,7 +25,7 @@
   padding: 2.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   position: relative;
-  
+
   /* Slide-up scale animation for the modal card */
   animation: scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 
@@ -38,7 +38,7 @@
     text-align: center;
     position: relative;
     padding-bottom: 1rem;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -70,18 +70,18 @@
     font-family: inherit;
     transition: all 0.2s ease;
     box-sizing: border-box;
-    
+
     &::placeholder {
       color: #9ca3af;
     }
-    
+
     &:focus {
       outline: none;
       border-color: #f59e0b;
       box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
       background: #ffffff;
     }
-    
+
     &.full-width {
       grid-column: 1 / -1;
     }
@@ -103,12 +103,12 @@
   cursor: pointer;
   color: #6b7280;
   transition: all 0.2s ease;
-  
+
   svg {
     width: 20px;
     height: 20px;
   }
-  
+
   &:hover {
     background: #ef4444;
     color: #ffffff;
@@ -132,29 +132,46 @@
     margin: 0 0 1.5rem;
     max-height: 250px;
     overflow-y: auto;
-    
-    .empty-cart {
-      text-align: center;
-      padding: 2rem;
-      color: #9ca3af;
-      font-style: italic;
-      background: #f9fafb;
-      border-radius: 12px;
-      border: 1px dashed #e5e7eb;
-    }
+
+
 
     /* Scrollbar */
     &::-webkit-scrollbar {
       width: 6px;
     }
+
     &::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.02);
       border-radius: 10px;
     }
+
     &::-webkit-scrollbar-thumb {
       background: rgba(245, 158, 11, 0.3);
       border-radius: 10px;
     }
+  }
+
+  .empty-cart {
+    text-align: center;
+    padding: 2rem;
+    color: #9ca3af;
+    font-style: italic;
+    border-radius: 12px;
+    border: 1px dashed #e5e7eb;
+    margin-bottom: 2rem;
+  }
+
+  .ingredient-item {
+    text-transform: capitalize;
+    padding: 0.5rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #1f2937;
+    transition: all 0.2s ease;
+
   }
 
   .checkout-total {
@@ -168,10 +185,25 @@
     color: #1f2937;
 
     .total-price {
-      color: #f59e0b; /* Brand Orange */
+      color: #f59e0b;
+      /* Brand Orange */
       font-size: 1.75rem;
     }
   }
+}
+
+.checkout-fast-delivery label {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.checkout-fast-delivery input {
+  margin-right: 1rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .checkout-confirm-button {
@@ -203,18 +235,24 @@
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleUp {
-  from { 
+  from {
     opacity: 0;
-    transform: scale(0.9) translateY(20px); 
+    transform: scale(0.9) translateY(20px);
   }
-  to { 
+
+  to {
     opacity: 1;
-    transform: scale(1) translateY(0); 
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -222,8 +260,10 @@
 @media (prefers-color-scheme: dark) {
   .checkout-wrapper {
     background: #1f2937;
-    
-    h2 { color: #f9fafb; }
+
+    h2 {
+      color: #f9fafb;
+    }
   }
 
   .checkout-form {
@@ -231,9 +271,11 @@
       background: #111827;
       border-color: #374151;
       color: #e5e7eb;
-      
-      &::placeholder { color: #6b7280; }
-      
+
+      &::placeholder {
+        color: #6b7280;
+      }
+
       &:focus {
         background: #1f2937;
         border-color: #d97706;
@@ -247,8 +289,10 @@
   }
 
   .checkout-ingredients {
-    .ingredients-title { color: #d1d5db; }
-    
+    .ingredients-title {
+      color: #d1d5db;
+    }
+
     .ingredients-list {
       .empty-cart {
         background: #111827;
@@ -256,7 +300,7 @@
         color: #6b7280;
       }
     }
-    
+
     .checkout-total {
       border-top-color: #374151;
       color: #e5e7eb;

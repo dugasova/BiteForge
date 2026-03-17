@@ -3,12 +3,14 @@ import './Burger.scss';
 import TopBurger from './../../assets/ingredients/top_bun.png';
 import BottomBurger from './../../assets/ingredients/bottom_bun.png';
 import Checkout from '../Checkout/Checkout';
-import BurgerContext from '../../context/BurgerContext';
+import { BurgerContext, type BurgerContextType } from '../../context/BurgerContext';
 import { dataOfProduct } from '../../mockedData';
+import { useTranslation } from 'react-i18next';
 
 export default function Burger() {
+  const { t } = useTranslation();
   const [checkout, setCheckout] = useState(false);
-  const context = useContext(BurgerContext);
+  const context = useContext(BurgerContext) as BurgerContextType | null;
 
   const sequence = context?.stateBuilder?.sequence || [];
 
@@ -28,12 +30,11 @@ export default function Burger() {
 
           {sequence.length === 0 ? (
             <div className='burger-message'>
-              <p>Add some ingredients</p>
+              <p>{t('burger.addIngredients')}</p>
             </div>
           ) : (
             sequence.map((ingredientName: string, index: number) => {
               const itemData = dataOfProduct.find(p => p.name === ingredientName);
-              console.log(itemData);
               if (!itemData) return null;
 
               return (
@@ -50,21 +51,20 @@ export default function Burger() {
 
           <img className='burger-bun bottom' src={BottomBurger} alt="bottom-burger" />
         </div>
-        <p className='total-price'>Total price: {10 + context?.stateBuilder?.totalPrice}</p>
+        <p className='total-price'>{t('burger.totalPrice')}: {(context?.stateBuilder?.totalPrice || 0)} UAH</p>
 
         <div className='burger-actions'>
           <button onClick={handleCheckout} className='checkout-button'>
-            <span>Checkout</span>
+            <span>{t('burger.checkout')}</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </button>
         </div>
-        <button className='reset-button' onClick={context?.resetBuilder}>Reset</button>
+        <button className='reset-button' onClick={context?.resetBuilder}>{t('burger.reset')}</button>
       </div>
-
-
-      {checkout && <Checkout onClose={closeCheckout} />}
+      {checkout && <Checkout onClose={closeCheckout} />
+      }
     </>
   )
 }

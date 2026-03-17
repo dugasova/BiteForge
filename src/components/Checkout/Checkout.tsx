@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Checkout.scss';
+import { useTranslation } from 'react-i18next';
+import { useBurger } from '../../context/BurgerContext';
 
 interface CheckoutProps {
   onClose: () => void;
 }
 
 export default function Checkout({ onClose }: CheckoutProps) {
+  //add fast delivery by adding to totalprce 20UAH
+  const [fastDelivery, setFastDelivery] = useState(false);
+  const fastDeliveryPrice = 20;
+  const fastDeliveryHandler = () => {
+    setFastDelivery(!fastDelivery);
+  }
+
+  const { t } = useTranslation();
+  const { stateBuilder } = useBurger();
+  const { ingredients, totalPrice } = stateBuilder;
+
+  const ingredientEntries = Object.entries(ingredients).filter(([, count]) => count > 0);
+
   return (
     <div className='modal-overlay' onClick={onClose}>
       <div className='checkout-wrapper' onClick={(e) => e.stopPropagation()}>
@@ -16,27 +31,46 @@ export default function Checkout({ onClose }: CheckoutProps) {
           </svg>
         </button>
 
-        <h2>Your Order Summary</h2>
+        <h2>{t('checkout.title')}</h2>
         <form className="checkout-form">
-          <input type="text" placeholder='Full Name' required />
-          <input type="email" placeholder='Email Address' required />
-          <input type="tel" placeholder='Phone Number' required />
-          <input type="text" className="full-width" placeholder='Delivery Address' required />
+          <input type="text" placeholder={t('checkout.fullName')} required />
+          <input type="email" placeholder={t('checkout.email')} required />
+          <input type="tel" placeholder={t('checkout.phoneNumber')} required />
+          <input type="text" className="full-width" placeholder={t('checkout.deliveryAddress')} required />
         </form>
         <div className='checkout-ingredients'>
-          <h3 className='ingredients-title'>Ingredients:</h3>
-          <ul className='ingredients-list'>
-            {/* We can map ingredients here later! */}
-            <li className='empty-cart'>No ingredients added yet.</li>
-          </ul>
+          {ingredientEntries.length === 0 ? (
+            <>
+              <p className='ingredients-title'>{t('checkout.ingredients')}</p>
+              <p className='empty-cart'>{t('checkout.noIngredients')}</p>
+            </>
+          ) : (
+            <>
+              <h3 className='ingredients-title'>{t('checkout.ingredients')}:</h3>
+              <ul className='ingredients-list'>
+                {
+                  ingredientEntries.map(([name, count]) => (
+                    <li className='ingredient-item' key={name}>{name} x{count}</li>
+                  ))
+                }
+              </ul>
 
-          <div className='checkout-total'>
-            <span>Total:</span>
-            <span className='total-price'>$0.00</span>
+              <div className='checkout-total'>
+                <span>{t('checkout.total')}:</span>
+                <span className='total-price'>{totalPrice.toFixed(2)} UAH</span>
+              </div>
+            </>
+          )}
+          <div className='checkout-fast-delivery'>
+            <input type="checkbox" id="checkout-fast-delivery" checked={fastDelivery} onChange={fastDeliveryHandler} />
+            <label htmlFor="checkout-fast-delivery">{t('checkout.fastDelivery')}</label>
           </div>
+          <div className='checkout-total'>
+            <span>{t('checkout.total')}:</span>
+            <span className='total-price'>{+totalPrice.toFixed(2) + (fastDelivery ? fastDeliveryPrice : 0)} UAH</span>
+          </div>
+          <button className='checkout-confirm-button'>{t('checkout.confirmOrder')}</button>
         </div>
-
-        <button className='checkout-confirm-button'>Confirm Order</button>
       </div>
     </div>
   )

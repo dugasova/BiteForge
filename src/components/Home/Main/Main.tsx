@@ -3,7 +3,7 @@ import './Main.scss';
 import Prices from '../../Prices/Prices';
 import Burger from '../../Burger/Burger';
 import IngredientsControl from '../../IngredientsControl/IngredientsControl';
-import BurgerContext from '../../../context/BurgerContext';
+import {BurgerContext} from '../../../context/BurgerContext';
 import useBuilder from '../../../hooks/useBuilder';
 
 export default function Main() {

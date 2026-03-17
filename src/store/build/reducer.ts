@@ -8,11 +8,11 @@ const initialState: {
 } = {
   ingredients: {},
   sequence: [],
-  totalPrice: 0, // You can also set a base price here if needed
+  totalPrice: 10, // You can also set a base price here if needed
 };
 
 const getIngredientPrice = (ingredientName: string) => {
-  const item = dataOfProduct.find(p => p.name === ingredientName);
+  const item = dataOfProduct.find((p) => p.name === ingredientName);
   return item ? item.price : 0;
 };
 

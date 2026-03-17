@@ -25,5 +25,23 @@
         "tomato": "Помідор",
         "mustard": "Гірчиця",
         "patty": "Котлета"
+    },
+    "burger": {
+        "addIngredients": "Додайте інгредієнти",
+        "totalPrice": "Загальна ціна",
+        "checkout": "Оформити замовлення",
+        "reset": "Скинути"
+    },
+    "checkout": {
+        "title": "Ваше замовлення",
+        "noIngredients": "Інгредієнти не додані",
+        "ingredients": "Інгредієнти",
+        "confirmOrder": "Підтвердити замовлення",
+        "fullName": "Повне ім'я",
+        "email": "Email",
+        "phoneNumber": "Номер телефону",
+        "deliveryAddress": "Адреса доставки",
+        "total": "Загальна ціна",
+        "fastDelivery": "Швидка доставка"
     }
 }
