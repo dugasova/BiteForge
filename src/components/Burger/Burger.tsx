@@ -42,6 +42,7 @@ export default function Burger() {
                   className={`burger-ingredient ${ingredientName}`}
                   src={itemData.img}
                   alt={ingredientName}
+                  style={{ bottom: 46 + index * 9, zIndex: index + 1 }}
                 />
               );
             })
@@ -59,7 +60,7 @@ export default function Burger() {
             </svg>
           </button>
         </div>
-        <button onClick={context?.resetBuilder}>Reset</button>
+        <button className='reset-button' onClick={context?.resetBuilder}>Reset</button>
       </div>
 
 
