@@ -1,9 +1,10 @@
 import React from 'react';
+import Burgers from '../Burgers/Burgers';
 
 export default function About() {
   return (
     <>
-      <p>AboutUs</p>
+      <Burgers />
     </>
   )
 }
