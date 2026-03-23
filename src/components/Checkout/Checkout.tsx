@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import './Checkout.scss';
 import { useTranslation } from 'react-i18next';
 import { useBurger } from '../../context/BurgerContext';
+import { UserAuth } from '../../context/AuthContext';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 interface CheckoutProps {
   onClose: () => void;
 }
 
 export default function Checkout({ onClose }: CheckoutProps) {
+  const { user } = UserAuth();
   //add fast delivery by adding to totalprce 20UAH
   const [fastDelivery, setFastDelivery] = useState(false);
   const fastDeliveryPrice = 20;
@@ -18,6 +22,7 @@ export default function Checkout({ onClose }: CheckoutProps) {
   const { t } = useTranslation();
   const { stateBuilder } = useBurger();
   const { ingredients, totalPrice } = stateBuilder;
+  const burgerId = doc(db, 'users', user?.email, `${user?.email}`);
 
   const ingredientEntries = Object.entries(ingredients).filter(([, count]) => count > 0);
 

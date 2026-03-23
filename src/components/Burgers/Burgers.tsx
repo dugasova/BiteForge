@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Burgers.scss';
 import { BURGRS } from '../../mockedData';
 import BurgerCard from './BurgerCard';
+import Loader from '../Loader/Loader';
 
 export default function Burgers() {
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
   const visibleCount = 3;
   const maxIndex = Math.max(0, BURGRS.length - visibleCount);
 
@@ -16,6 +18,14 @@ export default function Burgers() {
     transform: `translateX(-${index * slideWidth}%)`,
     transition: 'transform 0.8s ease',
   };
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader skeleton cards={3} />
+  }
 
   return (
     <div className="burgers-container">

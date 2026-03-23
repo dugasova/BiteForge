@@ -12,13 +12,13 @@ import Sausage from "./assets/ingredients/sausage.png";
 import Tomato from "./assets/ingredients/tomato.png";
 
 import Cheeseburger from "./assets/burgers/burger1.png";
-import Hamburger from "./assets//burgers/burger2.png";
-import DoubleCheeseburger from "./assets//burgers/burger3.png";
+import Hamburger from "./assets//burgers/burger3.png";
+import DoubleCheeseburger from "./assets//burgers/burger2.png";
 import DoubleHamburger from "./assets/burgers/burger4.png";
 import HamburgerBurger from "./assets/burgers/burger5.png";
 import DoubleHamburgerBurger from "./assets/burgers/burger6.png";
 import HamburgerBurgerBurger from "./assets/burgers/burger7.png";
-import DoubleBurger from "./assets/burgers/burger8.png";
+import TripleBurger from "./assets/burgers/burger8.png";
 export const BURGRS = [
   {
     id: 1,
@@ -78,11 +78,11 @@ export const BURGRS = [
   },
   {
     id: 8,
-    name: "Double burger",
+    name: "Triple burger",
     raiting: 5,
     review: "Very delicious",
     price: 20,
-    img: DoubleBurger,
+    img: TripleBurger,
   },
 ];
 

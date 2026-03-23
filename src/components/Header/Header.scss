@@ -8,7 +8,7 @@
         width: 60px;
         height: auto;
         transition: transform 0.3s ease;
-        
+
         @media (min-width: 769px) {
             width: 80px;
         }
@@ -27,13 +27,13 @@
 
 .navigation-wrapper {
     display: none;
-    
+
     @media (min-width: 769px) {
         display: block;
     }
 }
 
-.lang-switch-button {
+.header__actions__button {
     background: linear-gradient(135deg, #ff9a44 0%, #ff4b2b 100%);
     color: white;
     border: none;
@@ -103,9 +103,11 @@
         span:nth-child(1) {
             transform: translateY(8px) rotate(45deg);
         }
+
         span:nth-child(2) {
             opacity: 0;
         }
+
         span:nth-child(3) {
             transform: translateY(-8px) rotate(-45deg);
         }

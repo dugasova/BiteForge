@@ -5,6 +5,11 @@ import Layout from './pages/Layout';
 import AboutRouter from './routes/AboutRouter';
 import ContactRouter from './routes/ContactRouter';
 import ErrorRoute from './routes/ErrorRoute';
+import { AuthProvider } from './context/AuthContext';
+import AccountRouter from './routes/AccountRouter';
+import LoginRouter from './routes/LoginRouter';
+import SignUpRouter from './routes/SignUpRouter';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -20,11 +25,22 @@ export default function App() {
         {
           path: '/contact', element: <ContactRouter />
         },
+        {
+          path: '/login', element: <LoginRouter />
+        },
+        {
+          path: '/signup', element: <SignUpRouter />
+        },
+        {
+          path: '/account', element: <ProtectedRoute><AccountRouter /></ProtectedRoute>
+        }
       ],
       errorElement: <ErrorRoute />
     }
   ])
   return (
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }   
