@@ -43,5 +43,29 @@
         "deliveryAddress": "Delivery Address",
         "total": "Total",
         "fastDelivery": "Fast Delivery"
+    },
+    "account": {
+        "welcomeBack": "Welcome back",
+        "goBack": "Order Again",
+        "orders": "Your Order History",
+        "noOrders": "You haven't ordered any burgers yet.",
+        "buildFirstBurger": "Build your first burger",
+        "orderDate": "Order Date",
+        "orderPrice": "Order Price",
+        "fastDelivery": "Fast Delivery"
+    },
+    "signup": {
+        "title": "Sign Up",
+        "email": "Email",
+        "password": "Password",
+        "alreadyHaveAccount": "Already have an account?",
+        "login": "Login"
+    },
+    "login": {
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "dontHaveAccount": "Don't have an account?",
+        "signup": "Sign Up"
     }
 }

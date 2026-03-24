@@ -10,33 +10,31 @@ export default function SignUp() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { user, signUp } = UserAuth();
+  const { signUp } = UserAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(''); // Clear previous errors
+
     try {
       await signUp(email, password)
-      navigate('/account')
+      navigate('/')
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message); // Set error message
-      } else {
-        setError(String(error));
-      }
+      setError(error.message)
       console.log(error)
     }
   }
 
   return (
     <div className='signup-wrapper container'>
+      {error && <p className='error'>{error}</p>}
       <div className='signup'>
-        <h2>Sign Up</h2>
+        <h2>{t('signup.title')}</h2>
         <form onSubmit={handleSubmit} className='signup__form'>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} className='signup__form__input' type="email" placeholder='Email' />
-          <input value={password} onChange={(e) => setPassword(e.target.value)} className='signup__form__input' type="password" placeholder='Password' />
-          <button className='signup__form__button' type='submit'>Sign Up</button>
-          <p>Already have an account? <span className='signup__form__link' onClick={() => navigate('/login')}>Login</span></p>
+          <input value={email} onChange={(e) => setEmail(e.target.value)} className='signup__form__input' type="email" placeholder={t('signup.email')} required />
+          < input value={password} onChange={(e) => setPassword(e.target.value)} className='signup__form__input' type="password" placeholder={t('signup.password')} required />
+          <button className='signup__form__button' type='submit'>{t('signup.title')}</button>
+          <p>{t('signup.alreadyHaveAccount')} <span className='signup__form__link' onClick={() => navigate('/login')}>{t('login.title')}</span></p>
         </form>
       </div>
     </div>

@@ -17,11 +17,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  function signUp(email: string, password: string) {
-    createUserWithEmailAndPassword(auth, email, password);
-    setDoc(doc(db, "users", email), {
+  async function signUp(email: string, password: string) {
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    await setDoc(doc(db, "users", email), {
       savedBurger: []
     });
+    return result;
   }
 
   function logIn(email: string, password: string) {

@@ -43,5 +43,29 @@
         "deliveryAddress": "Адреса доставки",
         "total": "Загальна ціна",
         "fastDelivery": "Швидка доставка"
+    },
+    "account": {
+        "welcomeBack": "Ласкаво просимо",
+        "goBack": "Замовити знову",
+        "orders": "Історія замовлень",
+        "noOrders": "Ви ще не замовляли бургерів.",
+        "buildFirstBurger": "Створіть свій перший бургер",
+        "orderDate": "Дата замовлення",
+        "orderPrice": "Ціна замовлення",
+        "fastDelivery": "Швидка доставка"
+    },
+    "signup": {
+        "title": "Зареєструватися",
+        "email": "Email",
+        "password": "Password",
+        "alreadyHaveAccount": "Вже маєте акаунт?",
+        "login": "Увійти"
+    },
+    "login": {
+        "title": "Увійти",
+        "email": "Email",
+        "password": "Password",
+        "dontHaveAccount": "Не маєте акаунта?",
+        "signup": "Зареєструватися"
     }
 }

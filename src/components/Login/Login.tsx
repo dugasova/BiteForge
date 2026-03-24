@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,13 +30,18 @@ export default function Login() {
   return (
     <div className='login-wrapper container'>
       <div className='login'>
-        <h2>Login</h2>
+        <h2>{t('login.title')}</h2>
+        {!(user?.email) ? (
+          <p>You are logged in as {user?.email}</p>
+        ) : (
+          <p>You are not logged in</p>
+        )}
         {error ? <p className='error'>{error}</p> : null}
         <form className='login__form' onSubmit={handleSubmit}>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} className='login__form__input' type="email" placeholder='Email' />
-          <input value={password} onChange={(e) => setPassword(e.target.value)} className='login__form__input' type="password" placeholder='Password' />
-          <button className='login__form__button' type='submit'>Login</button>
-          <p>Don't have an account? <span className='login__form__link' onClick={() => navigate('/signup')}>Sign Up</span></p>
+          <input value={email} onChange={(e) => setEmail(e.target.value)} className='login__form__input' type="email" placeholder={t('login.email')} />
+          <input value={password} onChange={(e) => setPassword(e.target.value)} className='login__form__input' type="password" placeholder={t('login.password')} />
+          <button className='login__form__button' type='submit'>{t('login.title')}</button>
+          <p>{t('login.dontHaveAccount')} <span className='login__form__link' onClick={() => navigate('/signup')}>{t('login.signup')}</span></p>
         </form>
       </div>
     </div>

@@ -7,7 +7,7 @@ interface LoadingProps {
   cards?: number;
 }
 
-export default function Loading({
+export default function Loader({
   message = 'Loading...',
   fullScreen = false,
   skeleton = false,

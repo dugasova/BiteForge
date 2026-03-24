@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './Checkout.scss';
 import { useTranslation } from 'react-i18next';
 import { useBurger } from '../../context/BurgerContext';
 import { UserAuth } from '../../context/AuthContext';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
 interface CheckoutProps {
   onClose: () => void;
@@ -12,17 +13,67 @@ interface CheckoutProps {
 
 export default function Checkout({ onClose }: CheckoutProps) {
   const { user } = UserAuth();
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [error, setError] = useState('');
   //add fast delivery by adding to totalprce 20UAH
   const [fastDelivery, setFastDelivery] = useState(false);
+  const [modalMessage, setModalMessage] = useState<string | null>(null);
   const fastDeliveryPrice = 20;
   const fastDeliveryHandler = () => {
     setFastDelivery(!fastDelivery);
   }
 
   const { t } = useTranslation();
-  const { stateBuilder } = useBurger();
+  const { stateBuilder, resetBuilder } = useBurger();
   const { ingredients, totalPrice } = stateBuilder;
-  const burgerId = doc(db, 'users', user?.email, `${user?.email}`);
+  const burgerId = doc(db, 'users', `${user?.email}`);
+  const navigate = useNavigate();
+  const showModal = useCallback((message: string) => {
+    setModalMessage(message);
+  }, []);
+
+  const saveBurger = async () => {
+    if (!user.email) {
+      alert('Please login to save your burger');
+      return;
+    }
+    try {
+      const order = {
+        fullName,
+        email,
+        phoneNumber,
+        deliveryAddress,
+        ingredients,
+        totalPrice,
+        fastDelivery,
+        id: Date.now(),
+        date: new Date().toISOString(),
+      }
+      await updateDoc(burgerId, {
+        savedBurger: arrayUnion(order)
+      });
+      showModal('Burger saved successfully');
+      //clear form
+      setFullName('');
+      setEmail('');
+      setPhoneNumber('');
+      setDeliveryAddress('');
+      setFastDelivery(false);
+      //close modal after 2 seconds
+      setTimeout(() => {
+        onClose();
+      }, 2000);
+      //clear ingredients
+      resetBuilder();
+      navigate('/account');
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const ingredientEntries = Object.entries(ingredients).filter(([, count]) => count > 0);
 
@@ -38,10 +89,10 @@ export default function Checkout({ onClose }: CheckoutProps) {
 
         <h2>{t('checkout.title')}</h2>
         <form className="checkout-form">
-          <input type="text" placeholder={t('checkout.fullName')} required />
-          <input type="email" placeholder={t('checkout.email')} required />
-          <input type="tel" placeholder={t('checkout.phoneNumber')} required />
-          <input type="text" className="full-width" placeholder={t('checkout.deliveryAddress')} required />
+          <input type="text" placeholder={t('checkout.fullName')} required value={fullName} onChange={(e) => setFullName(e.target.value)} />
+          <input type="email" placeholder={t('checkout.email')} required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="tel" placeholder={t('checkout.phoneNumber')} required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+          <input type="text" className="full-width" placeholder={t('checkout.deliveryAddress')} required value={deliveryAddress} onChange={(e) => setDeliveryAddress(e.target.value)} />
         </form>
         <div className='checkout-ingredients'>
           {ingredientEntries.length === 0 ? (
@@ -74,7 +125,8 @@ export default function Checkout({ onClose }: CheckoutProps) {
             <span>{t('checkout.total')}:</span>
             <span className='total-price'>{+totalPrice.toFixed(2) + (fastDelivery ? fastDeliveryPrice : 0)} UAH</span>
           </div>
-          <button className='checkout-confirm-button'>{t('checkout.confirmOrder')}</button>
+          <button onClick={saveBurger} className='checkout-confirm-button'>{t('checkout.confirmOrder')}</button>
+          {modalMessage && <div className="modal-message">{modalMessage}</div>}
         </div>
       </div>
     </div>
