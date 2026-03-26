@@ -60,21 +60,28 @@
         "buildFirstBurger": "Build your first burger",
         "orderDate": "Order Date",
         "orderPrice": "Order Price",
-        "fastDelivery": "Fast Delivery"
+        "fastDelivery": "Fast Delivery",
+        "delete": "Delete"
     },
     "signup": {
         "title": "Sign Up",
         "email": "Email",
         "password": "Password",
         "alreadyHaveAccount": "Already have an account?",
-        "login": "Login"
+        "login": "Login",
+        "error": "Something went wrong please enter valid data"
     },
     "login": {
         "title": "Login",
         "email": "Email",
         "password": "Password",
         "dontHaveAccount": "Don't have an account?",
-        "signup": "Sign Up"
+        "signup": "Sign Up",
+        "validation": {
+            "invalidEmail": "Please enter a valid email address",
+            "passwordMin": "Password must be at least 6 characters"
+        },
+        "error": "Something went wrong please enter valid data"
     },
     "contact": {
         "title": "Get in Touch",

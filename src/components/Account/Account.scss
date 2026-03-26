@@ -141,6 +141,37 @@
         color: #888;
         font-size: 0.9rem;
         font-weight: 500;
+        flex: 1;
+      }
+
+      .order-header-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 12px;
+      }
+
+      .btn-delete {
+        background: transparent;
+        color: #9ca3af;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        border-radius: 8px;
+        
+        svg {
+          width: 18px;
+          height: 18px;
+          stroke: currentColor;
+        }
+
+        &:hover {
+          color: #ef4444;
+          background: rgba(239, 68, 68, 0.1);
+          transform: scale(1.1);
+        }
       }
 
       .order-price {
@@ -241,6 +272,76 @@
     }
   }
 
+  .reorder-success-overlay {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    animation: slideInRight 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+
+    .success-content {
+      background: #4caf50;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      
+      .success-icon {
+        font-size: 1.5rem;
+        animation: bounce 1s infinite alternate;
+      }
+      
+      p {
+        margin: 0;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .order-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+
+    button {
+      flex: 1;
+      padding: 12px 8px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 10px;
+    }
+
+    .btn-reorder {
+      background: #4caf50;
+      color: white;
+      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+
+      &:hover {
+        background: #43a047;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+      }
+    }
+
+    .btn-edit {
+      background: #f8f9fa;
+      color: #6b7280;
+      border: 1px solid #e5e7eb;
+
+      &:hover {
+        background: #f3f4f6;
+        color: #111827;
+        border-color: #d1d5db;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
   .btn-logout {
     background: transparent;
     color: #ef5350;
@@ -254,6 +355,11 @@
       transform: translateY(-2px);
     }
   }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes float {

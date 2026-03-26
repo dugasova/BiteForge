@@ -1,48 +1,67 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
 import { useTranslation } from 'react-i18next';
+import Form from '../Form/Form';
+import type { FormSchema } from '../Form/Form';
 
 export default function Login() {
   const { t } = useTranslation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { user, logIn } = UserAuth();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(''); // Clear previous errors
+  const handleLoginSubmit = async (data: FormSchema) => {
+    setError('');
+    setLoading(true);
+
     try {
-      await logIn(email, password)
-      navigate('/account')
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message); // Set error message
+      await logIn(data.email, data.password);
+      navigate('/account');
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
       } else {
-        setError(String(error));
+        setError(t('login.error') || 'Something went wrong');
       }
-      console.log(error)
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
   }
+
   return (
     <div className='login-wrapper container'>
       <div className='login'>
         <h2>{t('login.title')}</h2>
-        {!(user?.email) ? (
-          <p>You are logged in as {user?.email}</p>
+        
+        {user ? (
+          <p className="auth-status success">
+            {t('account.welcomeBack')}, {user.email}
+          </p>
         ) : (
-          <p>You are not logged in</p>
+          <p className="auth-status">{t('login.dontHaveAccount')}</p>
         )}
-        {error ? <p className='error'>{error}</p> : null}
-        <form className='login__form' onSubmit={handleSubmit}>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} className='login__form__input' type="email" placeholder={t('login.email')} />
-          <input value={password} onChange={(e) => setPassword(e.target.value)} className='login__form__input' type="password" placeholder={t('login.password')} />
-          <button className='login__form__button' type='submit'>{t('login.title')}</button>
-          <p>{t('login.dontHaveAccount')} <span className='login__form__link' onClick={() => navigate('/signup')}>{t('login.signup')}</span></p>
-        </form>
+
+        {error && <p className='error'>{t('login.error')}</p>}
+
+        <Form 
+          onSubmit={handleLoginSubmit} 
+          submitText={t('login.title')} 
+          isLoading={loading}
+          formClassName="login__form"
+          inputClassName="login__form__input"
+          submitClassName="login__form__button"
+        />
+
+        <p className='login-footer'>
+          {t('login.dontHaveAccount')} 
+          <span className='login__form__link' onClick={() => navigate('/signup')}>
+            {t('login.signup')}
+          </span>
+        </p>
       </div>
     </div>
   )

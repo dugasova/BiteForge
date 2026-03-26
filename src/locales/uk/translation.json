@@ -60,21 +60,28 @@
         "buildFirstBurger": "Створіть свій перший бургер",
         "orderDate": "Дата замовлення",
         "orderPrice": "Ціна замовлення",
-        "fastDelivery": "Швидка доставка"
+        "fastDelivery": "Швидка доставка",
+        "delete": "Видалити"
     },
     "signup": {
         "title": "Зареєструватися",
         "email": "Email",
         "password": "Password",
         "alreadyHaveAccount": "Вже маєте акаунт?",
-        "login": "Увійти"
+        "login": "Увійти",
+        "error": "Щось пішло не так будь ласка, введіть правильні дані"
     },
     "login": {
         "title": "Увійти",
         "email": "Email",
         "password": "Password",
         "dontHaveAccount": "Не маєте акаунта?",
-        "signup": "Зареєструватися"
+        "signup": "Зареєструватися",
+        "validation": {
+            "invalidEmail": "Будь ласка, введіть дійсну електронну адресу",
+            "passwordMin": "Пароль має містити принаймні 6 символів"
+        },
+        "error": "Щось пішло не так будь ласка, введіть правильні дані"
     },
     "contact": {
         "title": "Зв'яжіться з нами",
