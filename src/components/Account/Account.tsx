@@ -21,7 +21,7 @@ interface Order {
 
 export default function Account() {
   const [orders, setOrders] = useState<Order[]>([])
-  const { user, logOut, signUp } = UserAuth();
+  const { user, logOut } = UserAuth();
   const { t } = useTranslation()
   const navigate = useNavigate()
 
@@ -58,7 +58,7 @@ export default function Account() {
         <div className="account-hero">
           <div className="hero-content">
             <span className="welcome-text">{t('account.welcomeBack')}</span>
-            <h2 className="user-email">{fullName}</h2>
+            {user?.email && <h2 className="user-email">{fullName[0]}</h2>}
             <div className="hero-actions">
               <button className="btn-secondary" onClick={() => navigate('/')}>
                 {t('account.goBack')}

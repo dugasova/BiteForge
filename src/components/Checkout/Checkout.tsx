@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import './Checkout.scss';
 import { useTranslation } from 'react-i18next';
 import { useBurger } from '../../context/BurgerContext';
@@ -6,74 +6,107 @@ import { UserAuth } from '../../context/AuthContext';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
+import CheckoutForm from './CheckoutForm';
+import type { ContactsFormValues } from './CheckoutForm';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface CheckoutProps {
   onClose: () => void;
 }
 
-export default function Checkout({ onClose }: CheckoutProps) {
-  const { user } = UserAuth();
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [deliveryAddress, setDeliveryAddress] = useState('');
-  const [error, setError] = useState('');
-  //add fast delivery by adding to totalprce 20UAH
-  const [fastDelivery, setFastDelivery] = useState(false);
-  const [modalMessage, setModalMessage] = useState<string | null>(null);
-  const fastDeliveryPrice = 20;
-  const fastDeliveryHandler = () => {
-    setFastDelivery(!fastDelivery);
-  }
+const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) => z.object({
+  fullName: z.string().min(2, t('checkout.validation.nameMin')),
+  phoneNumber: z.string().regex(/^\+?[\d\s-]{10,}$/, t('checkout.validation.invalidPhone')),
+  email: z.string().email(t('checkout.validation.invalidEmail')),
+  password: z.string().min(isUserLoggedIn ? 0 : 6, t('checkout.validation.passwordMin')),
+  deliveryAddress: z.string().min(2, t('checkout.validation.deliveryAddressMin')),
+});
 
+export default function Checkout({ onClose }: CheckoutProps) {
+  const { user, signUp } = UserAuth();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { stateBuilder, resetBuilder } = useBurger();
   const { ingredients, totalPrice } = stateBuilder;
-  const burgerId = doc(db, 'users', `${user?.email}`);
-  const navigate = useNavigate();
+
+  const [error, setError] = useState('');
+  const [fastDelivery, setFastDelivery] = useState(false);
+  const [modalMessage, setModalMessage] = useState<string | null>(null);
+  
+  const fastDeliveryPrice = 20;
+
+  const { control, handleSubmit, formState: { errors }, setValue } = useForm<ContactsFormValues>({
+    resolver: zodResolver(contactsSchema(t, !!user)),
+    defaultValues: {
+      fullName: '',
+      phoneNumber: '',
+      email: user?.email || '',
+      password: '',
+      deliveryAddress: '',
+    },
+  });
+
+  // Sync email if user logs in while modal is open (unlikely but safe)
+  useEffect(() => {
+    if (user?.email) {
+      setValue('email', user.email);
+    }
+  }, [user, setValue]);
+
   const showModal = useCallback((message: string) => {
     setModalMessage(message);
   }, []);
 
-  const saveBurger = async () => {
-    if (!user.email) {
-      alert('Please login to save your burger');
-      return;
-    }
+  const onConfirmOrder = async (data: ContactsFormValues) => {
+    const targetEmail = user?.email || data.email;
+
     try {
+      // 1. Sign up if guest
+      if (!user) {
+        if (!data.password) {
+           setError('Password is required for account creation');
+           return;
+        }
+        await signUp(targetEmail, data.password);
+      }
+
+      // 2. Save order
       const order = {
-        fullName,
-        email,
-        phoneNumber,
-        deliveryAddress,
+        fullName: data.fullName,
+        email: targetEmail,
+        phoneNumber: data.phoneNumber,
+        deliveryAddress: data.deliveryAddress,
         ingredients,
         totalPrice,
         fastDelivery,
         id: Date.now(),
         date: new Date().toISOString(),
-      }
-      await updateDoc(burgerId, {
+      };
+
+      const userDocRef = doc(db, 'users', targetEmail);
+      await updateDoc(userDocRef, {
         savedBurger: arrayUnion(order)
       });
+
       showModal('Burger saved successfully');
-      //clear form
-      setFullName('');
-      setEmail('');
-      setPhoneNumber('');
-      setDeliveryAddress('');
-      setFastDelivery(false);
-      //close modal after 2 seconds
+
       setTimeout(() => {
         onClose();
+        resetBuilder();
+        navigate('/account');
       }, 2000);
-      //clear ingredients
-      resetBuilder();
-      navigate('/account');
 
-    } catch (error) {
-      console.log(error);
+    } catch (saveError) {
+      console.error(saveError);
+      if (saveError instanceof Error) {
+        setError(saveError.message);
+      } else {
+        setError(String(saveError));
+      }
     }
-  }
+  };
 
   const ingredientEntries = Object.entries(ingredients).filter(([, count]) => count > 0);
 
@@ -88,12 +121,10 @@ export default function Checkout({ onClose }: CheckoutProps) {
         </button>
 
         <h2>{t('checkout.title')}</h2>
-        <form className="checkout-form">
-          <input type="text" placeholder={t('checkout.fullName')} required value={fullName} onChange={(e) => setFullName(e.target.value)} />
-          <input type="email" placeholder={t('checkout.email')} required value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="tel" placeholder={t('checkout.phoneNumber')} required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-          <input type="text" className="full-width" placeholder={t('checkout.deliveryAddress')} required value={deliveryAddress} onChange={(e) => setDeliveryAddress(e.target.value)} />
-        </form>
+        {error && <p className="error-message">{error}</p>}
+
+        <CheckoutForm control={control} errors={errors} user={user} />
+
         <div className='checkout-ingredients'>
           {ingredientEntries.length === 0 ? (
             <>
@@ -104,28 +135,36 @@ export default function Checkout({ onClose }: CheckoutProps) {
             <>
               <h3 className='ingredients-title'>{t('checkout.ingredients')}:</h3>
               <ul className='ingredients-list'>
-                {
-                  ingredientEntries.map(([name, count]) => (
-                    <li className='ingredient-item' key={name}>{name} x{count}</li>
-                  ))
-                }
+                {ingredientEntries.map(([name, count]) => (
+                  <li className='ingredient-item' key={name}>{name} x{count}</li>
+                ))}
               </ul>
-
               <div className='checkout-total'>
                 <span>{t('checkout.total')}:</span>
                 <span className='total-price'>{totalPrice.toFixed(2)} UAH</span>
               </div>
             </>
           )}
+
           <div className='checkout-fast-delivery'>
-            <input type="checkbox" id="checkout-fast-delivery" checked={fastDelivery} onChange={fastDeliveryHandler} />
+            <input 
+              type="checkbox" 
+              id="checkout-fast-delivery" 
+              checked={fastDelivery} 
+              onChange={() => setFastDelivery(!fastDelivery)} 
+            />
             <label htmlFor="checkout-fast-delivery">{t('checkout.fastDelivery')}</label>
           </div>
+
           <div className='checkout-total'>
             <span>{t('checkout.total')}:</span>
             <span className='total-price'>{+totalPrice.toFixed(2) + (fastDelivery ? fastDeliveryPrice : 0)} UAH</span>
           </div>
-          <button onClick={saveBurger} className='checkout-confirm-button'>{t('checkout.confirmOrder')}</button>
+
+          <button onClick={handleSubmit(onConfirmOrder)} className='checkout-confirm-button'>
+            {t('checkout.confirmOrder')}
+          </button>
+          
           {modalMessage && <div className="modal-message">{modalMessage}</div>}
         </div>
       </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './components/Home/Home';
 import Layout from './pages/Layout';
@@ -6,6 +5,7 @@ import AboutRouter from './routes/AboutRouter';
 import ContactRouter from './routes/ContactRouter';
 import ErrorRoute from './routes/ErrorRoute';
 import { AuthProvider } from './context/AuthContext';
+import { BurgerProvider } from './context/BurgerProvider';
 import AccountRouter from './routes/AccountRouter';
 import LoginRouter from './routes/LoginRouter';
 import SignUpRouter from './routes/SignUpRouter';
@@ -40,7 +40,9 @@ export default function App() {
   ])
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <BurgerProvider>
+        <RouterProvider router={router} />
+      </BurgerProvider>
     </AuthProvider>
   );
 }   

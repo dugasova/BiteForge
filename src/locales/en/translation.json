@@ -40,9 +40,17 @@
         "fullName": "Full Name",
         "email": "Email Address",
         "phoneNumber": "Phone Number",
+        "password": "Password",
         "deliveryAddress": "Delivery Address",
         "total": "Total",
-        "fastDelivery": "Fast Delivery"
+        "fastDelivery": "Fast Delivery",
+        "validation": {
+            "nameMin": "Full name must be at least 2 characters",
+            "invalidPhone": "Please enter a valid phone number (+ and at least 10 digits)",
+            "invalidEmail": "Please enter a valid email address",
+            "passwordMin": "Password must be at least 6 characters",
+            "deliveryAddressMin": "Delivery address must be at least 2 characters"
+        }
     },
     "account": {
         "welcomeBack": "Welcome back",
@@ -67,5 +75,17 @@
         "password": "Password",
         "dontHaveAccount": "Don't have an account?",
         "signup": "Sign Up"
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "description": "Have a question or feedback? We'd love to hear from you. Build your dream burger and share your experience!",
+        "name": "Full Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Your Message",
+        "send": "Send Message",
+        "address": "123 Burger Lane, Foodie City, FC 12345",
+        "phone": "+1 (555) 123-4567",
+        "openingHours": "Mon-Sun: 10:00 AM - 10:00 PM"
     }
 }
