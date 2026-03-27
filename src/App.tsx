@@ -11,6 +11,8 @@ import LoginRouter from './routes/LoginRouter';
 import SignUpRouter from './routes/SignUpRouter';
 import ProtectedRoute from './components/ProtectedRoute';
 
+import { ThemeProvider } from './context/ThemeContext';
+
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -39,10 +41,12 @@ export default function App() {
     }
   ])
   return (
-    <AuthProvider>
-      <BurgerProvider>
-        <RouterProvider router={router} />
-      </BurgerProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <BurgerProvider>
+          <RouterProvider router={router} />
+        </BurgerProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }   

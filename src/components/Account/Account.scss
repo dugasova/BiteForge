@@ -4,26 +4,110 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  transition: all 0.3s ease;
   background: radial-gradient(circle at top right, rgba(76, 175, 80, 0.05) 0%, transparent 40%),
               radial-gradient(circle at bottom left, rgba(255, 152, 0, 0.05) 0%, transparent 40%);
+
+  // Theme Variables
+  --card-bg: #ffffff;
+  --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  --card-border: rgba(0, 0, 0, 0.05);
+  --hero-bg: linear-gradient(135deg, #fdfdfd 0%, #f7f7f7 100%);
+  --hero-divider: rgba(0, 0, 0, 0.05);
+  --text-welcome: #666;
+  --text-user: #1a1a1a;
+  --text-section: #1a1a1a;
+  --order-count-bg: rgba(0, 0, 0, 0.05);
+  --order-count-text: #666;
+  
+  --item-bg: #ffffff;
+  --item-border: rgba(0, 0, 0, 0.08);
+  --item-header-divider: rgba(0, 0, 0, 0.1);
+  --item-text-date: #888;
+  --item-text-price: #1a1a1a;
+  --item-text-detail: #888;
+  --item-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  --item-hover-border: rgba(76, 175, 80, 0.3);
+  
+  --pill-bg: #f5f5f5;
+  --pill-text: #444;
+  --pill-count: #4caf50;
+  
+  --btn-secondary-bg: #1a1a1a;
+  --btn-secondary-text: #ffffff;
+  --btn-secondary-hover: #333;
+  
+  --btn-edit-bg: #f8f9fa;
+  --btn-edit-text: #6b7280;
+  --btn-edit-border: #e5e7eb;
+  --btn-edit-hover-bg: #f3f4f6;
+  --btn-edit-hover-text: #111827;
+  --btn-edit-hover-border: #d1d5db;
+
+  --badge-fast-bg: #ffebee;
+  --badge-fast-text: #ef5350;
+
+  // Dark Theme Overrides
+  @at-root [data-theme='dark'] & {
+    background: radial-gradient(circle at top right, rgba(76, 175, 80, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at bottom left, rgba(255, 152, 0, 0.1) 0%, transparent 40%);
+    --card-bg: #1e293b;
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --hero-bg: linear-gradient(135deg, #2d3748 0%, #1e293b 100%);
+    --hero-divider: rgba(255, 255, 255, 0.08);
+    --text-welcome: #94a3b8;
+    --text-user: #f8fafc;
+    --text-section: #f8fafc;
+    --order-count-bg: rgba(255, 255, 255, 0.1);
+    --order-count-text: #cbd5e1;
+    
+    --item-bg: #334155;
+    --item-border: rgba(255, 255, 255, 0.05);
+    --item-header-divider: rgba(255, 255, 255, 0.08);
+    --item-text-date: #94a3b8;
+    --item-text-price: #f8fafc;
+    --item-text-detail: #94a3b8;
+    --item-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    --item-hover-border: rgba(76, 175, 80, 0.5);
+    
+    --pill-bg: #475569;
+    --pill-text: #cbd5e1;
+    --pill-count: #81c784;
+    
+    --btn-secondary-bg: #4caf50;
+    --btn-secondary-text: #ffffff;
+    --btn-secondary-hover: #43a047;
+    
+    --btn-edit-bg: #1e293b;
+    --btn-edit-text: #94a3b8;
+    --btn-edit-border: #334155;
+    --btn-edit-hover-bg: #334155;
+    --btn-edit-hover-text: #f8fafc;
+    --btn-edit-hover-border: #475569;
+
+    --badge-fast-bg: rgba(239, 83, 80, 0.15);
+    --badge-fast-text: #ef5350;
+  }
 
   .account-card {
     width: 100%;
     max-width: 900px;
-    background: #ffffff;
+    background: var(--card-bg);
     border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
   }
 
   .account-hero {
     padding: 60px;
-    background: linear-gradient(135deg, #fdfdfd 0%, #f7f7f7 100%);
+    background: var(--hero-bg);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--hero-divider);
     position: relative;
     overflow: hidden;
 
@@ -45,20 +129,22 @@
 
       .welcome-text {
         font-size: 1rem;
-        color: #666;
+        color: var(--text-welcome);
         text-transform: uppercase;
         letter-spacing: 2px;
         font-weight: 600;
         display: block;
         margin-bottom: 8px;
+        transition: color 0.3s ease;
       }
 
       .user-email {
         font-size: 2.5rem;
-        color: #1a1a1a;
+        color: var(--text-user);
         margin-bottom: 32px;
         font-weight: 800;
         word-break: break-all;
+        transition: color 0.3s ease;
       }
 
       .hero-actions {
@@ -97,15 +183,18 @@
       h3 {
         font-size: 1.5rem;
         font-weight: 700;
+        color: var(--text-section);
+        transition: color 0.3s ease;
       }
 
       .order-count {
-        background: rgba(0, 0, 0, 0.05);
+        background: var(--order-count-bg);
         padding: 6px 16px;
         border-radius: 20px;
         font-size: 0.9rem;
         font-weight: 600;
-        color: #666;
+        color: var(--order-count-text);
+        transition: all 0.3s ease;
       }
     }
   }
@@ -117,16 +206,16 @@
   }
 
   .order-item {
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: var(--item-bg);
+    border: 1px solid var(--item-border);
     border-radius: 20px;
     padding: 24px;
     transition: all 0.3s ease;
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-      border-color: rgba(76, 175, 80, 0.3);
+      box-shadow: var(--item-hover-shadow);
+      border-color: var(--item-hover-border);
     }
 
     .order-header {
@@ -135,13 +224,14 @@
       align-items: center;
       margin-bottom: 20px;
       padding-bottom: 16px;
-      border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+      border-bottom: 1px dashed var(--item-header-divider);
 
       .order-date {
-        color: #888;
+        color: var(--item-text-date);
         font-size: 0.9rem;
         font-weight: 500;
         flex: 1;
+        transition: color 0.3s ease;
       }
 
       .order-header-right {
@@ -177,28 +267,31 @@
       .order-price {
         font-weight: 800;
         font-size: 1.1rem;
-        color: #1a1a1a;
+        color: var(--item-text-price);
+        transition: color 0.3s ease;
       }
 
       .badge-fast {
-        background: #ffebee;
-        color: #ef5350;
+        background: var(--badge-fast-bg);
+        color: var(--badge-fast-text);
         padding: 4px 10px;
         border-radius: 12px;
         font-size: 0.75rem;
         font-weight: 800;
         text-transform: uppercase;
+        transition: all 0.3s ease;
       }
     }
 
     .order-details {
       .detail-title {
         font-size: 0.85rem;
-        color: #888;
+        color: var(--item-text-detail);
         font-weight: 700;
         margin-bottom: 12px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        transition: color 0.3s ease;
       }
 
       .ingredients-pills {
@@ -207,19 +300,21 @@
         gap: 8px;
 
         .pill {
-          background: #f5f5f5;
+          background: var(--pill-bg);
           padding: 6px 12px;
           border-radius: 30px;
           font-size: 0.85rem;
           font-weight: 600;
-          color: #444;
+          color: var(--pill-text);
           display: flex;
           align-items: center;
           gap: 6px;
+          transition: all 0.3s ease;
 
           .pill-count {
-            color: #4caf50;
+            color: var(--pill-count);
             font-weight: 800;
+            transition: color 0.3s ease;
           }
         }
       }
@@ -231,9 +326,10 @@
     padding: 60px 0;
     
     p {
-      color: #888;
+      color: var(--text-muted);
       font-size: 1.1rem;
       margin-bottom: 24px;
+      transition: color 0.3s ease;
     }
   }
 
@@ -261,13 +357,14 @@
   }
 
   .btn-secondary {
-    background: #1a1a1a;
-    color: white;
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
     padding: 12px 24px;
     font-size: 0.95rem;
+    transition: all 0.3s ease;
 
     &:hover {
-      background: #333;
+      background: var(--btn-secondary-hover);
       transform: translateY(-2px);
     }
   }
@@ -329,14 +426,15 @@
     }
 
     .btn-edit {
-      background: #f8f9fa;
-      color: #6b7280;
-      border: 1px solid #e5e7eb;
+      background: var(--btn-edit-bg);
+      color: var(--btn-edit-text);
+      border: 1px solid var(--btn-edit-border);
+      transition: all 0.3s ease;
 
       &:hover {
-        background: #f3f4f6;
-        color: #111827;
-        border-color: #d1d5db;
+        background: var(--btn-edit-hover-bg);
+        color: var(--btn-edit-hover-text);
+        border-color: var(--btn-edit-hover-border);
         transform: translateY(-2px);
       }
     }

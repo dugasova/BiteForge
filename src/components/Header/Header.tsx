@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
+
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,7 +50,8 @@ export default function Header() {
               <button className='header__actions__button' onClick={() => navigate('/signup')}>Sign Up</button>
             </>
           )}
-          <button onClick={toggleLanguage} className='header__actions__button'>
+          <ThemeToggle />
+          <button onClick={toggleLanguage} className='header__actions__button lang-btn'>
             {i18n.language?.startsWith('en') ? 'UK' : 'EN'}
           </button>
           <button className="menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle menu">

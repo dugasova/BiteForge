@@ -10,8 +10,8 @@
   backdrop-filter: blur(4px);
   z-index: 998;
   opacity: 0;
-  visibility: hidden;
   transition: all 0.4s ease;
+  visibility: hidden;
 
   &.open {
     opacity: 1;
@@ -24,16 +24,40 @@
 }
 
 .mobile-menu-wrapper {
+  // Theme Variables
+  --menu-bg: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  --text-primary: #333333;
+  --btn-lang-border: #ff9a44;
+  --btn-lang-text: #ff9a44;
+  --close-icon-color: #333333;
+  --item-link-color: #333333;
+  --item-active-color: #ff4b2b;
+  --item-active-border: #ff9a44;
+  --menu-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+
+  // Dark Theme Overrides
+  @at-root [data-theme='dark'] & {
+    --menu-bg: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    --text-primary: #f8fafc;
+    --btn-lang-border: #fbbf24;
+    --btn-lang-text: #fbbf24;
+    --close-icon-color: #cbd5e1;
+    --item-link-color: #cbd5e1;
+    --item-active-color: #ff9a44;
+    --item-active-border: #ff9a44;
+    --menu-shadow: 10px 0 30px rgba(0, 0, 0, 0.4);
+  }
+
   position: fixed;
   top: 0;
   left: -100%;
   width: 80%;
   max-width: 300px;
   height: 100%;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  background: var(--menu-bg);
   z-index: 999;
   padding: 1.5rem;
-  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--menu-shadow);
   transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
   display: flex;
   flex-direction: column;
@@ -63,8 +87,8 @@
 
   &__lang-btn {
     background: transparent;
-    border: 1px solid #ff9a44;
-    color: #ff9a44;
+    border: 1px solid var(--btn-lang-border);
+    color: var(--btn-lang-text);
     padding: 4px 10px;
     border-radius: 4px;
     font-size: 12px;
@@ -73,18 +97,18 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background: #ff9a44;
+      background: var(--btn-lang-border);
       color: white;
     }
   }
 
   &__close {
     cursor: pointer;
-    color: #333;
+    color: var(--close-icon-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
       transform: rotate(90deg);
@@ -105,16 +129,16 @@
       text-decoration: none;
       font-size: 1.25rem;
       font-weight: 600;
-      color: #333;
+      color: var(--item-link-color);
       transition: all 0.3s ease;
       display: block;
       padding: 0.5rem 0;
       border-bottom: 2px solid transparent;
 
       &:hover, &.active {
-        color: #ff4b2b;
+        color: var(--item-active-color);
         padding-left: 10px;
-        border-bottom-color: #ff9a44;
+        border-bottom-color: var(--item-active-border);
       }
     }
   }
