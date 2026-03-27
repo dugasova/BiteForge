@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import './SingleControl.scss';
 import { BurgerContext } from '../../context/BurgerContext';
+import { motion } from 'framer-motion';
 
 interface SingleControlProps {
   img: string;
@@ -21,9 +22,23 @@ export default function SingleControl({ img, name }: SingleControlProps) {
     <li className='ingredient-control'>
       <img className='ingredient-control__img' src={img} alt={name || "ingredient"} />
       <div className='controls-wrapper'>
-        <button onClick={() => removeIngredient(name)} className='ingredient-control__button minus'>-</button>
+        <motion.button 
+          whileHover={{ scale: 1.1, backgroundColor: '#f3f4f6' }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => removeIngredient(name)} 
+          className='ingredient-control__button minus'
+        >
+          -
+        </motion.button>
         <p className="ingredient-quantity">{quantity}</p>
-        <button onClick={() => addIngredient(name)} className='ingredient-control__button'>+</button>
+        <motion.button 
+          whileHover={{ scale: 1.1, backgroundColor: '#f3f4f6' }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => addIngredient(name)} 
+          className='ingredient-control__button'
+        >
+          +
+        </motion.button>
       </div>
     </li>
   )

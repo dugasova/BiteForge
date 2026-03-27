@@ -1,5 +1,5 @@
 .burger-wrapper {
-  background: #fdfdfd;
+  background: var(--bg-color, #fdfdfd);
   padding: 2.5rem;
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -9,11 +9,10 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 550px;
-  /* Match height of other columns */
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 
-  /* Subtle gradient background decoration */
   &::after {
     content: '';
     position: absolute;
@@ -24,6 +23,38 @@
     background: radial-gradient(circle at center, rgba(239, 155, 15, 0.05) 0%, transparent 60%);
     pointer-events: none;
     z-index: 0;
+  }
+
+  [data-theme='dark'] & {
+    background: #1e293b;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+    &::after {
+      background: radial-gradient(circle at center, rgba(245, 158, 11, 0.05) 0%, transparent 60%);
+    }
+
+    .burger-display {
+      .burger-message {
+        color: #9ca3af;
+        border-color: rgba(245, 158, 11, 0.2);
+        background: rgba(245, 158, 11, 0.08);
+      }
+
+      .burger-bun {
+        filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.4));
+      }
+    }
+
+    .total-price {
+      color: #f8fafc;
+    }
+
+    .reset-button {
+      background-color: #ef4444;
+      &:hover {
+        background-color: #dc2626;
+      }
+    }
   }
 }
 
@@ -43,41 +74,53 @@
     object-fit: contain;
     filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.15));
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
 
     &.top {
-        z-index: 999999;
-      /* Overlap slightly with ingredients */
+      margin-bottom: -20px;
     }
 
     &.bottom {
-      // margin-top: -15px;
-      /* Overlap slightly with ingredients */
+      margin-top: -10px;
     }
 
-    /* Small hover animation simulating interactivity */
     &:hover {
       transform: scale(1.02);
     }
   }
 
+  .ingredients-container {
+    width: 100%;
+    height: 240px;
+    position: relative;
+    z-index: 5;
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+  }
+
   .burger-ingredient {
     width: 100%;
-    max-width: 250px;
+    max-width: 260px;
+    height: auto;
     object-fit: contain;
     position: absolute;
-    bottom: 50px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+    pointer-events: none;
   }
 
   .burger-message {
     font-weight: 700;
     color: #4b5563;
-    font-size: 1.15rem;
-    padding: 2rem;
+    font-size: 1rem;
+    padding: 1.5rem;
     text-align: center;
     width: 100%;
     border: 2px dashed rgba(239, 155, 15, 0.3);
     border-radius: 16px;
-    margin: 1rem 0;
     background: rgba(239, 155, 15, 0.05);
     animation: pulse-border 2s infinite ease-in-out;
 
@@ -88,29 +131,53 @@
   }
 }
 
+.price-tag {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.total-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: center;
+  padding: 8px 20px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 99px;
+  transition: color 0.3s ease;
+
+  span {
+    color: #f59e0b;
+  }
+}
+
 .reset-button {
-  margin-top: 1rem;
-  background-color: red;
-  color: white;
+  margin: 1rem auto 0;
+  background-color: #fee2e2;
+  color: #ef4444;
   border: none;
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
   font-weight: 700;
   border-radius: 9999px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
-  width: 100%;
-  max-width: 300px;
+  transition: all 0.3s ease;
+  width: fit-content;
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  &:hover {
+    background-color: #fecaca;
+    transform: translateY(-1px);
+  }
 }
 
 .burger-actions {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 1rem;
   z-index: 1;
 
   .checkout-button {
@@ -119,14 +186,12 @@
     justify-content: center;
     gap: 0.75rem;
     background: linear-gradient(135deg, #f59e0b, #d97706);
-    /* Orange appetizing gradient */
     color: #ffffff;
     border: none;
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
     font-weight: 700;
     border-radius: 9999px;
-    /* Pill shape */
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
@@ -142,64 +207,19 @@
     }
 
     &:hover {
-      transform: translateY(-3px);
       box-shadow: 0 15px 25px rgba(245, 158, 11, 0.35);
       background: linear-gradient(135deg, #fbbf24, #f59e0b);
-
-      svg {
-        transform: translateX(4px);
-      }
-    }
-
-    &:active {
-      transform: translateY(1px);
-      box-shadow: 0 5px 10px rgba(245, 158, 11, 0.2);
     }
   }
-}
-
-.total-price {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: white;
-  text-align: center;
-  margin-top: 1rem;
 }
 
 @keyframes pulse-border {
-
-  0%,
-  100% {
+  0%, 100% {
     border-color: rgba(239, 155, 15, 0.2);
     background: rgba(239, 155, 15, 0.05);
   }
-
   50% {
     border-color: rgba(239, 155, 15, 0.5);
     background: rgba(239, 155, 15, 0.1);
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .burger-wrapper {
-    background: #111827;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-
-    &::after {
-      background: radial-gradient(circle at center, rgba(245, 158, 11, 0.05) 0%, transparent 60%);
-    }
-  }
-
-  .burger-display {
-    .burger-message {
-      color: #9ca3af;
-      border-color: rgba(245, 158, 11, 0.2);
-      background: rgba(245, 158, 11, 0.05);
-    }
-
-    .burger-bun {
-      filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.4));
-    }
   }
 }
