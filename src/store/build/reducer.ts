@@ -5,21 +5,32 @@ const initialState: {
   ingredients: { [key: string]: number };
   sequence: string[];
   totalPrice: number;
+  totalKkal: number;
 } = {
   ingredients: {},
   sequence: [],
-  totalPrice: 10, // You can also set a base price here if needed
+  totalPrice: 10,
+  totalKkal: 200, // Base calories for the buns
 };
 
-const getIngredientPrice = (ingredientName: string) => {
+const getIngredientInfo = (ingredientName: string) => {
   const item = dataOfProduct.find((p) => p.name === ingredientName);
-  return item ? item.price : 0;
+  if (!item) return { price: 0, kkal: 0 };
+  
+  // Safely get kkal which might be optional in the type
+  const kkal = (item as { kkal?: number }).kkal || 0;
+  return { price: item.price, kkal };
 };
 
-const reducer = (state = initialState, action: any) => {
+interface Action {
+  type: string;
+  payload: string;
+}
+
+const reducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
-      const price = getIngredientPrice(action.payload);
+      const { price, kkal } = getIngredientInfo(action.payload);
       return {
         ...state,
         ingredients: {
@@ -28,6 +39,7 @@ const reducer = (state = initialState, action: any) => {
         },
         sequence: [...state.sequence, action.payload],
         totalPrice: state.totalPrice + price,
+        totalKkal: (state.totalKkal || 0) + kkal,
       };
     }
     case REMOVE_INGREDIENT: {
@@ -40,7 +52,7 @@ const reducer = (state = initialState, action: any) => {
         newSequence.splice(lastIndex, 1);
       }
 
-      const price = getIngredientPrice(action.payload);
+      const { price, kkal } = getIngredientInfo(action.payload);
 
       return {
         ...state,
@@ -50,6 +62,7 @@ const reducer = (state = initialState, action: any) => {
         },
         sequence: newSequence,
         totalPrice: state.totalPrice - price,
+        totalKkal: (state.totalKkal || 0) - kkal,
       };
     }
     case RESET_BUILDER:

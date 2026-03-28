@@ -87,16 +87,16 @@ export const BURGRS = [
 ];
 
 export const dataOfProduct = [
-  { name: "bacon", price: 20, img: Bacon },
-  { name: "ketchup", price: 5, img: Ketchup },
-  { name: "lettuce", price: 10, img: Lettuce },
-  { name: "mayonnaise", price: 15, img: Mayonnaise },
-  { name: "mustard", price: 10, img: Mustard },
-  { name: "onions", price: 10, img: Onions },
-  { name: "patty", price: 25, img: Patty },
-  { name: "pepper", price: 20, img: Pepper },
-  { name: "pickles", price: 15, img: Pickles },
-  { name: "cheese", price: 25, img: SwissCheese },
-  { name: "sausage", price: 10, img: Sausage },
-  { name: "tomato", price: 25, img: Tomato },
+  { name: "bacon", price: 20, img: Bacon, kkal: 100 },
+  { name: "ketchup", price: 5, img: Ketchup, kkal: 100 },
+  { name: "lettuce", price: 10, img: Lettuce, kkal: 100 },
+  { name: "mayonnaise", price: 15, img: Mayonnaise, kkal: 100 },
+  { name: "mustard", price: 10, img: Mustard, kkal: 100 },
+  { name: "onions", price: 10, img: Onions, kkal: 100 },
+  { name: "patty", price: 25, img: Patty, kkal: 100 },
+  { name: "pepper", price: 20, img: Pepper, kkal: 100 },
+  { name: "pickles", price: 15, img: Pickles, kkal: 100 },
+  { name: "cheese", price: 25, img: SwissCheese, kkal: 100 },
+  { name: "sausage", price: 10, img: Sausage, kkal: 100 },
+  { name: "tomato", price: 25, img: Tomato, kkal: 100 },
 ];

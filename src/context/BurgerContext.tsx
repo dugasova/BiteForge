@@ -5,6 +5,7 @@ export interface BurgerContextType {
     ingredients: { [key: string]: number };
     sequence: string[];
     totalPrice: number;
+    totalKkal: number;
     fastDelivery: boolean;
   };
   addIngredient: (ingredient: string) => void;

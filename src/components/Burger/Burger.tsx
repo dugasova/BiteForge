@@ -15,6 +15,7 @@ export default function Burger() {
 
   const sequence = context?.stateBuilder?.sequence || [];
   const totalPrice = context?.stateBuilder?.totalPrice || 0;
+  const totalKkal = context?.stateBuilder?.totalKkal || 0;
 
   const handleCheckout = () => {
     setCheckout(true);
@@ -28,6 +29,7 @@ export default function Burger() {
     <>
       <div className='burger-wrapper'>
         <div className='burger-display'>
+          {/* ... bun top ... */}
           <motion.img 
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -99,6 +101,18 @@ export default function Burger() {
               style={{ display: 'inline-block', marginLeft: '5px', fontWeight: 800 }}
             >
               {totalPrice} UAH
+            </motion.span>
+          </p>
+          <p className='total-kkal'>
+             🔥 
+            <motion.span
+              key={totalKkal}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: [1.1, 0.9, 1], opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              style={{ display: 'inline-block', marginLeft: '5px', fontWeight: 600, color: '#ff6b6b' }}
+            >
+              {totalKkal} kcal
             </motion.span>
           </p>
         </div>

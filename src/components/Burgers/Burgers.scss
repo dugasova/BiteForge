@@ -1,101 +1,100 @@
 .burgers-container {
-  padding: 20px;
-  max-width: 1140px;
+  padding: 40px 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  color: #f8f8f8;
-  background: radial-gradient(circle at top left, #1e1f26 0%, #0f1015 100%);
-  border-radius: 18px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-}
-
-.burgers-container h1 {
-  margin-bottom: 18px;
-  font-size: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #ffdd57;
-}
-
-.slider {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 12px;
-}
-
-.slider-window {
+  color: #f8fafc;
+  background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.25);
+
+  h1 {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffdd57;
+    text-align: center;
+    font-weight: 900;
+  }
 }
 
-.slider-track {
+.swiper-wrapper-custom {
+  padding: 20px 0 50px;
+  width: 100%;
+  position: relative;
+
+  .mySwiper {
+    padding: 10px 50px 40px;
+  }
+
+  // Custom Navigation
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #ffdd57;
+    background: rgba(30, 41, 59, 0.8);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 221, 87, 0.3);
+    transition: all 0.3s ease;
+    
+    &::after {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    &:hover {
+      background: #ffdd57;
+      color: #0f172a;
+      box-shadow: 0 0 20px rgba(255, 221, 87, 0.4);
+    }
+  }
+
+  // Custom Pagination
+  .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.3);
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    transition: all 0.3s ease;
+
+    &-active {
+      background: #ffdd57;
+      width: 24px;
+      border-radius: 6px;
+    }
+  }
+}
+
+// Ensure Card Styles within Swiper
+.swiper-slide {
+  height: auto;
   display: flex;
-  width: 100%;
-  gap: 18px;
-  padding: 20px;
+  justify-content: center;
+  transition: transform 0.3s ease;
+
+  // Added slight scale for better visual hierarchy when centered (if effect is slide)
+  &.swiper-slide-active {
+    transform: scale(1.02);
+  }
 }
 
-.slider-control {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(40, 43, 56, 0.85);
-  color: #fff;
-  font-size: 1.8rem;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: all 0.3s ease;
-}
-
-.slider-control:hover:not(:disabled) {
-  transform: scale(1.08);
-  box-shadow: 0 8px 20px rgba(255, 221, 87, 0.35);
-}
-
-.slider-control:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.slider-pagination {
-  margin-top: 14px;
-  text-align: center;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.dot.active {
-  width: 14px;
-  height: 14px;
-  background: #ffcf5c;
-  transform: scale(1.1);
-}
-
-@media (max-width: 960px) {
+@media (max-width: 768px) {
   .burgers-container {
-    padding: 16px;
+    padding: 20px 10px;
+    
+    h1 {
+      font-size: 1.8rem;
+    }
   }
 
-  .slider-track {
-    gap: 14px;
+  .swiper-wrapper-custom .mySwiper {
+    padding: 10px 10px 40px;
   }
-}
-
-@media (max-width: 720px) {
-  .slider {
-    grid-template-columns: 40px 1fr 40px;
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+     display: none; // Hide arrows on mobile for better space
   }
 }

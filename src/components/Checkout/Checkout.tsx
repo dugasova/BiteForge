@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import './Checkout.scss';
 import { useTranslation } from 'react-i18next';
 import { useBurger } from '../../context/BurgerContext';
@@ -29,7 +29,7 @@ export default function Checkout({ onClose }: CheckoutProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { stateBuilder, resetBuilder } = useBurger();
-  const { ingredients, totalPrice } = stateBuilder;
+  const { ingredients, totalPrice, totalKkal } = stateBuilder;
 
   const [error, setError] = useState('');
   const [fastDelivery, setFastDelivery] = useState(false);
@@ -80,6 +80,7 @@ export default function Checkout({ onClose }: CheckoutProps) {
         deliveryAddress: data.deliveryAddress,
         ingredients,
         totalPrice,
+        totalKkal,
         fastDelivery,
         id: Date.now(),
         date: new Date().toISOString(),
@@ -136,10 +137,14 @@ export default function Checkout({ onClose }: CheckoutProps) {
               <h3 className='ingredients-title'>{t('checkout.ingredients')}:</h3>
               <ul className='ingredients-list'>
                 {ingredientEntries.map(([name, count]) => (
-                  <li className='ingredient-item' key={name}>{name} x{count}</li>
+                  <li className='ingredient-item' key={name}>{name} x{count as number}</li>
                 ))}
               </ul>
               <div className='checkout-total'>
+                <span>Nutritional value:</span>
+                <span className='total-kkal'>🔥 {totalKkal} kcal</span>
+              </div>
+              <div className='checkout-total border-bottom'>
                 <span>{t('checkout.total')}:</span>
                 <span className='total-price'>{totalPrice.toFixed(2)} UAH</span>
               </div>
