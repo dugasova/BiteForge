@@ -36,7 +36,7 @@ export default function Login() {
     <div className='login-wrapper container'>
       <div className='login'>
         <h2>{t('login.title')}</h2>
-        
+
         {user ? (
           <p className="auth-status success">
             {t('account.welcomeBack')}, {user.email}
@@ -47,9 +47,9 @@ export default function Login() {
 
         {error && <p className='error'>{t('login.error')}</p>}
 
-        <Form 
-          onSubmit={handleLoginSubmit} 
-          submitText={t('login.title')} 
+        <Form
+          onSubmit={handleLoginSubmit}
+          submitText={t('login.title')}
           isLoading={loading}
           formClassName="login__form"
           inputClassName="login__form__input"
@@ -57,7 +57,7 @@ export default function Login() {
         />
 
         <p className='login-footer'>
-          {t('login.dontHaveAccount')} 
+          {t('login.dontHaveAccount')}
           <span className='login__form__link' onClick={() => navigate('/signup')}>
             {t('login.signup')}
           </span>

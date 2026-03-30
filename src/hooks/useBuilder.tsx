@@ -1,35 +1,34 @@
-import { useReducer } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { type RootState } from '../store';
 import {
-  ADD_INGREDIENT,
-  REMOVE_INGREDIENT,
-  RESET_BUILDER,
-  TOGGLE_FAST_DELIVERY,
-} from '../store/build/actions';
-import { reducer, initialState } from './../store/build/reducer';
+  addIngredient as addAction,
+  removeIngredient as removeAction,
+  resetBuilder as resetAction,
+  toggleFastDelivery as toggleAction,
+} from '../store/build/buildSlice';
 
 export default function useBuilder() {
-    const [stateBuilder, dispatchBuilder] = useReducer(reducer as any, initialState);
+    const dispatch = useDispatch();
+    const stateBuilder = useSelector((state: RootState) => state.build);
 
     const addIngredient = (ingredient: string) => {
-        dispatchBuilder({ type: ADD_INGREDIENT, payload: ingredient });
+        dispatch(addAction(ingredient));
     };
 
     const removeIngredient = (ingredient: string) => {
-        dispatchBuilder({ type: REMOVE_INGREDIENT, payload: ingredient });
+        dispatch(removeAction(ingredient));
     };
 
     const resetBuilder = () => {
-      dispatchBuilder({ type: RESET_BUILDER });
+      dispatch(resetAction());
     };
 
     const toggleFastDelivery = () => {
-      console.log('toggleFastDelivery called;', stateBuilder.fastDelivery);
-      dispatchBuilder({ type: TOGGLE_FAST_DELIVERY });
+      dispatch(toggleAction());
     };
 
     return {
       stateBuilder,
-      dispatchBuilder,
       addIngredient,
       removeIngredient,
       resetBuilder,

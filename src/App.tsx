@@ -12,6 +12,8 @@ import SignUpRouter from './routes/SignUpRouter';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import { ThemeProvider } from './context/ThemeContext';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -41,12 +43,14 @@ export default function App() {
     }
   ])
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <BurgerProvider>
-          <RouterProvider router={router} />
-        </BurgerProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <AuthProvider>
+          <BurgerProvider>
+            <RouterProvider router={router} />
+          </BurgerProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </Provider>
   );
-}   
+}
