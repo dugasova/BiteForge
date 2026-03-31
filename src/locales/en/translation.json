@@ -79,7 +79,8 @@
         "signup": "Sign Up",
         "validation": {
             "invalidEmail": "Please enter a valid email address",
-            "passwordMin": "Password must be at least 6 characters"
+            "passwordMin": "Password must be at least 6 characters",
+            "passwordMax": "Password must be at most 12 characters"
         },
         "error": "Something went wrong please enter valid data"
     },

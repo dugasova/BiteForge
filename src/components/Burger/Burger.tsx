@@ -30,12 +30,12 @@ export default function Burger() {
       <div className='burger-wrapper'>
         <div className='burger-display'>
           {/* ... bun top ... */}
-          <motion.img 
-            initial={{ y: -20, opacity: 0 }}
+          <motion.img
+            initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className='burger-bun top' 
-            src={TopBurger} 
-            alt="top-burger" 
+            className='burger-bun top'
+            src={TopBurger}
+            alt="top-burger"
           />
 
           <div className="ingredients-container">
@@ -51,17 +51,17 @@ export default function Burger() {
                     initial={{ y: -500, opacity: 0, scale: 0.8 }}
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     exit={{ x: 200, opacity: 0, scale: 0.8, rotate: 15 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 400, 
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
                       damping: 17,
                       mass: 0.8
                     }}
                     className={`burger-ingredient ${ingredientName}`}
                     src={itemData.img}
                     alt={ingredientName}
-                    style={{ 
-                      bottom: 10 + index * 9, 
+                    style={{
+                      bottom: 10 + index * 9,
                       zIndex: index + 1,
                       position: 'absolute'
                     }}
@@ -71,7 +71,7 @@ export default function Burger() {
             </AnimatePresence>
 
             {sequence.length === 0 && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className='burger-message'
@@ -81,18 +81,18 @@ export default function Burger() {
             )}
           </div>
 
-          <motion.img 
-             initial={{ y: 20, opacity: 0 }}
-             animate={{ y: 0, opacity: 1 }}
-             className='burger-bun bottom' 
-             src={BottomBurger} 
-             alt="bottom-burger" 
+          <motion.img
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className='burger-bun bottom'
+            src={BottomBurger}
+            alt="bottom-burger"
           />
         </div>
-        
+
         <div className='price-tag'>
           <p className='total-price'>
-            {t('burger.totalPrice')}: 
+            {t('burger.totalPrice')}:
             <motion.span
               key={totalPrice}
               initial={{ scale: 0.8, opacity: 0 }}
@@ -104,7 +104,7 @@ export default function Burger() {
             </motion.span>
           </p>
           <p className='total-kkal'>
-             🔥 
+            🔥
             <motion.span
               key={totalKkal}
               initial={{ scale: 0.8, opacity: 0 }}
@@ -118,10 +118,10 @@ export default function Burger() {
         </div>
 
         <div className='burger-actions'>
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={handleCheckout} 
+            onClick={handleCheckout}
             className='checkout-button'
           >
             <span>{t('burger.checkout')}</span>
@@ -130,10 +130,10 @@ export default function Burger() {
             </svg>
           </motion.button>
         </div>
-        
-        <motion.button 
+
+        <motion.button
           whileHover={{ color: '#ff4b2b' }}
-          className='reset-button' 
+          className='reset-button'
           onClick={context?.resetBuilder}
         >
           {t('burger.reset')}
