@@ -13,7 +13,7 @@ export type FormSchema = {
 
 const schema = (t: (key: string) => string) => z.object({
   email: z.string().email(t('login.validation.invalidEmail') || 'Invalid email'),
-  password: z.string().min(6, t('login.validation.passwordMin') || 'Password must be at least 6 characters long'),
+  password: z.string().min(6, t('login.validation.passwordMin') || 'Password must be at least 6 characters long').max(16, t('login.validation.passwordMax') || 'Password must be at most 12 characters long'),
 })
 
 interface FormProps {
@@ -39,7 +39,7 @@ export default function Form({
       email: '',
       password: '',
     },
-    mode: 'onBlur',
+    mode: 'onChange',
     resolver: zodResolver(schema(t)),
   })
 

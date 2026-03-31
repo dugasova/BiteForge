@@ -1,62 +1,42 @@
 import { createContext, useContext, useEffect } from "react";
-import { auth, db } from '../firebase';
-import { 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  signOut, 
-  onAuthStateChanged, 
-  type User, 
-  type UserCredential 
-} from 'firebase/auth';
-import { doc, setDoc } from "firebase/firestore";
+import { auth } from '../firebase';
+import { onAuthStateChanged, type User } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, setError, type RootState } from '../store';
+import { 
+  setUser, 
+  type RootState, 
+  signUpUser, 
+  logInUser, 
+  logOutUser,
+  type AppDispatch,
+  type AuthUser
+} from '../store';
 
 interface AuthContextType {
-  user: {
-    uid: string;
-    email: string | null;
-    displayName: string | null;
-    photoURL: string | null;
-  } | null;
+  user: AuthUser | null;
   loading: boolean;
-  signUp: (email: string, password: string) => Promise<UserCredential>;
-  logIn: (email: string, password: string) => Promise<UserCredential>;
+  error: string | null;
+  signUp: (email: string, password: string) => Promise<AuthUser>;
+  logIn: (email: string, password: string) => Promise<AuthUser>;
   logOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const dispatch = useDispatch();
-  const { user, loading } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
+  const { user, loading, error } = useSelector((state: RootState) => state.auth);
 
   async function signUp(email: string, password: string) {
-    try {
-      const result = await createUserWithEmailAndPassword(auth, email, password);
-      await setDoc(doc(db, "users", email), {
-        savedBurger: []
-      });
-      return result;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "An error occurred during sign up";
-      dispatch(setError(message));
-      throw error;
-    }
+    return await dispatch(signUpUser({ email, password })).unwrap();
   }
 
   async function logIn(email: string, password: string) {
-    try {
-      return await signInWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "An error occurred during login";
-      dispatch(setError(message));
-      throw error;
-    }
+    return await dispatch(logInUser({ email, password })).unwrap();
   }
 
-  function logOut() {
-    return signOut(auth);
+  async function logOut() {
+    await dispatch(logOutUser()).unwrap();
   }
 
   useEffect(() => {
@@ -76,7 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [dispatch]);
 
   return (
-    <AuthContext.Provider value={{ signUp, logIn, logOut, user, loading }}>
+    <AuthContext.Provider value={{ signUp, logIn, logOut, user, loading, error }}>
       {children}
     </AuthContext.Provider>
   )
