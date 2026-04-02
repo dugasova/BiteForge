@@ -1,13 +1,14 @@
-import React, { lazy } from 'react';
+import { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './components/Home/Home';
 import Layout from './pages/Layout';
 import { AuthProvider } from './context/AuthContext';
-import { BurgerProvider } from './context/BurgerProvider';
 import AuthGuard from './HOC/AuthGuard';
 import { ThemeProvider } from './context/ThemeContext';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Lazy loaded components
 //Universal function for lazy loading
@@ -51,9 +52,8 @@ export default function App() {
     <Provider store={store}>
       <ThemeProvider>
         <AuthProvider>
-          <BurgerProvider>
-            <RouterProvider router={router} />
-          </BurgerProvider>
+          <RouterProvider router={router} />
+          <ToastContainer position="bottom-right" autoClose={3000} />
         </AuthProvider>
       </ThemeProvider>
     </Provider>

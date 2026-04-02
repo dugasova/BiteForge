@@ -58,9 +58,6 @@ export default function Header() {
           </Button>
           <Button className="menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle menu">
             <div className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}>
-              {/* <span></span>
-              <span></span>
-              <span></span> */}
             </div>
           </Button>
         </div>

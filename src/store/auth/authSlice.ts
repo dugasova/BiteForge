@@ -6,6 +6,7 @@ import {
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
+import { toast } from 'react-toastify';
 
 export interface AuthUser {
   uid: string;
@@ -35,6 +36,7 @@ export const signUpUser = createAsyncThunk(
       const result = await createUserWithEmailAndPassword(auth, email, password);
       // Create user document in Firestore
       await setDoc(doc(db, "users", email), { savedBurger: [] });
+      toast.success(`Welcome, ${result.user.email}! Account created.`);
       
       return {
         uid: result.user.uid,
@@ -44,6 +46,7 @@ export const signUpUser = createAsyncThunk(
       };
     } catch (error) {
       const message = error instanceof Error ? error.message : "An error occurred during sign up";
+      toast.error(message);
       return rejectWithValue(message);
     }
   }
@@ -54,6 +57,7 @@ export const logInUser = createAsyncThunk(
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
+      toast.success(`Logged in successfully!`);
       return {
         uid: result.user.uid,
         email: result.user.email,
@@ -62,6 +66,7 @@ export const logInUser = createAsyncThunk(
       };
     } catch (error) {
       const message = error instanceof Error ? error.message : "An error occurred during login";
+      toast.error(message);
       return rejectWithValue(message);
     }
   }
@@ -72,6 +77,7 @@ export const logOutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await signOut(auth);
+      toast.info('Logged out.');
     } catch (error) {
       const message = error instanceof Error ? error.message : "An error occurred during logout";
       return rejectWithValue(message);

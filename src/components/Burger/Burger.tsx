@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import './Burger.scss';
 import TopBurger from './../../assets/ingredients/top_bun.png';
 import BottomBurger from './../../assets/ingredients/bottom_bun.png';
 import Checkout from '../Checkout/Checkout';
-import { BurgerContext, type BurgerContextType } from '../../context/BurgerContext';
+import useBuilder from '../../hooks/useBuilder';
 import { dataOfProduct } from '../../mockedData';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,11 +11,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Burger() {
   const { t } = useTranslation();
   const [checkout, setCheckout] = useState(false);
-  const context = useContext(BurgerContext) as BurgerContextType | null;
+  const { stateBuilder, resetBuilder } = useBuilder();
 
-  const sequence = context?.stateBuilder?.sequence || [];
-  const totalPrice = context?.stateBuilder?.totalPrice || 0;
-  const totalKkal = context?.stateBuilder?.totalKkal || 0;
+  const sequence = stateBuilder?.sequence || [];
+  const totalPrice = stateBuilder?.totalPrice || 0;
+  const totalKkal = stateBuilder?.totalKkal || 0;
 
   const handleCheckout = () => {
     setCheckout(true);
@@ -135,7 +135,7 @@ export default function Burger() {
         <motion.button
           whileHover={{ color: '#ff4b2b' }}
           className='reset-button'
-          onClick={context?.resetBuilder}
+          onClick={resetBuilder}
         >
           {t('burger.reset')}
         </motion.button>

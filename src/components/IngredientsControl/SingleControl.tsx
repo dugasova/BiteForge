@@ -1,6 +1,5 @@
-import { useContext } from 'react';
 import './SingleControl.scss';
-import { BurgerContext } from '../../context/BurgerContext';
+import useBuilder from '../../hooks/useBuilder';
 import { motion } from 'framer-motion';
 
 interface SingleControlProps {
@@ -9,12 +8,7 @@ interface SingleControlProps {
 }
 
 export default function SingleControl({ img, name }: SingleControlProps) {
-  const context = useContext(BurgerContext);
-  const { addIngredient, removeIngredient, stateBuilder } = context || {
-    addIngredient: () => {},
-    removeIngredient: () => {},
-    stateBuilder: { ingredients: {} as { [key: string]: number }, sequence: [], totalPrice: 0 }
-  };
+  const { addIngredient, removeIngredient, stateBuilder } = useBuilder();
 
   const quantity = (stateBuilder?.ingredients as { [key: string]: number })?.[name] || 0;
 

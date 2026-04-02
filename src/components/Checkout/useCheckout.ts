@@ -1,0 +1,119 @@
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { db } from '../../firebase';
+import useBuilder from '../../hooks/useBuilder';
+import { UserAuth } from '../../context/AuthContext';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-toastify';
+import type { ContactsFormValues } from './CheckoutForm';
+
+const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) => z.object({
+  fullName: z.string().min(2, t('checkout.validation.nameMin')),
+  phoneNumber: z.string().regex(/^\+?[\d\s-]{10,}$/, t('checkout.validation.invalidPhone')),
+  email: z.string().email(t('checkout.validation.invalidEmail')),
+  password: z.string().min(isUserLoggedIn ? 0 : 6, t('checkout.validation.passwordMin')),
+  deliveryAddress: z.string().min(2, t('checkout.validation.deliveryAddressMin')),
+});
+
+export function useCheckout(onClose: () => void) {
+  const { user, signUp } = UserAuth();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { stateBuilder, resetBuilder } = useBuilder();
+  const { ingredients, totalPrice, totalKkal } = stateBuilder;
+
+  const [error, setError] = useState('');
+  const [fastDelivery, setFastDelivery] = useState(false);
+
+  const fastDeliveryPrice = 20;
+
+  const { control, handleSubmit, formState: { errors }, setValue } = useForm<ContactsFormValues>({
+    resolver: zodResolver(contactsSchema(t, !!user)),
+    defaultValues: {
+      fullName: '',
+      phoneNumber: '',
+      email: user?.email || '',
+      password: '',
+      deliveryAddress: '',
+    },
+  });
+
+  // Sync email if user logs in while modal is open
+  useEffect(() => {
+    if (user?.email) {
+      setValue('email', user.email);
+    }
+  }, [user, setValue]);
+
+
+  const onConfirmOrder = async (data: ContactsFormValues) => {
+    const targetEmail = user?.email || data.email;
+
+    try {
+      if (!user) {
+        if (!data.password) {
+           setError('Password is required for account creation');
+           return;
+        }
+        await signUp(targetEmail, data.password);
+      }
+
+      const order = {
+        fullName: data.fullName,
+        email: targetEmail,
+        phoneNumber: data.phoneNumber,
+        deliveryAddress: data.deliveryAddress,
+        ingredients,
+        totalPrice,
+        totalKkal,
+        fastDelivery,
+        id: Date.now(),
+        date: new Date().toISOString(),
+      };
+
+      const userDocRef = doc(db, 'users', targetEmail);
+      await updateDoc(userDocRef, {
+        savedBurger: arrayUnion(order)
+      });
+      toast.success('Burger saved successfully! 🎉');
+
+      setTimeout(() => {
+        onClose();
+        resetBuilder();
+        navigate('/account');
+      }, 2000);
+
+    } catch (saveError) {
+      console.error(saveError);
+      if (saveError instanceof Error) {
+        setError(saveError.message);
+        toast.error(`Order failed: ${saveError.message}`);
+      } else {
+        setError(String(saveError));
+        toast.error(`Order failed: ${String(saveError)}`);
+      }
+    }
+  };
+
+  const ingredientEntries = Object.entries(ingredients).filter(([, count]) => count > 0);
+
+  return {
+    t,
+    control,
+    errors,
+    user,
+    handleSubmit,
+    onConfirmOrder,
+    error,
+    fastDelivery,
+    setFastDelivery,
+    fastDeliveryPrice,
+    ingredientEntries,
+    totalPrice,
+    totalKkal,
+  };
+}

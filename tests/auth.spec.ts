@@ -54,7 +54,7 @@ test.describe("Authentication Flow", () => {
     await page.getByPlaceholder(/email/i).fill("nonexistent@user.com");
     await page.getByPlaceholder(/password/i).fill("wrongpassword");
 
-    await page.getByRole("button", { name: /login/i }).click();
+    await page.locator(".login__form__button").click();
 
     // Should show error message from Firebase
     // Either the hardcoded one "Something went wrong" or specific Firebase error
