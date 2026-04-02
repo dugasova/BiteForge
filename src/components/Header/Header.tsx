@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Header.scss';
-import Navigation from '../Navigation /Navigation';
+import Navigation from '../Navigation/Navigation';
 import Logo from './../../assets/logo/logo.png'
 import { useTranslation } from 'react-i18next';
 import MobileMenu from '../MobileMenu/MobileMenu';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import Button from '../Button/Button';
 
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -34,33 +36,33 @@ export default function Header() {
   return (
     <div className='header-wrapper container'>
       <header className='header'>
-        <p onClick={() => navigate('/')}><img src={Logo} alt="Logo" className='header__logo' /></p>
+        <Link to="/"><img src={Logo} alt="Logo" className='header__logo' /></Link>
         <div className="navigation-wrapper">
           <Navigation />
         </div>
         <div className="header__actions">
           {user?.email ? (
             <>
-              <button className='header__actions__button' onClick={() => navigate('/account')}>Account</button>
-              <button className='header__actions__button' onClick={handleLogout}>Logout</button>
+              <Button text={t('navigation.account')} className='header__actions__button' onClick={() => navigate('/account')} />
+              <Button text={t('navigation.logout')} className='header__actions__button' onClick={handleLogout} />
             </>
           ) : (
             <>
-              <button className='header__actions__button' onClick={() => navigate('/login')}>Login</button>
-              <button className='header__actions__button' onClick={() => navigate('/signup')}>Sign Up</button>
+              <Button text={t('login.title')} className='header__actions__button' onClick={() => navigate('/login')} />
+              <Button text={t('signup.title')} className='header__actions__button' onClick={() => navigate('/signup')} />
             </>
           )}
           <ThemeToggle />
-          <button onClick={toggleLanguage} className='header__actions__button lang-btn'>
+          <Button onClick={toggleLanguage} className='header__actions__button lang-btn'>
             {i18n.language?.startsWith('en') ? 'UK' : 'EN'}
-          </button>
-          <button className="menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle menu">
+          </Button>
+          <Button className="menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle menu">
             <div className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}>
+              {/* <span></span>
               <span></span>
-              <span></span>
-              <span></span>
+              <span></span> */}
             </div>
-          </button>
+          </Button>
         </div>
       </header>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />

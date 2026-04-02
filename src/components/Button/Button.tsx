@@ -1,13 +1,15 @@
-import React from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import './Button.scss';
 
-interface ButtonProps {
-  text: string;
-  onClick: () => void;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  // We can still optionally support 'text', but 'children' is the React standard
+  text?: string; 
 }
 
-export default function Button({ text, onClick }: ButtonProps) {
+export default function Button({ text, children, className = '', ...props }: ButtonProps) {
   return (
-    <button className="button" onClick={onClick}>{text}</button>
-  )
+    <button className={`button ${className}`} {...props}>
+      {text || children}
+    </button>
+  );
 }

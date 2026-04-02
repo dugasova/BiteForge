@@ -75,14 +75,16 @@
     object-fit: contain;
     filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.15));
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 10;
+    position: relative;
 
     &.top {
       margin-bottom: -20px;
+      z-index: 50;
     }
 
     &.bottom {
-      margin-top: -20px;
+      margin-top: 0;
+      z-index: 1;
     }
 
     &:hover {
@@ -254,7 +256,7 @@
   }
 
   .burger-display {
-    // padding: 2rem 0;
+    padding: 2rem 0;
 
     .burger-bun {
       max-width: 280px;
@@ -262,7 +264,6 @@
 
     .ingredients-container {
       height: 150px;
-      /* Reduced from 200px */
     }
 
     .burger-ingredient {

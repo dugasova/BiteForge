@@ -2,7 +2,9 @@
     "navigation": {
         "home": "Home",
         "about": "About",
-        "contact": "Contact"
+        "contact": "Contact",
+        "account": "Account",
+        "logout": "Logout"
     },
     "footer": {
         "description": "Unleash your inner chef and build the perfect burger. Fresh ingredients, unlimited possibilities.",

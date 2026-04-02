@@ -60,9 +60,10 @@ export default function Burger() {
                     className={`burger-ingredient ${ingredientName}`}
                     src={itemData.img}
                     alt={ingredientName}
+                    // style={{ bottom: 10 + index * 9, zIndex: index + 1, }}
                     style={{
-                      bottom: 10 + index * 9,
-                      zIndex: index + 1,
+                      bottom: (index * 15) - 30, // Brought down to lay flat on the un-margined bun
+                      zIndex: 10 + index,
                       position: 'absolute'
                     }}
                   />
@@ -82,7 +83,7 @@ export default function Burger() {
           </div>
 
           <motion.img
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 0, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             className='burger-bun bottom'
             src={BottomBurger}
