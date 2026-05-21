@@ -1,4 +1,3 @@
-import React from 'react'
 import './Prices.scss';
 import { dataOfProduct } from '../../mockedData'
 import SinglePrice from './SinglePrice/SinglePrice';

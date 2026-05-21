@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Burgers.scss';
 import { BURGRS } from '../../mockedData';
 import BurgerCard from './BurgerCard';

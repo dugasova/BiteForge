@@ -1,4 +1,3 @@
-import React from 'react';
 import './Navigation.scss';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';

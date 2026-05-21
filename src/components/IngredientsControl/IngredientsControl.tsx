@@ -1,4 +1,3 @@
-import React from 'react';
 import './IngredientsControl.scss';
 import { dataOfProduct } from '../../mockedData';
 import SingleControl from './SingleControl';

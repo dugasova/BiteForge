@@ -1,4 +1,3 @@
-import React from 'react'
 import './SinglePrice.scss';
 import { useTranslation } from 'react-i18next';
 

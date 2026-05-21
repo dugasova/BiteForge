@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router';
 import Header from '../components/Header/Header';
 import Footer from '../../src/components/Footer/Footer';

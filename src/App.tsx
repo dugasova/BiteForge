@@ -10,16 +10,13 @@ import { store } from './store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Lazy loaded components
-//Universal function for lazy loading
-const lazyLoad = (path: string) => lazy(() => import(path));
 
-const AboutRouterLazy = lazyLoad('./routes/AboutRouter');
-const ContactRouterLazy = lazyLoad('./routes/ContactRouter');
-const ErrorRouteLazy = lazyLoad('./routes/ErrorRoute');
-const AccountRouterLazy = lazyLoad('./routes/AccountRouter');
-const LoginRouterLazy = lazyLoad('./routes/LoginRouter');
-const SignUpRouterLazy = lazyLoad('./routes/SignUpRouter');
+const AboutRouterLazy = lazy(()=> import('./routes/AboutRouter'));
+const ContactRouterLazy = lazy(()=> import('./routes/ContactRouter'));
+const ErrorRouteLazy = lazy(()=> import('./routes/ErrorRoute'));
+const AccountRouterLazy = lazy(()=> import('./routes/AccountRouter'));
+const LoginRouterLazy = lazy(()=> import('./routes/LoginRouter'));
+const SignUpRouterLazy = lazy(()=> import('./routes/SignUpRouter'));
 
 export default function App() {
   const router = createBrowserRouter([

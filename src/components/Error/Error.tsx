@@ -1,4 +1,3 @@
-import React from 'react';
 import './Error.scss';
 import { useNavigate } from 'react-router-dom';
 
