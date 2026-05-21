@@ -3,7 +3,7 @@ import './Account.scss';
 import { useTranslation } from 'react-i18next';
 import { UserAuth } from '../../context/AuthContext';
 import { db } from '../../firebase';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot, arrayUnion, arrayRemove, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import BurgerIllustration from '../../assets/burgers/burger5.png';
 
@@ -55,7 +55,6 @@ export default function Account() {
       };
 
       const userDocRef = doc(db, 'users', user.email);
-      const { arrayUnion, updateDoc } = await import('firebase/firestore');
 
       await updateDoc(userDocRef, {
         savedBurger: arrayUnion(newOrder)
@@ -77,7 +76,6 @@ export default function Account() {
 
     try {
       const userDocRef = doc(db, 'users', user.email);
-      const { arrayRemove, updateDoc } = await import('firebase/firestore');
 
       await updateDoc(userDocRef, {
         savedBurger: arrayRemove(order)
