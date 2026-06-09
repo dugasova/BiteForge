@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './SignUp.scss';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { UserAuth } from '../../context/AuthContext';
+import useAuth from '../../hooks/useAuth';
 import Form from '../Form/Form';
 import type { FormSchema } from '../Form/Form';
 
@@ -11,7 +11,7 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { signUp } = UserAuth();
+  const { signUp } = useAuth();
 
   const handleSignUpSubmit = async (data: FormSchema) => {
     setError('');

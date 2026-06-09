@@ -74,7 +74,15 @@
         "orderDate": "Order Date",
         "orderPrice": "Order Price",
         "fastDelivery": "Fast Delivery",
-        "delete": "Delete"
+        "delete": "Delete",
+        "reorder": "Order Again",
+        "loadError": "Failed to load orders.",
+        "reorderSuccess": "Order placed successfully!",
+        "reorderError": "Failed to reorder. Please try again.",
+        "deleteConfirm": "Are you sure you want to delete this order?",
+        "deleteSuccess": "Order deleted successfully.",
+        "deleteError": "Failed to delete order.",
+        "logoutError": "Logout failed. Please try again."
     },
     "signup": {
         "title": "Sign Up",
@@ -96,6 +104,11 @@
             "passwordMax": "Password must be at most 12 characters"
         },
         "error": "Something went wrong please enter valid data"
+    },
+    "auth": {
+        "signUpSuccess": "Account created successfully!",
+        "logInSuccess": "Logged in successfully!",
+        "logOutSuccess": "You have been logged out."
     },
     "error": {
         "title": "Oops! Something went wrong",

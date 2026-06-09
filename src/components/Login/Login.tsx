@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
-import { UserAuth } from '../../context/AuthContext';
+import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import Form from '../Form/Form';
 import type { FormSchema } from '../Form/Form';
@@ -11,7 +11,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { user, logIn } = UserAuth();
+  const { user, logIn } = useAuth();
 
   const handleLoginSubmit = async (data: FormSchema) => {
     setError('');

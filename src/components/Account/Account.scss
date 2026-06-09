@@ -4,15 +4,15 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
   background: radial-gradient(circle at top right, rgba(76, 175, 80, 0.05) 0%, transparent 40%),
               radial-gradient(circle at bottom left, rgba(255, 152, 0, 0.05) 0%, transparent 40%);
 
   // Theme Variables
-  --card-bg: #ffffff;
+  --card-bg: #fafafa;
   --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
   --card-border: rgba(0, 0, 0, 0.05);
-  --hero-bg: linear-gradient(135deg, #fdfdfd 0%, #f7f7f7 100%);
+  --hero-bg: linear-gradient(135deg, #f6f8f6 0%, #eef1ee 100%);
   --hero-divider: rgba(0, 0, 0, 0.05);
   --text-welcome: #666;
   --text-user: #1a1a1a;
@@ -98,7 +98,7 @@
     box-shadow: var(--card-shadow);
     overflow: hidden;
     border: 1px solid var(--card-border);
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
   .account-hero {
@@ -194,7 +194,7 @@
         font-size: 0.9rem;
         font-weight: 600;
         color: var(--order-count-text);
-        transition: all 0.3s ease;
+        transition: background 0.3s ease, color 0.3s ease;
       }
     }
   }
@@ -210,7 +210,7 @@
     border: 1px solid var(--item-border);
     border-radius: 20px;
     padding: 24px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
     &:hover {
       transform: translateY(-4px);
@@ -248,7 +248,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.2s ease;
+        transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
         border-radius: 8px;
         
         svg {
@@ -279,7 +279,7 @@
         font-size: 0.75rem;
         font-weight: 800;
         text-transform: uppercase;
-        transition: all 0.3s ease;
+        transition: background 0.3s ease, color 0.3s ease;
       }
     }
 
@@ -309,7 +309,7 @@
           display: flex;
           align-items: center;
           gap: 6px;
-          transition: all 0.3s ease;
+          transition: background 0.3s ease, color 0.3s ease;
 
           .pill-count {
             color: var(--pill-count);
@@ -338,7 +338,7 @@
     cursor: pointer;
     border-radius: 12px;
     font-weight: 700;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
     border: none;
     font-family: inherit;
   }
@@ -361,7 +361,7 @@
     color: var(--btn-secondary-text);
     padding: 12px 24px;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 
     &:hover {
       background: var(--btn-secondary-hover);
@@ -429,7 +429,7 @@
       background: var(--btn-edit-bg);
       color: var(--btn-edit-text);
       border: 1px solid var(--btn-edit-border);
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 
       &:hover {
         background: var(--btn-edit-hover-bg);

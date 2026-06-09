@@ -5,7 +5,7 @@ import Logo from './../../assets/logo/logo.png'
 import { useTranslation } from 'react-i18next';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { useNavigate, Link } from 'react-router-dom';
-import { UserAuth } from '../../context/AuthContext';
+import useAuth from '../../hooks/useAuth';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import Button from '../Button/Button';
 
@@ -16,7 +16,7 @@ export default function Header() {
   const navigate = useNavigate();
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
-  const { user, logOut } = UserAuth();
+  const { user, logOut } = useAuth();
 
   const handleLogout = async () => {
     try {

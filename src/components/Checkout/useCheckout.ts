@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { saveOrder } from '../../services/ordersService';
 import type { Order } from '../../types/order';
 import useBuilder from '../../hooks/useBuilder';
-import { UserAuth } from '../../context/AuthContext';
+import useAuth from '../../hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,7 +20,7 @@ const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) => 
 });
 
 export function useCheckout(onClose: () => void) {
-  const { user, signUp } = UserAuth();
+  const { user, signUp } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { stateBuilder, resetBuilder } = useBuilder();
@@ -85,9 +85,7 @@ export function useCheckout(onClose: () => void) {
       }, 2000);
 
     } catch (saveError) {
-      console.error(saveError);
-      const message = saveError instanceof Error ? saveError.message : String(saveError);
-      setError(message);
+      setError(saveError instanceof Error ? saveError.message : String(saveError));
     }
   };
 

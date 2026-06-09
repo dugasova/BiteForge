@@ -1,56 +1,50 @@
 .signup-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--bg-color);
+
+  .signup {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
-    height: 100vh;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid var(--border-subtle, #ccc);
+    border-radius: 8px;
+    width: 500px;
+    max-width: calc(100vw - 32px);
+    background: var(--card-bg);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 
-    .signup {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 500px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        &__form {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-
-            &__link {
-                margin-left: 10px;
-                color: #4CAF50;
-                cursor: pointer;
-                text-decoration: underline;
-            }
-        }
-
-        &__form__input {
-            width: 100%;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            font-size: 16px;
-            font-weight: 600;
-            width: 100%;
-            color: white;
-            cursor: pointer;
-        }
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text-main);
     }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      &__link {
+        margin-left: 10px;
+        color: var(--color-brand);
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+    &__form__input {
+      width: 100%;
+      padding: 20px;
+      border: 1px solid var(--border-subtle, #ccc);
+      border-radius: 5px;
+      background: var(--bg-color);
+      color: var(--text-main);
+    }
+  }
 }

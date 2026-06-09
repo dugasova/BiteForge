@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import './Account.scss';
 import { useTranslation } from 'react-i18next';
-import { UserAuth } from '../../context/AuthContext';
+import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import BurgerIllustration from '../../assets/burgers/burger5.png';
 import { subscribeToOrders, saveOrder, deleteOrder } from '../../services/ordersService';
 import type { Order } from '../../types/order';
+import Loader from '../Loader/Loader';
 
 export default function Account() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
-  const { user, logOut } = UserAuth();
+  const { user, logOut } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -20,17 +21,17 @@ export default function Account() {
     const unsubscribe = subscribeToOrders(
       user.email,
       (data) => { setOrders(data); setLoading(false); },
-      () => { toast.error('Failed to load orders.'); setLoading(false); },
+      () => { toast.error(t('account.loadError')); setLoading(false); },
     );
     return () => unsubscribe();
-  }, [user]);
+  }, [user, t]);
 
   const handleLogout = async () => {
     try {
       await logOut();
       navigate('/');
-    } catch (e) {
-      console.error('Logout failed:', e);
+    } catch {
+      toast.error(t('account.logoutError'));
     }
   };
 
@@ -39,22 +40,20 @@ export default function Account() {
     try {
       const newOrder = { ...order, id: Date.now(), date: new Date().toISOString() };
       await saveOrder(user.email, newOrder);
-      toast.success('Order placed successfully! 🎉');
-    } catch (err) {
-      console.error('Reorder failed:', err);
-      toast.error('Failed to reorder. Please try again.');
+      toast.success(t('account.reorderSuccess'));
+    } catch {
+      toast.error(t('account.reorderError'));
     }
   };
 
   const handleDeleteOrder = async (order: Order) => {
     if (!user?.email) return;
-    if (!window.confirm('Are you sure you want to delete this order?')) return;
+    if (!window.confirm(t('account.deleteConfirm'))) return;
     try {
       await deleteOrder(user.email, order);
-      toast.success('Order deleted successfully');
-    } catch (err) {
-      console.error('Delete failed:', err);
-      toast.error('Failed to delete order.');
+      toast.success(t('account.deleteSuccess'));
+    } catch {
+      toast.error(t('account.deleteError'));
     }
   };
 
@@ -88,7 +87,7 @@ export default function Account() {
           </div>
 
           {loading ? (
-            <p className="loading-text">Loading...</p>
+            <Loader />
           ) : orders.length > 0 ? (
             <div className="orders-grid">
               {orders.map((order) => (
@@ -113,14 +112,14 @@ export default function Account() {
                       <button
                         className="btn-reorder"
                         onClick={() => handleInstantReorder(order)}
-                        title="Quick re-order now"
+                        title={t('account.reorder')}
                       >
-                        {t('account.goBack')}
+                        {t('account.reorder')}
                       </button>
                       <button
                         className="btn-edit"
                         onClick={() => handleDeleteOrder(order)}
-                        title="Delete order"
+                        title={t('account.delete')}
                       >
                         {t('account.delete')}
                       </button>

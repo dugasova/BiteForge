@@ -8,5 +8,5 @@ export interface Order {
   totalPrice: number;
   totalKcal: number;
   fastDelivery: boolean;
-  ingredients: { [key: string]: number };
+  ingredients: Record<string, number>;
 }
