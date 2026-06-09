@@ -13,7 +13,7 @@ import type { ContactsFormValues } from './CheckoutForm';
 
 const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) => z.object({
   fullName: z.string().min(2, t('checkout.validation.nameMin')),
-  phoneNumber: z.string().regex(/^\+?[\d\s-]{10,}$/, t('checkout.validation.invalidPhone')),
+  phoneNumber: z.string().regex(/^\+?[\d\s-]{10,}$/, { message: t('checkout.validation.invalidPhone') }),
   email: z.string().email(t('checkout.validation.invalidEmail')),
   password: z.string().min(isUserLoggedIn ? 0 : 6, t('checkout.validation.passwordMin')),
   deliveryAddress: z.string().min(2, t('checkout.validation.deliveryAddressMin')),
@@ -75,10 +75,7 @@ export function useCheckout(onClose: () => void) {
         date: new Date().toISOString(),
       };
 
-      const userDocRef = doc(db, 'users', targetEmail);
-      await updateDoc(userDocRef, {
-        savedBurger: arrayUnion(order)
-      });
+      await saveOrder(targetEmail, order as Order);
       toast.success('Burger saved successfully! 🎉');
 
       setTimeout(() => {

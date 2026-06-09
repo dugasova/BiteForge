@@ -10,26 +10,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Burger() {
   const { t } = useTranslation();
-  const [checkout, setCheckout] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const { stateBuilder, resetBuilder } = useBuilder();
 
-  const sequence = stateBuilder?.sequence || [];
-  const totalPrice = stateBuilder?.totalPrice || 0;
-  const totalKcal = stateBuilder?.totalKcal || 0;
-
-  const handleCheckout = () => {
-    setCheckout(true);
-  }
-
-  const closeCheckout = () => {
-    setCheckout(false);
-  }
+  const sequence = stateBuilder.sequence;
+  const totalPrice = stateBuilder.totalPrice ?? 0;
+  const totalKcal = stateBuilder.totalKcal ?? 0;
 
   return (
     <>
       <div className='burger-wrapper'>
         <div className='burger-display'>
-          {/* ... bun top ... */}
           <motion.img
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -60,11 +51,9 @@ export default function Burger() {
                     className={`burger-ingredient ${ingredientName}`}
                     src={itemData.img}
                     alt={ingredientName}
-                    // style={{ bottom: 10 + index * 9, zIndex: index + 1, }}
                     style={{
-                      bottom: (index * 15) - 30, // Brought down to lay flat on the un-margined bun
-                      zIndex: 10 + index,
-                      position: 'absolute'
+                      bottom: (index * 15) - 30,
+                      zIndex: 15 + index
                     }}
                   />
                 );
@@ -122,7 +111,7 @@ export default function Burger() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={handleCheckout}
+            onClick={() => setIsCheckoutOpen(true)}
             className='checkout-button'
           >
             <span>{t('burger.checkout')}</span>
@@ -133,14 +122,14 @@ export default function Burger() {
         </div>
 
         <motion.button
-          whileHover={{ color: '#d52c2cff' }}
+          whileHover={{ color: '#b07a71ff' }}
           className='reset-button'
           onClick={resetBuilder}
         >
           {t('burger.reset')}
         </motion.button>
       </div>
-      {checkout && <Checkout onClose={closeCheckout} />}
+      {isCheckoutOpen && <Checkout onClose={() => setIsCheckoutOpen(false)} />}
     </>
   )
 }
