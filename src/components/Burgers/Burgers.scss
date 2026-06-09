@@ -28,7 +28,6 @@
     padding: 10px 50px 40px;
   }
 
-  // Custom Navigation
   .swiper-button-next,
   .swiper-button-prev {
     color: #ffdd57;
@@ -37,8 +36,8 @@
     height: 50px;
     border-radius: 50%;
     border: 1px solid rgba(255, 221, 87, 0.3);
-    transition: all 0.3s ease;
-    
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+
     &::after {
       font-size: 1.2rem;
       font-weight: bold;
@@ -51,13 +50,12 @@
     }
   }
 
-  // Custom Pagination
   .swiper-pagination-bullet {
     background: rgba(255, 255, 255, 0.3);
     width: 12px;
     height: 12px;
     opacity: 1;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, width 0.3s ease;
 
     &-active {
       background: #ffdd57;
@@ -67,14 +65,12 @@
   }
 }
 
-// Ensure Card Styles within Swiper
 .swiper-slide {
   height: auto;
   display: flex;
   justify-content: center;
   transition: transform 0.3s ease;
 
-  // Added slight scale for better visual hierarchy when centered (if effect is slide)
   &.swiper-slide-active {
     transform: scale(1.02);
   }

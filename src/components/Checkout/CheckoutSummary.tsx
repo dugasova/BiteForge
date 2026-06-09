@@ -33,11 +33,11 @@ export default function CheckoutSummary({
           <h3 className='ingredients-title'>{t('checkout.ingredients')}:</h3>
           <ul className='ingredients-list'>
             {ingredientEntries.map(([name, count]) => (
-              <li className='ingredient-item' key={name}>{name} x{count as number}</li>
+              <li className='ingredient-item' key={name}>{name} x{count}</li>
             ))}
           </ul>
           <div className='checkout-total'>
-            <span>Nutritional value:</span>
+            <span>{t('checkout.nutritionalValue')}:</span>
             <span className='total-kcal'>🔥 {totalKcal} kcal</span>
           </div>
           <div className='checkout-total border-bottom'>
@@ -59,7 +59,7 @@ export default function CheckoutSummary({
 
       <div className='checkout-total'>
         <span>{t('checkout.total')}:</span>
-        <span className='total-price'>{+(Number(totalPrice).toFixed(2)) + (fastDelivery ? fastDeliveryPrice : 0)} UAH</span>
+        <span className='total-price'>{totalPrice + (fastDelivery ? fastDeliveryPrice : 0)} UAH</span>
       </div>
 
       <button onClick={onSubmit} className='checkout-confirm-button'>

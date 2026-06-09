@@ -1,6 +1,5 @@
 .burger-item {
   position: relative;
-  list-style-type: none;
   flex: 0 0 calc(100% / 3 - 12px);
   display: flex;
   flex-direction: column;
@@ -63,17 +62,6 @@
   font-weight: 700;
 }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 1080px) {
   .burger-item {
     min-height: 500px;
@@ -83,5 +71,17 @@
 @media (max-width: 720px) {
   .burger-item {
     flex: 0 0 100%;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

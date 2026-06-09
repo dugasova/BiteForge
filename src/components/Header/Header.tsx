@@ -12,8 +12,7 @@ import Button from '../Button/Button';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { t } = useTranslation();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -43,13 +42,13 @@ export default function Header() {
         <div className="header__actions">
           {user?.email ? (
             <>
-              <Button text={t('navigation.account')} className='header__actions__button' onClick={() => navigate('/account')} />
-              <Button text={t('navigation.logout')} className='header__actions__button' onClick={handleLogout} />
+              <Button className='header__actions__button' onClick={() => navigate('/account')}>{t('navigation.account')}</Button>
+              <Button className='header__actions__button' onClick={handleLogout}>{t('navigation.logout')}</Button>
             </>
           ) : (
             <>
-              <Button text={t('login.title')} className='header__actions__button' onClick={() => navigate('/login')} />
-              <Button text={t('signup.title')} className='header__actions__button' onClick={() => navigate('/signup')} />
+              <Button className='header__actions__button' onClick={() => navigate('/login')}>{t('login.title')}</Button>
+              <Button className='header__actions__button' onClick={() => navigate('/signup')}>{t('signup.title')}</Button>
             </>
           )}
           <ThemeToggle />

@@ -28,6 +28,14 @@
         "mustard": "Гірчиця",
         "patty": "Котлета"
     },
+    "burgers": {
+        "title": "Наші бургери",
+        "rating": "Рейтинг",
+        "reviews": {
+            "good": "Добре",
+            "veryDelicious": "Дуже смачно"
+        }
+    },
     "burger": {
         "addIngredients": "Додайте інгредієнти",
         "totalPrice": "Загальна ціна",
@@ -46,12 +54,15 @@
         "deliveryAddress": "Адреса доставки",
         "total": "Загальна ціна",
         "fastDelivery": "Швидка доставка",
+        "nutritionalValue": "Харчова цінність",
+        "toastSuccess": "Бургер успішно збережено!",
         "validation": {
             "nameMin": "Ім'я має містити принаймні 2 символи",
             "invalidPhone": "Будь ласка, введіть дійсний номер телефону (+ та щонайменше 10 цифр)",
             "invalidEmail": "Будь ласка, введіть дійсну електронну адресу",
             "passwordMin": "Пароль має містити принаймні 6 символів",
-            "deliveryAddressMin": "Адреса має містити принаймні 2 символи"
+            "deliveryAddressMin": "Адреса має містити принаймні 2 символи",
+            "passwordRequired": "Пароль обов'язковий"
         }
     },
     "account": {

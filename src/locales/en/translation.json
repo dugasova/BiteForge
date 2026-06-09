@@ -28,6 +28,14 @@
         "mustard": "Mustard",
         "patty": "Patty"
     },
+    "burgers": {
+        "title": "Our Burgers",
+        "rating": "Rating",
+        "reviews": {
+            "good": "Good",
+            "veryDelicious": "Very delicious"
+        }
+    },
     "burger": {
         "addIngredients": "Add some ingredients",
         "totalPrice": "Total price",
@@ -46,12 +54,15 @@
         "deliveryAddress": "Delivery Address",
         "total": "Total",
         "fastDelivery": "Fast Delivery",
+        "nutritionalValue": "Nutritional value",
+        "toastSuccess": "Burger saved successfully!",
         "validation": {
             "nameMin": "Full name must be at least 2 characters",
             "invalidPhone": "Please enter a valid phone number (+ and at least 10 digits)",
             "invalidEmail": "Please enter a valid email address",
             "passwordMin": "Password must be at least 6 characters",
-            "deliveryAddressMin": "Delivery address must be at least 2 characters"
+            "deliveryAddressMin": "Delivery address must be at least 2 characters",
+            "passwordRequired": "Password is required"
         }
     },
     "account": {

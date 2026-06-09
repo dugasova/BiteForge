@@ -12,11 +12,11 @@ import { toast } from 'react-toastify';
 import type { ContactsFormValues } from './CheckoutForm';
 
 const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) => z.object({
-  fullName: z.string().min(2, t('checkout.validation.nameMin')),
+  fullName: z.string().min(2, { message: t('checkout.validation.nameMin') }),
   phoneNumber: z.string().regex(/^\+?[\d\s-]{10,}$/, { message: t('checkout.validation.invalidPhone') }),
-  email: z.string().email(t('checkout.validation.invalidEmail')),
-  password: z.string().min(isUserLoggedIn ? 0 : 6, t('checkout.validation.passwordMin')),
-  deliveryAddress: z.string().min(2, t('checkout.validation.deliveryAddressMin')),
+  email: z.string().email({ message: t('checkout.validation.invalidEmail') }),
+  password: z.string().min(isUserLoggedIn ? 0 : 6, { message: t('checkout.validation.passwordMin') }),
+  deliveryAddress: z.string().min(2, { message: t('checkout.validation.deliveryAddressMin') }),
 });
 
 export function useCheckout(onClose: () => void) {
@@ -56,7 +56,7 @@ export function useCheckout(onClose: () => void) {
     try {
       if (!user) {
         if (!data.password) {
-           setError('Password is required for account creation');
+           setError(t('checkout.validation.passwordRequired'));
            return;
         }
         await signUp(targetEmail, data.password);
@@ -76,7 +76,7 @@ export function useCheckout(onClose: () => void) {
       };
 
       await saveOrder(targetEmail, order as Order);
-      toast.success('Burger saved successfully! 🎉');
+      toast.success(t('checkout.toastSuccess'));
 
       setTimeout(() => {
         onClose();
@@ -86,13 +86,8 @@ export function useCheckout(onClose: () => void) {
 
     } catch (saveError) {
       console.error(saveError);
-      if (saveError instanceof Error) {
-        setError(saveError.message);
-        toast.error(`Order failed: ${saveError.message}`);
-      } else {
-        setError(String(saveError));
-        toast.error(`Order failed: ${String(saveError)}`);
-      }
+      const message = saveError instanceof Error ? saveError.message : String(saveError);
+      setError(message);
     }
   };
 

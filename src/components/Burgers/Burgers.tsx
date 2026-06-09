@@ -1,34 +1,22 @@
-import { useState, useEffect } from 'react';
 import './Burgers.scss';
 import { BURGERS } from '../../mockedData';
 import BurgerCard from './BurgerCard';
-import Loader from '../Loader/Loader';
+import { useTranslation } from 'react-i18next';
 
-// Import Swiper React components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 
 export default function Burgers() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return <Loader skeleton cards={3} />
-  }
+  const { t } = useTranslation();
 
   return (
     <div className="burgers-container">
-      <h1>Our Burgers</h1>
+      <h1>{t('burgers.title')}</h1>
       <div className="swiper-wrapper-custom">
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
@@ -67,9 +55,9 @@ export default function Burgers() {
           }}
           className="mySwiper"
         >
-          {BURGERS.map((burger) => (
-            <SwiperSlide key={burger.id}>
-              <BurgerCard {...burger} />
+          {BURGERS.map(({ id, ...cardProps }) => (
+            <SwiperSlide key={id}>
+              <BurgerCard {...cardProps} />
             </SwiperSlide>
           ))}
         </Swiper>
