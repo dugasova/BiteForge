@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './SignUp.scss';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { UserAuth } from '../../context/AuthContext'
+import { UserAuth } from '../../context/AuthContext';
 import Form from '../Form/Form';
 import type { FormSchema } from '../Form/Form';
 
@@ -20,17 +20,12 @@ export default function SignUp() {
     try {
       await signUp(data.email, data.password);
       navigate('/');
-    } catch (err) {
-      if (err instanceof Error) {
-        setError('Something went wrong');
-      } else {
-        setError(t('signup.error') || 'Something went wrong');
-      }
-      console.error(err);
+    } catch {
+      setError(t('signup.error'));
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div className='signup-wrapper container'>
@@ -50,10 +45,10 @@ export default function SignUp() {
         <p className='signup-footer'>
           {t('signup.alreadyHaveAccount')}
           <span className='signup__form__link' onClick={() => navigate('/login')}>
-            {t('login.title')}
+            {t('signup.login')}
           </span>
         </p>
       </div>
     </div>
-  )
+  );
 }

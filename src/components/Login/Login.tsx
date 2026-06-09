@@ -20,32 +20,25 @@ export default function Login() {
     try {
       await logIn(data.email, data.password);
       navigate('/account');
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError(t('login.error') || 'Something went wrong');
-      }
-      console.error(err);
+    } catch {
+      setError(t('login.error'));
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div className='login-wrapper container'>
       <div className='login'>
         <h2>{t('login.title')}</h2>
 
-        {user ? (
+        {user && (
           <p className="auth-status success">
             {t('account.welcomeBack')}, {user.email}
           </p>
-        ) : (
-          <p className="auth-status">{t('login.dontHaveAccount')}</p>
         )}
 
-        {error && <p className='error'>{t('login.error')}</p>}
+        {error && <p className='error'>{error}</p>}
 
         <Form
           onSubmit={handleLoginSubmit}
@@ -64,5 +57,5 @@ export default function Login() {
         </p>
       </div>
     </div>
-  )
+  );
 }
