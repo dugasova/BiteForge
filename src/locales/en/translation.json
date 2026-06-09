@@ -97,6 +97,11 @@
         },
         "error": "Something went wrong please enter valid data"
     },
+    "error": {
+        "title": "Oops! Something went wrong",
+        "message": "We're sorry, but an unexpected error has occurred. Please try again later.",
+        "buttonText": "Go to Home"
+    },
     "contact": {
         "title": "Get in Touch",
         "description": "Have a question or feedback? We'd love to hear from you. Build your dream burger and share your experience!",

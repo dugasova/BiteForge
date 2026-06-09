@@ -1,22 +1,24 @@
 import './Error.scss';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-interface ErrorProps {
+interface ErrorPageProps {
   title?: string;
   message?: string;
   buttonText?: string;
   onButtonClick?: () => void;
 }
 
-export default function Error({
-  title = "Oops! Something went wrong",
-  message = "We're sorry, but an unexpected error has occurred. Please try again later.",
-  buttonText = "Go to Home",
-}: ErrorProps) {
+export default function ErrorPage({
+  title,
+  message,
+  buttonText,
+  onButtonClick,
+}: ErrorPageProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const handleButtonClick = () => {
-    navigate('/');
-  }
+
+  const handleButtonClick = onButtonClick ?? (() => navigate('/'));
 
   return (
     <div className="error-container">
@@ -28,12 +30,10 @@ export default function Error({
             <path d="M12 16H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <h1 className="error-title">{title}</h1>
-        <p className="error-message">{message}</p>
-        <button onClick={handleButtonClick}
-          className="error-action-button"
-        >
-          {buttonText}
+        <h1 className="error-title">{title ?? t('error.title')}</h1>
+        <p className="error-message">{message ?? t('error.message')}</p>
+        <button onClick={handleButtonClick} className="error-action-button">
+          {buttonText ?? t('error.buttonText')}
         </button>
       </div>
     </div>
