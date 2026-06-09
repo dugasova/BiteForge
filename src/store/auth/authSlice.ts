@@ -4,8 +4,8 @@ import {
   signInWithEmailAndPassword, 
   signOut 
 } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../../firebase';
+import { auth } from '../../firebase';
+import { createUserDocument } from '../../services/ordersService';
 import { toast } from 'react-toastify';
 
 export interface AuthUser {
@@ -35,7 +35,7 @@ export const signUpUser = createAsyncThunk(
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
       // Create user document in Firestore
-      await setDoc(doc(db, "users", email), { savedBurger: [] });
+      await createUserDocument(email);
       toast.success(`Welcome, ${result.user.email}! Account created.`);
       
       return {

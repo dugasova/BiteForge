@@ -2,37 +2,28 @@ import { useEffect, useState } from 'react';
 import './Account.scss';
 import { useTranslation } from 'react-i18next';
 import { UserAuth } from '../../context/AuthContext';
-import { db } from '../../firebase';
-import { doc, onSnapshot, arrayUnion, arrayRemove, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import BurgerIllustration from '../../assets/burgers/burger5.png';
-
-interface Order {
-  id: number;
-  date: string;
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  deliveryAddress: string;
-  totalPrice: number;
-  fastDelivery: boolean;
-  ingredients: { [key: string]: number };
-}
+import { subscribeToOrders, saveOrder, deleteOrder } from '../../services/ordersService';
+import type { Order } from '../../types/order';
 
 export default function Account() {
-  const [reorderSuccess, setReorderSuccess] = useState<string | null>(null);
-  const [orders, setOrders] = useState<Order[]>([])
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
   const { user, logOut } = UserAuth();
-  const { t } = useTranslation()
-  const navigate = useNavigate()
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) return;
-    const unsubscribe = onSnapshot(doc(db, 'users', `${user.email}`), (doc) => {
-      setOrders(doc.data()?.savedBurger || [])
-    })
-    return () => unsubscribe()
-  }, [user])
+    if (!user?.email) return;
+    const unsubscribe = subscribeToOrders(
+      user.email,
+      (data) => { setOrders(data); setLoading(false); },
+      () => { toast.error('Failed to load orders.'); setLoading(false); },
+    );
+    return () => unsubscribe();
+  }, [user]);
 
   const handleLogout = async () => {
     try {
@@ -43,52 +34,31 @@ export default function Account() {
     }
   };
 
-
   const handleInstantReorder = async (order: Order) => {
     if (!user?.email) return;
-
     try {
-      const newOrder = {
-        ...order,
-        id: Date.now(),
-        date: new Date().toISOString(),
-      };
-
-      const userDocRef = doc(db, 'users', user.email);
-
-      await updateDoc(userDocRef, {
-        savedBurger: arrayUnion(newOrder)
-      });
-
-      setReorderSuccess('Order placed successfully!');
-      setTimeout(() => setReorderSuccess(null), 3000);
+      const newOrder = { ...order, id: Date.now(), date: new Date().toISOString() };
+      await saveOrder(user.email, newOrder);
+      toast.success('Order placed successfully! 🎉');
     } catch (err) {
       console.error('Reorder failed:', err);
-      alert('Failed to reorder. Please try again.');
+      toast.error('Failed to reorder. Please try again.');
     }
   };
 
   const handleDeleteOrder = async (order: Order) => {
     if (!user?.email) return;
-
-    const confirmDelete = window.confirm('Are you sure you want to delete this order?');
-    if (!confirmDelete) return;
-
+    if (!window.confirm('Are you sure you want to delete this order?')) return;
     try {
-      const userDocRef = doc(db, 'users', user.email);
-
-      await updateDoc(userDocRef, {
-        savedBurger: arrayRemove(order)
-      });
-
-      setReorderSuccess('Order deleted successfully');
-      setTimeout(() => setReorderSuccess(null), 3000);
+      await deleteOrder(user.email, order);
+      toast.success('Order deleted successfully');
     } catch (err) {
       console.error('Delete failed:', err);
-      alert('Failed to delete order.');
+      toast.error('Failed to delete order.');
     }
   };
-  const fullName = orders.map((order) => order.fullName)
+
+  const displayName = orders.at(-1)?.fullName ?? user?.email ?? '';
 
   return (
     <div className='account-wrapper container'>
@@ -96,13 +66,13 @@ export default function Account() {
         <div className="account-hero">
           <div className="hero-content">
             <span className="welcome-text">{t('account.welcomeBack')}</span>
-            {user?.email && <h2 className="user-email">{fullName[0]}</h2>}
+            {displayName && <h2 className="user-email">{displayName}</h2>}
             <div className="hero-actions">
               <button className="btn-secondary" onClick={() => navigate('/')}>
                 {t('account.goBack')}
               </button>
               <button className="btn-logout" onClick={handleLogout}>
-                Logout
+                {t('navigation.logout')}
               </button>
             </div>
           </div>
@@ -112,21 +82,14 @@ export default function Account() {
         </div>
 
         <div className="orders-section">
-          {reorderSuccess && (
-            <div className="reorder-success-overlay">
-              <div className="success-content">
-                <span className="success-icon">✨</span>
-                <p>{reorderSuccess}</p>
-              </div>
-            </div>
-          )}
-
           <div className="section-header">
-            <h3>{t('account.orders') || 'Your Order History'}</h3>
-            <span className="order-count">{orders.length} {t('account.orders').toLowerCase()}</span>
+            <h3>{t('account.orders')}</h3>
+            <span className="order-count">{orders.length}</span>
           </div>
 
-          {orders.length > 0 ? (
+          {loading ? (
+            <p className="loading-text">Loading...</p>
+          ) : orders.length > 0 ? (
             <div className="orders-grid">
               {orders.map((order) => (
                 <div key={order.id} className="order-item">
@@ -177,5 +140,5 @@ export default function Account() {
         </div>
       </div>
     </div>
-  )
+  );
 }

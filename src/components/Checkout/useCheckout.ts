@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { saveOrder } from '../../services/ordersService';
+import type { Order } from '../../types/order';
 import useBuilder from '../../hooks/useBuilder';
 import { UserAuth } from '../../context/AuthContext';
 import { useForm } from 'react-hook-form';
