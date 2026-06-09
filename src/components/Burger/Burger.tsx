@@ -133,7 +133,7 @@ export default function Burger() {
         </div>
 
         <motion.button
-          whileHover={{ color: '#ff4b2b' }}
+          whileHover={{ color: '#d52c2cff' }}
           className='reset-button'
           onClick={resetBuilder}
         >
