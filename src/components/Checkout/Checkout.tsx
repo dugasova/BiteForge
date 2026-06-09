@@ -21,7 +21,7 @@ export default function Checkout({ onClose }: CheckoutProps) {
     fastDeliveryPrice,
     ingredientEntries,
     totalPrice,
-    totalKkal,
+    totalKcal,
   } = useCheckout(onClose);
 
   return (
@@ -42,7 +42,7 @@ export default function Checkout({ onClose }: CheckoutProps) {
         <CheckoutSummary
           ingredientEntries={ingredientEntries}
           totalPrice={totalPrice}
-          totalKkal={totalKkal}
+          totalKcal={totalKcal}
           fastDelivery={fastDelivery}
           setFastDelivery={setFastDelivery}
           fastDeliveryPrice={fastDeliveryPrice}

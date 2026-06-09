@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Burgers.scss';
-import { BURGRS } from '../../mockedData';
+import { BURGERS } from '../../mockedData';
 import BurgerCard from './BurgerCard';
 import Loader from '../Loader/Loader';
 
@@ -67,7 +67,7 @@ export default function Burgers() {
           }}
           className="mySwiper"
         >
-          {BURGRS.map((burger) => (
+          {BURGERS.map((burger) => (
             <SwiperSlide key={burger.id}>
               <BurgerCard {...burger} />
             </SwiperSlide>

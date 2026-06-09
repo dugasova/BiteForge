@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 interface CheckoutSummaryProps {
   ingredientEntries: [string, number][];
   totalPrice: number;
-  totalKkal: number;
+  totalKcal: number;
   fastDelivery: boolean;
   setFastDelivery: (value: boolean) => void;
   fastDeliveryPrice: number;
@@ -13,7 +13,7 @@ interface CheckoutSummaryProps {
 export default function CheckoutSummary({
   ingredientEntries,
   totalPrice,
-  totalKkal,
+  totalKcal,
   fastDelivery,
   setFastDelivery,
   fastDeliveryPrice,
@@ -38,7 +38,7 @@ export default function CheckoutSummary({
           </ul>
           <div className='checkout-total'>
             <span>Nutritional value:</span>
-            <span className='total-kkal'>🔥 {totalKkal} kcal</span>
+            <span className='total-kcal'>🔥 {totalKcal} kcal</span>
           </div>
           <div className='checkout-total border-bottom'>
             <span>{t('checkout.total')}:</span>

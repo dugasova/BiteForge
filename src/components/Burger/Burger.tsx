@@ -15,7 +15,7 @@ export default function Burger() {
 
   const sequence = stateBuilder?.sequence || [];
   const totalPrice = stateBuilder?.totalPrice || 0;
-  const totalKkal = stateBuilder?.totalKkal || 0;
+  const totalKcal = stateBuilder?.totalKcal || 0;
 
   const handleCheckout = () => {
     setCheckout(true);
@@ -104,16 +104,16 @@ export default function Burger() {
               {totalPrice} UAH
             </motion.span>
           </p>
-          <p className='total-kkal'>
+          <p className='total-kcal'>
             🔥
             <motion.span
-              key={totalKkal}
+              key={totalKcal}
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: [1.1, 0.9, 1], opacity: 1 }}
               transition={{ duration: 0.3 }}
               style={{ display: 'inline-block', marginLeft: '5px', fontWeight: 600, color: '#ff6b6b' }}
             >
-              {totalKkal} kcal
+              {totalKcal} kcal
             </motion.span>
           </p>
         </div>

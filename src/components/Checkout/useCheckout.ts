@@ -24,7 +24,7 @@ export function useCheckout(onClose: () => void) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { stateBuilder, resetBuilder } = useBuilder();
-  const { ingredients, totalPrice, totalKkal } = stateBuilder;
+  const { ingredients, totalPrice, totalKcal } = stateBuilder;
 
   const [error, setError] = useState('');
   const [fastDelivery, setFastDelivery] = useState(false);
@@ -69,7 +69,7 @@ export function useCheckout(onClose: () => void) {
         deliveryAddress: data.deliveryAddress,
         ingredients,
         totalPrice,
-        totalKkal,
+        totalKcal,
         fastDelivery,
         id: Date.now(),
         date: new Date().toISOString(),
@@ -114,6 +114,6 @@ export function useCheckout(onClose: () => void) {
     fastDeliveryPrice,
     ingredientEntries,
     totalPrice,
-    totalKkal,
+    totalKcal,
   };
 }

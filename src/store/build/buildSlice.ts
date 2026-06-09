@@ -5,7 +5,7 @@ interface BuildState {
   ingredients: { [key: string]: number };
   sequence: string[];
   totalPrice: number;
-  totalKkal: number;
+  totalKcal: number;
   fastDelivery: boolean;
 }
 
@@ -13,16 +13,16 @@ const initialState: BuildState = {
   ingredients: {},
   sequence: [],
   totalPrice: 10,
-  totalKkal: 200, // Base calories for the buns
+  totalKcal: 200, // Base calories for the buns
   fastDelivery: false,
 };
 
 const getIngredientInfo = (ingredientName: string) => {
   const item = dataOfProduct.find((p) => p.name === ingredientName);
-  if (!item) return { price: 0, kkal: 0 };
-  
-  const kkal = (item as { kkal?: number }).kkal || 0;
-  return { price: item.price, kkal };
+  if (!item) return { price: 0, kcal: 0 };
+
+  const kcal = (item as { kcal?: number }).kcal || 0;
+  return { price: item.price, kcal };
 };
 
 const buildSlice = createSlice({
@@ -31,12 +31,12 @@ const buildSlice = createSlice({
   reducers: {
     addIngredient: (state, action: PayloadAction<string>) => {
       const ingredient = action.payload;
-      const { price, kkal } = getIngredientInfo(ingredient);
-      
+      const { price, kcal } = getIngredientInfo(ingredient);
+
       state.ingredients[ingredient] = (state.ingredients[ingredient] || 0) + 1;
       state.sequence.push(ingredient);
       state.totalPrice += price;
-      state.totalKkal += kkal;
+      state.totalKcal += kcal;
     },
     removeIngredient: (state, action: PayloadAction<string>) => {
       const ingredient = action.payload;
@@ -49,10 +49,10 @@ const buildSlice = createSlice({
         state.sequence.splice(lastIndex, 1);
       }
 
-      const { price, kkal } = getIngredientInfo(ingredient);
+      const { price, kcal } = getIngredientInfo(ingredient);
       state.ingredients[ingredient] = currentCount - 1;
       state.totalPrice -= price;
-      state.totalKkal -= kkal;
+      state.totalKcal -= kcal;
     },
     resetBuilder: () => {
       return initialState;
