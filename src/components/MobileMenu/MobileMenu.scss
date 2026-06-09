@@ -39,8 +39,8 @@
   @at-root [data-theme='dark'] & {
     --menu-bg: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
     --text-primary: #f8fafc;
-    --btn-lang-border: #fbbf24;
-    --btn-lang-text: #fbbf24;
+    --btn-lang-border: var(--color-brand-light);
+    --btn-lang-text: var(--color-brand-light);
     --close-icon-color: #cbd5e1;
     --item-link-color: #cbd5e1;
     --item-active-color: #ff9a44;

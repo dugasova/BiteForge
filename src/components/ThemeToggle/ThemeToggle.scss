@@ -31,7 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f59e0b; /* Amber 500 */
+    color: var(--color-brand);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
     svg {

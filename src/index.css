@@ -1,7 +1,18 @@
 :root {
+  /* Brand Colors */
+  --color-brand:       #f59e0b;
+  --color-brand-dark:  #d97706;
+  --color-brand-light: #fbbf24;
+  --gradient-brand:    linear-gradient(135deg, #f59e0b, #d97706);
+
+  /* Text Colors */
+  --text-muted:       #6b7280;
+  --text-muted-light: #9ca3af;
+  --text-muted-dark:  #4b5563;
+
   /* Animation Timing */
   --transition-speed: 0.3s;
-  
+
   /* Light Theme Colors */
   --bg-color: #f8fafc;
   --text-main: #1e293b;

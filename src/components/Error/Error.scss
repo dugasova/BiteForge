@@ -61,7 +61,7 @@
 }
 
 .error-message {
-  color: #6b7280;
+  color: var(--text-muted);
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 2.25rem;
@@ -142,7 +142,7 @@
   }
   
   .error-message {
-    color: #9ca3af;
+    color: var(--text-muted-light);
   }
   
   .error-icon {
