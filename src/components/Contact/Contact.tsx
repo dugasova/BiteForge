@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import './Contact.scss';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import BurgerBg from '../../assets/burgers/burger8.png';
 
 export default function Contact() {
@@ -12,14 +13,13 @@ export default function Contact() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: { preventDefault(): void }) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for contacting us!');
+    toast.success(t('contact.thankYou'));
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -38,21 +38,21 @@ export default function Contact() {
           <div className="info-item">
             <span className="info-icon">📍</span>
             <div>
-              <h3>Address</h3>
+              <h3>{t('contact.addressLabel')}</h3>
               <p>{t('contact.address')}</p>
             </div>
           </div>
           <div className="info-item">
             <span className="info-icon">📞</span>
             <div>
-              <h3>Phone</h3>
+              <h3>{t('contact.phoneLabel')}</h3>
               <p>{t('contact.phone')}</p>
             </div>
           </div>
           <div className="info-item">
             <span className="info-icon">🕒</span>
             <div>
-              <h3>Opening Hours</h3>
+              <h3>{t('contact.hoursLabel')}</h3>
               <p>{t('contact.openingHours')}</p>
             </div>
           </div>

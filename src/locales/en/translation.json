@@ -105,6 +105,10 @@
         "subject": "Subject",
         "message": "Your Message",
         "send": "Send Message",
+        "addressLabel": "Address",
+        "phoneLabel": "Phone",
+        "hoursLabel": "Opening Hours",
+        "thankYou": "Thank you for contacting us!",
         "address": "123 Burger Lane, Foodie City, FC 12345",
         "phone": "+1 (555) 123-4567",
         "openingHours": "Mon-Sun: 10:00 AM - 10:00 PM"
