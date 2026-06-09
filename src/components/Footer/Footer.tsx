@@ -17,7 +17,7 @@ export default function Footer() {
               <path d="M4 14C4 16.2 8.5 18 12 18C15.5 18 20 16.2 20 14" />
               <path d="M4 18C4 18 6 22 12 22C18 22 20 18 20 18" />
             </svg>
-            <h2>Burger Builder</h2>
+            <h2>BiteForge</h2>
           </div>
           <p>{t('footer.description')}</p>
         </div>
@@ -42,7 +42,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {currentYear} BurgerBuilder. All rights reserved.</p>
+        <p>&copy; {currentYear} BiteForge. All rights reserved.</p>
         <div className="footer-links">
           <Link to="#">Privacy Policy</Link>
           <Link to="#">Terms of Service</Link>

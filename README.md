@@ -1,4 +1,4 @@
-# Burger Builder
+# BiteForge
 
 A React web application for building custom burgers. Users can assemble a burger from individual ingredients, see the price and calories update in real time, and place an order with delivery details.
 
@@ -41,8 +41,8 @@ A React web application for building custom burgers. Users can assemble a burger
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/burger-builder.git
-cd burger-builder
+git clone https://github.com/your-username/biteforge.git
+cd biteforge
 npm install
 ```
 

@@ -10,11 +10,11 @@ interface SingleControlProps {
 export default function SingleControl({ img, name }: SingleControlProps) {
   const { addIngredient, removeIngredient, stateBuilder } = useBuilder();
 
-  const quantity = (stateBuilder?.ingredients as { [key: string]: number })?.[name] || 0;
+  const quantity = (stateBuilder.ingredients as { [key: string]: number })[name] ?? 0;
 
   return (
     <li className='ingredient-control'>
-      <img className='ingredient-control__img' src={img} alt={name || "ingredient"} />
+      <img className='ingredient-control__img' src={img} alt={name} />
       <div className='controls-wrapper'>
         <motion.button 
           whileHover={{ scale: 1.1, backgroundColor: '#f3f4f6' }}

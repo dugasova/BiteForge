@@ -1,13 +1,12 @@
 .footer-container {
   background: #111827;
   color: #f9fafb;
-  font-family: 'Inter', 'Roboto', sans-serif;
   padding-top: 4rem;
   margin-top: 5rem;
   position: relative;
   overflow: hidden;
   box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -26,7 +25,7 @@
   flex-direction: column;
   gap: 3rem;
   padding-bottom: 3rem;
-  
+
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
@@ -36,14 +35,14 @@
 
 .footer-brand {
   max-width: 400px;
-  
+
   .brand-logo {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1rem;
     color: #ff4d4f;
-    
+
     h2 {
       font-size: 1.5rem;
       font-weight: 800;
@@ -51,12 +50,12 @@
       margin: 0;
       letter-spacing: -0.5px;
     }
-    
+
     svg {
       animation: bounce 3s infinite ease-in-out;
     }
   }
-  
+
   p {
     color: var(--text-muted-light);
     line-height: 1.6;
@@ -73,11 +72,11 @@
     color: #ffffff;
     letter-spacing: 0.5px;
   }
-  
+
   .social-links {
     display: flex;
     gap: 1rem;
-    
+
     .social-icon {
       display: flex;
       align-items: center;
@@ -87,17 +86,17 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
       color: #d1d5db;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
       svg {
         width: 20px;
         height: 20px;
       }
-      
+
       &:hover {
         transform: translateY(-5px);
         color: #ffffff;
-        
+
         &.instagram { background: #e1306c; box-shadow: 0 8px 15px rgba(225, 48, 108, 0.3); }
         &.twitter { background: #1da1f2; box-shadow: 0 8px 15px rgba(29, 161, 242, 0.3); }
         &.facebook { background: #1877f2; box-shadow: 0 8px 15px rgba(24, 119, 242, 0.3); }
@@ -117,32 +116,44 @@
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  
+
   @media (min-width: 768px) {
     flex-direction: row;
     gap: 2rem;
   }
-  
+
   p {
     color: var(--text-muted);
     font-size: 0.9rem;
     margin: 0;
   }
-  
+
   .footer-links {
     display: flex;
     gap: 1.5rem;
-    
+
     a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.2s ease;
-      
+
       &:hover {
         color: #ff4d4f;
       }
     }
+  }
+}
+
+[data-theme='dark'] {
+  .footer-container {
+    background: #0f172a;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .footer-bottom {
+    background: #020617;
+    border-top-color: rgba(255, 255, 255, 0.06);
   }
 }
 

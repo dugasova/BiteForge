@@ -7,7 +7,7 @@ export default function Prices() {
   const { t } = useTranslation();
 
   return (
-    <div className="priices-wrapper">
+    <div className="prices-wrapper">
       <h2>{t('prices.title')}</h2>
       <ul className="prices">
         {

@@ -1,86 +1,75 @@
 .single-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.25rem;
-    background: #ffffff;
-    border-radius: 12px;
-    margin-bottom: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 
-    /* Animated border effect on hover */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #ff4d4f;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom;
+  }
+
+  &:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+    border-color: rgba(255, 77, 79, 0.2);
+
     &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 4px;
-        background: #ff4d4f;
-        transform: scaleY(0);
-        transition: transform 0.3s ease;
-        transform-origin: bottom;
-    }
-
-    &:hover {
-        transform: translateX(5px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
-        border-color: rgba(255, 77, 79, 0.2);
-
-        &::before {
-            transform: scaleY(1);
-        }
-
-        .ingredient-price {
-            color: #ff4d4f;
-        }
-    }
-
-    .ingredient-name {
-        font-weight: 600;
-        color: #374151;
-        font-size: 1.05rem;
-        letter-spacing: 0.3px;
+      transform: scaleY(1);
     }
 
     .ingredient-price {
-        font-weight: 700;
-        color: #1f2937;
-        font-size: 1.1rem;
-        transition: color 0.3s ease;
-        display: flex;
-        align-items: baseline;
-        gap: 4px;
-
-        small {
-            font-size: 0.75rem;
-            color: var(--text-muted-light);
-            font-weight: 500;
-        }
+      color: #ff4d4f;
     }
+  }
+
+  .ingredient-name {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    letter-spacing: 0.3px;
+  }
+
+  .ingredient-price {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+
+    small {
+      font-size: 0.75rem;
+      color: var(--text-muted-light);
+      font-weight: 500;
+    }
+  }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .single-price {
-        background: #1f2937;
-        border-color: rgba(255, 255, 255, 0.05);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+[data-theme='dark'] {
+  .single-price {
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 
-        .ingredient-name {
-            color: #e5e7eb;
-        }
-
-        .ingredient-price {
-            color: #f9fafb;
-        }
-
-        &:hover {
-            background: #374151;
-        }
+    &:hover {
+      background: #374151;
     }
+  }
 }
