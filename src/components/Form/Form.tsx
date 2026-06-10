@@ -1,21 +1,11 @@
 import './Form.scss';
 import { useForm, Controller } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../Input/Input';
 import { useTranslation } from 'react-i18next';
+import { loginSchema, type FormSchema } from './loginSchema';
 
-export type FormSchema = {
-  email: string;
-  password: string;
-}
-
-const schema = (t: (key: string) => string) => z.object({
-  email: z.string().email({ message: t('login.validation.invalidEmail') }),
-  password: z.string()
-    .min(6, { message: t('login.validation.passwordMin') })
-    .max(16, { message: t('login.validation.passwordMax') }),
-});
+export type { FormSchema };
 
 interface FormProps {
   onSubmit: (data: FormSchema) => void;
@@ -38,7 +28,7 @@ export default function Form({
   const { control, handleSubmit, formState: { isValid, errors } } = useForm<FormSchema>({
     defaultValues: { email: '', password: '' },
     mode: 'onChange',
-    resolver: zodResolver(schema(t)),
+    resolver: zodResolver(loginSchema(t)),
   });
 
   return (

@@ -11,7 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import type { ContactsFormValues } from './CheckoutForm';
 
-const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) => z.object({
+export const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) => z.object({
   fullName: z.string().min(2, { message: t('checkout.validation.nameMin') }),
   phoneNumber: z.string().regex(/^\+?[\d\s-]{10,}$/, { message: t('checkout.validation.invalidPhone') }),
   email: z.string().email({ message: t('checkout.validation.invalidEmail') }),
