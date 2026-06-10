@@ -48,6 +48,13 @@ test.describe("Authentication Flow", () => {
     await expect(page.getByRole("button", { name: /login/i })).toBeVisible();
   });
 
+  test("should redirect unauthenticated user from /account to /login", async ({ page }) => {
+    await page.goto("/account");
+
+    await expect(page).toHaveURL(/\/login/);
+    await expect(page.getByRole("heading", { name: /login/i })).toBeVisible();
+  });
+
   test("should show error for invalid login credentials", async ({ page }) => {
     await page.goto("/login");
 
