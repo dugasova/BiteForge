@@ -17,13 +17,11 @@ export interface AuthUser {
 interface AuthState {
   user: AuthUser | null;
   loading: boolean;
-  error: string | null;
 }
 
 const initialState: AuthState = {
   user: null,
   loading: true,
-  error: null,
 };
 
 export const signUpUser = createAsyncThunk(
@@ -79,37 +77,29 @@ const authSlice = createSlice({
     setUser: (state, action: PayloadAction<AuthUser | null>) => {
       state.user = action.payload;
       state.loading = false;
-      state.error = null;
-    },
-    clearError: (state) => {
-      state.error = null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(signUpUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(signUpUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.loading = false;
       })
-      .addCase(signUpUser.rejected, (state, action) => {
+      .addCase(signUpUser.rejected, (state) => {
         state.loading = false;
-        state.error = action.payload as string;
       })
       .addCase(logInUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(logInUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.loading = false;
       })
-      .addCase(logInUser.rejected, (state, action) => {
+      .addCase(logInUser.rejected, (state) => {
         state.loading = false;
-        state.error = action.payload as string;
       })
       .addCase(logOutUser.fulfilled, (state) => {
         state.user = null;
@@ -118,5 +108,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, clearError } = authSlice.actions;
+export const { setUser } = authSlice.actions;
 export default authSlice.reducer;

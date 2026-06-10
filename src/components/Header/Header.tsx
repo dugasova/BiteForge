@@ -5,6 +5,7 @@ import Logo from './../../assets/logo/logo.png'
 import { useTranslation } from 'react-i18next';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import Button from '../Button/Button';
@@ -21,9 +22,10 @@ export default function Header() {
   const handleLogout = async () => {
     try {
       await logOut();
+      toast.info(t('auth.logOutSuccess'));
       navigate('/');
-    } catch (error) {
-      console.log(error);
+    } catch {
+      toast.error(t('auth.logOutError'));
     }
   }
 

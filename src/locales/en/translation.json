@@ -108,7 +108,8 @@
     "auth": {
         "signUpSuccess": "Account created successfully!",
         "logInSuccess": "Logged in successfully!",
-        "logOutSuccess": "You have been logged out."
+        "logOutSuccess": "You have been logged out.",
+        "logOutError": "Logout failed. Please try again."
     },
     "error": {
         "title": "Oops! Something went wrong",

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './SignUp.scss';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
 import Form from '../Form/Form';
 import type { FormSchema } from '../Form/Form';
@@ -19,6 +20,7 @@ export default function SignUp() {
 
     try {
       await signUp(data.email, data.password);
+      toast.success(t('auth.signUpSuccess'));
       navigate('/');
     } catch {
       setError(t('signup.error'));

@@ -17,14 +17,16 @@ export default function Account() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user?.email) return;
+    const email = user?.email;
+    if (!email) return;
     const unsubscribe = subscribeToOrders(
-      user.email,
+      email,
       (data) => { setOrders(data); setLoading(false); },
       () => { toast.error(t('account.loadError')); setLoading(false); },
     );
     return () => unsubscribe();
-  }, [user, t]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.email]);
 
   const handleLogout = async () => {
     try {

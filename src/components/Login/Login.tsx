@@ -3,6 +3,7 @@ import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import Form from '../Form/Form';
 import type { FormSchema } from '../Form/Form';
 
@@ -19,6 +20,7 @@ export default function Login() {
 
     try {
       await logIn(data.email, data.password);
+      toast.success(t('auth.logInSuccess'));
       navigate('/account');
     } catch {
       setError(t('login.error'));
