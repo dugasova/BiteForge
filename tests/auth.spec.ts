@@ -4,7 +4,7 @@ test.describe("Authentication Flow", () => {
   test("should show validation error for short password on Sign Up", async ({
     page,
   }) => {
-    await page.goto("http://localhost:5173/signup");
+    await page.goto("/signup");
 
     // Fill in a valid email but a short password (less than 6 chars)
     await page.getByPlaceholder(/email/i).fill("test@example.com");
@@ -24,7 +24,7 @@ test.describe("Authentication Flow", () => {
     // Generate a random email to avoid "account already exists" errors
     const randomEmail = `testuser_${Date.now()}@example.com`;
 
-    await page.goto("http://localhost:5173/signup");
+    await page.goto("/signup");
 
     // 1. Sign Up
     await page.getByPlaceholder(/email/i).fill(randomEmail);
@@ -35,7 +35,7 @@ test.describe("Authentication Flow", () => {
     await signUpButton.click();
 
     // Should redirect to home page
-    await expect(page).toHaveURL("http://localhost:5173/");
+    await expect(page).toHaveURL("/");
 
     // Header should now show "Logout" instead of "Login"
     await expect(page.getByRole("button", { name: /logout/i })).toBeVisible();
@@ -49,7 +49,7 @@ test.describe("Authentication Flow", () => {
   });
 
   test("should show error for invalid login credentials", async ({ page }) => {
-    await page.goto("http://localhost:5173/login");
+    await page.goto("/login");
 
     await page.getByPlaceholder(/email/i).fill("nonexistent@user.com");
     await page.getByPlaceholder(/password/i).fill("wrongpassword");
