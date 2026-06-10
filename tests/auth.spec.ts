@@ -48,6 +48,29 @@ test.describe("Authentication Flow", () => {
     await expect(page.getByRole("button", { name: /login/i })).toBeVisible();
   });
 
+  test("should show user's email and empty order history on /account after sign up", async ({ page }) => {
+    const randomEmail = `testuser_${Date.now()}@example.com`;
+
+    await page.goto("/signup");
+
+    await page.getByPlaceholder(/email/i).fill(randomEmail);
+    await page.getByPlaceholder(/password/i).fill("password123");
+    await page.locator(".signup__form__button").click();
+
+    await expect(page).toHaveURL("/");
+
+    // Navigate to the account page
+    await page.getByRole("button", { name: /account/i }).click();
+    await expect(page).toHaveURL(/\/account/);
+
+    // Email of the freshly created user should be displayed
+    await expect(page.locator(".user-email")).toContainText(randomEmail);
+
+    // A new account has no orders yet
+    await expect(page.locator(".order-count")).toHaveText("0");
+    await expect(page.locator(".empty-orders")).toBeVisible();
+  });
+
   test("should redirect unauthenticated user from /account to /login", async ({ page }) => {
     await page.goto("/account");
 
