@@ -90,7 +90,6 @@ export default function Burger() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: [1, 1.2, 1], opacity: 1 }}
               transition={{ duration: 0.3 }}
-              style={{ display: 'inline-block', marginLeft: '5px', fontWeight: 800 }}
             >
               {totalPrice} UAH
             </motion.span>
@@ -102,7 +101,6 @@ export default function Burger() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: [1.1, 0.9, 1], opacity: 1 }}
               transition={{ duration: 0.3 }}
-              style={{ display: 'inline-block', marginLeft: '5px', fontWeight: 600, color: '#ff6b6b' }}
             >
               {totalKcal} kcal
             </motion.span>

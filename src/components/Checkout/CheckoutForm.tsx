@@ -22,6 +22,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
   return (
     <div className="checkout-form">
       <div className="form-group">
+        <label htmlFor="fullname" className="sr-only">{t('checkout.fullName')}</label>
         <Controller
           name="fullName"
           control={control}
@@ -29,7 +30,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
             <input
               type="text"
               placeholder={t('checkout.fullName')}
-              id='fullname'
+              id="fullname"
               {...field}
               className={errors.fullName ? 'error' : ''}
             />
@@ -39,6 +40,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
       </div>
 
       <div className="form-group">
+        <label htmlFor="email" className="sr-only">{t('checkout.email')}</label>
         <Controller
           name="email"
           control={control}
@@ -46,7 +48,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
             <input
               type="email"
               placeholder={t('checkout.email')}
-              id='email'
+              id="email"
               {...field}
               disabled={!!user}
               className={errors.email ? 'error' : ''}
@@ -58,6 +60,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
 
       {!user && (
         <div className="form-group">
+          <label htmlFor="password" className="sr-only">{t('checkout.password')}</label>
           <Controller
             name="password"
             control={control}
@@ -65,7 +68,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
               <input
                 type="password"
                 placeholder={t('checkout.password')}
-                id='password'
+                id="password"
                 {...field}
                 className={errors.password ? 'error' : ''}
               />
@@ -76,6 +79,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
       )}
 
       <div className="form-group">
+        <label htmlFor="phoneNumber" className="sr-only">{t('checkout.phoneNumber')}</label>
         <Controller
           name="phoneNumber"
           control={control}
@@ -83,7 +87,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
             <input
               type="tel"
               placeholder={t('checkout.phoneNumber')}
-              id='phoneNumber'
+              id="phoneNumber"
               {...field}
               className={errors.phoneNumber ? 'error' : ''}
             />
@@ -93,6 +97,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
       </div>
 
       <div className="form-group full-width">
+        <label htmlFor="deliveryAddress" className="sr-only">{t('checkout.deliveryAddress')}</label>
         <Controller
           name="deliveryAddress"
           control={control}
@@ -101,7 +106,7 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
               type="text"
               className={`full-width ${errors.deliveryAddress ? 'error' : ''}`}
               placeholder={t('checkout.deliveryAddress')}
-              id='deliveryAddress'
+              id="deliveryAddress"
               {...field}
             />
           )}

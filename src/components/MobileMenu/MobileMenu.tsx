@@ -49,6 +49,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         className={`mobile-menu-backdrop ${isOpen ? 'open' : ''}`}
         onClick={onClose}
+        role="button"
+        tabIndex={-1}
+        aria-label="Close menu"
       />
       <div className={`mobile-menu-wrapper ${isOpen ? 'open' : ''}`}>
         <div className="mobile-menu__header">
@@ -56,14 +59,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <img src={Logo} alt="Logo" className='header__logo' />
           </div>
           <div className="mobile-menu__actions">
-            <button onClick={toggleLanguage} className='mobile-menu__lang-btn' >
+            <button onClick={toggleLanguage} className='mobile-menu__lang-btn' aria-label="Toggle language">
               {i18n.language?.startsWith('en') ? 'UK' : 'EN'}
             </button>
-            <div className="mobile-menu__close" onClick={onClose}>
+            <button className="mobile-menu__close" onClick={onClose} aria-label="Close menu">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
         <nav className='mobile-menu'>

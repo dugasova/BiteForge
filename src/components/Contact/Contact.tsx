@@ -57,12 +57,14 @@ export default function Contact() {
 
         <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
+            <label htmlFor="contact-name" className="sr-only">{t('contact.name')}</label>
             <Controller
               name="name"
               control={control}
               render={({ field }) => (
                 <input
                   {...field}
+                  id="contact-name"
                   type="text"
                   placeholder={t('contact.name')}
                   className={errors.name ? 'error' : ''}
@@ -72,12 +74,14 @@ export default function Contact() {
             {errors.name && <span className="error-text">{errors.name.message}</span>}
           </div>
           <div className="form-group">
+            <label htmlFor="contact-email" className="sr-only">{t('contact.email')}</label>
             <Controller
               name="email"
               control={control}
               render={({ field }) => (
                 <input
                   {...field}
+                  id="contact-email"
                   type="email"
                   placeholder={t('contact.email')}
                   className={errors.email ? 'error' : ''}
@@ -87,12 +91,14 @@ export default function Contact() {
             {errors.email && <span className="error-text">{errors.email.message}</span>}
           </div>
           <div className="form-group">
+            <label htmlFor="contact-subject" className="sr-only">{t('contact.subject')}</label>
             <Controller
               name="subject"
               control={control}
               render={({ field }) => (
                 <input
                   {...field}
+                  id="contact-subject"
                   type="text"
                   placeholder={t('contact.subject')}
                 />
@@ -100,12 +106,14 @@ export default function Contact() {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="contact-message" className="sr-only">{t('contact.message')}</label>
             <Controller
               name="message"
               control={control}
               render={({ field }) => (
                 <textarea
                   {...field}
+                  id="contact-message"
                   placeholder={t('contact.message')}
                   rows={5}
                   className={errors.message ? 'error' : ''}

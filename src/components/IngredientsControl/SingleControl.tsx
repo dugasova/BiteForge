@@ -16,20 +16,22 @@ export default function SingleControl({ img, name }: SingleControlProps) {
     <li className='ingredient-control'>
       <img className='ingredient-control__img' src={img} alt={name} />
       <div className='controls-wrapper'>
-        <motion.button 
+        <motion.button
           whileHover={{ scale: 1.1, backgroundColor: '#f3f4f6' }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => removeIngredient(name)} 
+          onClick={() => removeIngredient(name)}
           className='ingredient-control__button minus'
+          aria-label={`Remove ${name}`}
         >
           -
         </motion.button>
         <p className="ingredient-quantity">{quantity}</p>
-        <motion.button 
+        <motion.button
           whileHover={{ scale: 1.1, backgroundColor: '#f3f4f6' }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => addIngredient(name)} 
+          onClick={() => addIngredient(name)}
           className='ingredient-control__button'
+          aria-label={`Add ${name}`}
         >
           +
         </motion.button>
