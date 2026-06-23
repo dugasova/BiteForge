@@ -16,7 +16,7 @@ test.describe("Burger Builder Flow", () => {
     const baconControl = page.locator("li.ingredient-control", {
       has: page.getByAltText("bacon"),
     });
-    await baconControl.getByRole("button", { name: "+" }).click();
+    await baconControl.getByRole("button", { name: /^Add/ }).click();
 
     // Verify price updated (10 + 20)
     await expect(totalPrice).toContainText("30 UAH");
@@ -25,7 +25,7 @@ test.describe("Burger Builder Flow", () => {
     const cheeseControl = page.locator("li.ingredient-control", {
       has: page.getByAltText("cheese"),
     });
-    await cheeseControl.getByRole("button", { name: "+" }).click();
+    await cheeseControl.getByRole("button", { name: /^Add/ }).click();
 
     // Verify price updated (30 + 25 = 55)
     await expect(totalPrice).toContainText("55 UAH");
@@ -55,7 +55,7 @@ test.describe("Burger Builder Flow", () => {
     const baconControl = page.locator("li.ingredient-control", {
       has: page.getByAltText("bacon"),
     });
-    await baconControl.getByRole("button", { name: "+" }).click();
+    await baconControl.getByRole("button", { name: /^Add/ }).click();
 
     const totalPrice = page.locator(".total-price");
     await expect(totalPrice).toContainText("30 UAH");
@@ -85,8 +85,8 @@ test.describe("Burger Builder Flow", () => {
     const baconControl = page.locator("li.ingredient-control", {
       has: page.getByAltText("bacon"),
     });
-    const baconAddButton = baconControl.getByRole("button", { name: "+" });
-    const baconRemoveButton = baconControl.getByRole("button", { name: "-" });
+    const baconAddButton = baconControl.getByRole("button", { name: /^Add/ });
+    const baconRemoveButton = baconControl.getByRole("button", { name: /^Remove/ });
 
     // Add 2 Bacon
     await baconAddButton.click();
@@ -97,7 +97,7 @@ test.describe("Burger Builder Flow", () => {
     const cheeseControl = page.locator("li.ingredient-control", {
       has: page.getByAltText("cheese"),
     });
-    await cheeseControl.getByRole("button", { name: "+" }).click();
+    await cheeseControl.getByRole("button", { name: /^Add/ }).click();
 
     // Total price and kcal should be updated
     const updatedPriceText = await totalPrice.innerText();
@@ -144,7 +144,7 @@ test.describe("Burger Builder Flow", () => {
     // Patty (25) + Bun (10) = 35 UAH
     await page
       .locator("li.ingredient-control", { has: page.getByAltText("patty") })
-      .getByRole("button", { name: "+" })
+      .getByRole("button", { name: /^Add/ })
       .click();
 
     // 2. Open Checkout
