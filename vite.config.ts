@@ -9,15 +9,13 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Group firebase dependencies together
-            if (id.includes('firebase')) {
-              return 'firebase';
-            }
-            // Group UI/Animation dependencies together
-            if (id.includes('swiper') || id.includes('framer-motion')) {
-              return 'vendor-ui';
-            }
-            // Group other core vendor dependencies (react, react-dom, react-router-dom, redux, etc.)
+            if (id.includes('firebase')) return 'firebase';
+            if (id.includes('swiper') || id.includes('framer-motion')) return 'vendor-ui';
+            if (id.includes('react-dom')) return 'react-core';
+            if (id.includes('react-router')) return 'router';
+            if (id.includes('react-hook-form') || id.includes('@hookform') || id.includes('zod')) return 'forms';
+            if (id.includes('i18next')) return 'i18n';
+            if (id.includes('@reduxjs/toolkit') || id.includes('react-redux') || id.includes('immer')) return 'state';
             return 'vendor';
           }
         }
