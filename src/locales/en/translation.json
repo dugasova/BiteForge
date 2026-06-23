@@ -130,6 +130,11 @@
         "thankYou": "Thank you for contacting us!",
         "address": "123 Burger Lane, Foodie City, FC 12345",
         "phone": "+1 (555) 123-4567",
-        "openingHours": "Mon-Sun: 10:00 AM - 10:00 PM"
+        "openingHours": "Mon-Sun: 10:00 AM - 10:00 PM",
+        "validation": {
+            "nameMin": "Name must be at least 2 characters",
+            "invalidEmail": "Please enter a valid email address",
+            "messageMin": "Message must be at least 10 characters"
+        }
     }
 }

@@ -132,6 +132,18 @@
         }
       }
 
+      input.error,
+      textarea.error {
+        border-color: #ef4444;
+      }
+
+      .error-text {
+        display: block;
+        margin-top: 6px;
+        font-size: 0.85rem;
+        color: #ef4444;
+      }
+
       textarea {
         resize: none;
       }
@@ -157,6 +169,13 @@
 
       &:active {
         transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
       }
     }
   }

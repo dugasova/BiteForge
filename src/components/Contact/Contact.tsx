@@ -1,26 +1,23 @@
-import { useState, type ChangeEvent } from 'react';
 import './Contact.scss';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { contactSchema, type ContactFormValues } from './contactSchema';
 import BurgerBg from '../../assets/burgers/burger8.png';
 
 export default function Contact() {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+
+  const { control, handleSubmit, reset, formState: { isValid, errors } } = useForm<ContactFormValues>({
+    defaultValues: { name: '', email: '', subject: '', message: '' },
+    mode: 'onChange',
+    resolver: zodResolver(contactSchema(t)),
   });
 
-  const handleSubmit = (e: { preventDefault(): void }) => {
-    e.preventDefault();
+  const onSubmit = () => {
     toast.success(t('contact.thankYou'));
-    setFormData({ name: '', email: '', subject: '', message: '' });
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    reset();
   };
 
   return (
@@ -58,47 +55,66 @@ export default function Contact() {
           </div>
         </div>
 
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <input
-              type="text"
+            <Controller
               name="name"
-              placeholder={t('contact.name')}
-              value={formData.name}
-              onChange={handleChange}
-              required
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="text"
+                  placeholder={t('contact.name')}
+                  className={errors.name ? 'error' : ''}
+                />
+              )}
             />
+            {errors.name && <span className="error-text">{errors.name.message}</span>}
           </div>
           <div className="form-group">
-            <input
-              type="email"
+            <Controller
               name="email"
-              placeholder={t('contact.email')}
-              value={formData.email}
-              onChange={handleChange}
-              required
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="email"
+                  placeholder={t('contact.email')}
+                  className={errors.email ? 'error' : ''}
+                />
+              )}
             />
+            {errors.email && <span className="error-text">{errors.email.message}</span>}
           </div>
           <div className="form-group">
-            <input
-              type="text"
+            <Controller
               name="subject"
-              placeholder={t('contact.subject')}
-              value={formData.subject}
-              onChange={handleChange}
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="text"
+                  placeholder={t('contact.subject')}
+                />
+              )}
             />
           </div>
           <div className="form-group">
-            <textarea
+            <Controller
               name="message"
-              placeholder={t('contact.message')}
-              rows={5}
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
+              control={control}
+              render={({ field }) => (
+                <textarea
+                  {...field}
+                  placeholder={t('contact.message')}
+                  rows={5}
+                  className={errors.message ? 'error' : ''}
+                />
+              )}
+            />
+            {errors.message && <span className="error-text">{errors.message.message}</span>}
           </div>
-          <button type="submit" className="contact-submit">
+          <button type="submit" className="contact-submit" disabled={!isValid}>
             {t('contact.send')}
           </button>
         </form>
