@@ -78,7 +78,7 @@ export default function Account() {
             </div>
           </div>
           <div className="hero-image">
-            <img src={BurgerIllustration} alt="Burger" />
+            <img src={BurgerIllustration} alt="Burger" loading="lazy" />
           </div>
         </div>
 

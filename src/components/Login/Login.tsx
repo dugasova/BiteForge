@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Login.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -53,9 +53,9 @@ export default function Login() {
 
         <p className='login-footer'>
           {t('login.dontHaveAccount')}
-          <span className='login__form__link' onClick={() => navigate('/signup')}>
+          <Link to="/signup" className='login__form__link'>
             {t('login.signup')}
-          </span>
+          </Link>
         </p>
       </div>
     </div>

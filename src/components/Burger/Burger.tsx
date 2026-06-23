@@ -8,6 +8,8 @@ import { dataOfProduct } from '../../mockedData';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const ingredientMap = new Map(dataOfProduct.map(p => [p.name, p]));
+
 export default function Burger() {
   const { t } = useTranslation();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
@@ -32,7 +34,7 @@ export default function Burger() {
           <div className="ingredients-container">
             <AnimatePresence mode="popLayout">
               {sequence.map((ingredientName: string, index: number) => {
-                const itemData = dataOfProduct.find(p => p.name === ingredientName);
+                const itemData = ingredientMap.get(ingredientName);
                 if (!itemData) return null;
 
                 return (

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './SignUp.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
@@ -46,9 +46,9 @@ export default function SignUp() {
 
         <p className='signup-footer'>
           {t('signup.alreadyHaveAccount')}
-          <span className='signup__form__link' onClick={() => navigate('/login')}>
+          <Link to="/login" className='signup__form__link'>
             {t('signup.login')}
-          </span>
+          </Link>
         </p>
       </div>
     </div>

@@ -23,7 +23,7 @@ export default function Contact() {
   return (
     <div className="contact-wrapper container">
       <div className="contact-bg-decoration">
-        <img src={BurgerBg} alt="" className='burger-bg' />
+        <img src={BurgerBg} alt="" className='burger-bg' loading="lazy" />
       </div>
       <div className="contact-header">
         <h1>{t('contact.title')}</h1>
