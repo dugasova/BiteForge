@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactSchema, type ContactFormValues } from './contactSchema';
-import BurgerBg from '../../assets/burgers/burger8.png';
+import BurgerBg from '../../assets/burgers/burger8.webp';
 
 export default function Contact() {
   const { t } = useTranslation();

@@ -11,14 +11,14 @@ import SwissCheese from "./assets/ingredients/swiss_cheese.png";
 import Sausage from "./assets/ingredients/sausage.png";
 import Tomato from "./assets/ingredients/tomato.png";
 
-import Cheeseburger from "./assets/burgers/burger1.png";
-import Hamburger from "./assets//burgers/burger3.png";
-import DoubleCheeseburger from "./assets//burgers/burger2.png";
-import DoubleHamburger from "./assets/burgers/burger4.png";
-import HamburgerBurger from "./assets/burgers/burger5.png";
-import DoubleHamburgerBurger from "./assets/burgers/burger6.png";
-import HamburgerBurgerBurger from "./assets/burgers/burger7.png";
-import TripleBurger from "./assets/burgers/burger8.png";
+import Cheeseburger from "./assets/burgers/burger1.webp";
+import Hamburger from "./assets/burgers/burger3.webp";
+import DoubleCheeseburger from "./assets/burgers/burger2.webp";
+import DoubleHamburger from "./assets/burgers/burger4.webp";
+import HamburgerBurger from "./assets/burgers/burger5.webp";
+import DoubleHamburgerBurger from "./assets/burgers/burger6.webp";
+import HamburgerBurgerBurger from "./assets/burgers/burger7.webp";
+import TripleBurger from "./assets/burgers/burger8.webp";
 export const BURGERS = [
   {
     id: 1,

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import BurgerIllustration from '../../assets/burgers/burger5.png';
+import BurgerIllustration from '../../assets/burgers/burger5.webp';
 import { subscribeToOrders, saveOrder, deleteOrder } from '../../services/ordersService';
 import type { Order } from '../../types/order';
 import Loader from '../Loader/Loader';
