@@ -45,12 +45,12 @@ export default function Burgers() {
             640: {
               slidesPerView: 2,
               centeredSlides: false,
-              effect: 'slide'
+              effect: 'slide',
             },
             1024: {
               slidesPerView: 3,
               centeredSlides: false,
-              effect: 'slide'
+              effect: 'slide',
             },
           }}
           className="mySwiper"

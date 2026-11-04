@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { dataOfProduct } from "../../mockedData";
+import { dataOfProduct } from '../../mockedData';
 
 interface BuildState {
   ingredients: Record<string, number>;
@@ -59,5 +59,6 @@ const buildSlice = createSlice({
   },
 });
 
-export const { addIngredient, removeIngredient, resetBuilder, toggleFastDelivery } = buildSlice.actions;
+export const { addIngredient, removeIngredient, resetBuilder, toggleFastDelivery } =
+  buildSlice.actions;
 export default buildSlice.reducer;

@@ -8,30 +8,30 @@ import {
 } from '../store/build/buildSlice';
 
 export default function useBuilder() {
-    const dispatch = useDispatch();
-    const stateBuilder = useSelector((state: RootState) => state.build);
+  const dispatch = useDispatch();
+  const stateBuilder = useSelector((state: RootState) => state.build);
 
-    const addIngredient = (ingredient: string) => {
-        dispatch(addAction(ingredient));
-    };
+  const addIngredient = (ingredient: string) => {
+    dispatch(addAction(ingredient));
+  };
 
-    const removeIngredient = (ingredient: string) => {
-        dispatch(removeAction(ingredient));
-    };
+  const removeIngredient = (ingredient: string) => {
+    dispatch(removeAction(ingredient));
+  };
 
-    const resetBuilder = () => {
-      dispatch(resetAction());
-    };
+  const resetBuilder = () => {
+    dispatch(resetAction());
+  };
 
-    const toggleFastDelivery = () => {
-      dispatch(toggleAction());
-    };
+  const toggleFastDelivery = () => {
+    dispatch(toggleAction());
+  };
 
-    return {
-      stateBuilder,
-      addIngredient,
-      removeIngredient,
-      resetBuilder,
-      toggleFastDelivery,
-    };
-  }
+  return {
+    stateBuilder,
+    addIngredient,
+    removeIngredient,
+    resetBuilder,
+    toggleFastDelivery,
+  };
+}

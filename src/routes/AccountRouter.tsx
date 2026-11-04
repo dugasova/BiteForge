@@ -1,7 +1,5 @@
-import Account from '../components/Account/Account'
+import Account from '../components/Account/Account';
 
 export default function AccountRoute() {
-    return (
-        <Account />
-    )
+  return <Account />;
 }

@@ -16,20 +16,20 @@ A React web application for building custom burgers. Users can assemble a burger
 
 ## Tech Stack
 
-| Area | Library |
-|---|---|
-| UI | React 19, TypeScript |
-| Build | Vite |
-| State | Redux Toolkit |
-| Routing | React Router v7 |
-| Forms | React Hook Form + Zod |
-| Backend | Firebase Authentication, Firestore |
-| Styling | SCSS |
-| Animations | Framer Motion |
-| i18n | i18next, react-i18next |
-| Notifications | React Toastify |
-| Slider | Swiper |
-| Testing | Playwright |
+| Area          | Library                            |
+| ------------- | ---------------------------------- |
+| UI            | React 19, TypeScript               |
+| Build         | Vite                               |
+| State         | Redux Toolkit                      |
+| Routing       | React Router v7                    |
+| Forms         | React Hook Form + Zod              |
+| Backend       | Firebase Authentication, Firestore |
+| Styling       | SCSS                               |
+| Animations    | Framer Motion                      |
+| i18n          | i18next, react-i18next             |
+| Notifications | React Toastify                     |
+| Slider        | Swiper                             |
+| Testing       | Playwright                         |
 
 ## Getting Started
 

@@ -11,8 +11,9 @@ export default function SinglePrice({ name, price }: SinglePriceProps) {
   return (
     <li className="single-price">
       <span className="ingredient-name">{t(`prices.${name}`)}</span>
-      <span className="ingredient-price">{price} <small>UAH</small></span>
+      <span className="ingredient-price">
+        {price} <small>UAH</small>
+      </span>
     </li>
-  )
+  );
 }
-

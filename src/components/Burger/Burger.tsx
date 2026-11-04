@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import './Burger.scss';
 import TopBurger from './../../assets/ingredients/top_bun.png';
 import BottomBurger from './../../assets/ingredients/bottom_bun.png';
@@ -8,7 +8,7 @@ import { dataOfProduct } from '../../mockedData';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const ingredientMap = new Map(dataOfProduct.map(p => [p.name, p]));
+const ingredientMap = new Map(dataOfProduct.map((p) => [p.name, p]));
 
 export default function Burger() {
   const { t } = useTranslation();
@@ -21,12 +21,12 @@ export default function Burger() {
 
   return (
     <>
-      <div className='burger-wrapper'>
-        <div className='burger-display'>
+      <div className="burger-wrapper">
+        <div className="burger-display">
           <motion.img
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className='burger-bun top'
+            className="burger-bun top"
             src={TopBurger}
             alt="top-burger"
           />
@@ -45,17 +45,17 @@ export default function Burger() {
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     exit={{ x: 200, opacity: 0, scale: 0.8, rotate: 15 }}
                     transition={{
-                      type: "spring",
+                      type: 'spring',
                       stiffness: 400,
                       damping: 17,
-                      mass: 0.8
+                      mass: 0.8,
                     }}
                     className={`burger-ingredient ${ingredientName}`}
                     src={itemData.img}
                     alt={ingredientName}
                     style={{
-                      bottom: (index * 15) - 30,
-                      zIndex: 15 + index
+                      bottom: index * 15 - 30,
+                      zIndex: 15 + index,
                     }}
                   />
                 );
@@ -66,7 +66,7 @@ export default function Burger() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className='burger-message'
+                className="burger-message"
               >
                 <p>{t('burger.addIngredients')}</p>
               </motion.div>
@@ -76,14 +76,14 @@ export default function Burger() {
           <motion.img
             initial={{ y: 0, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className='burger-bun bottom'
+            className="burger-bun bottom"
             src={BottomBurger}
             alt="bottom-burger"
           />
         </div>
 
-        <div className='price-tag'>
-          <p className='total-price'>
+        <div className="price-tag">
+          <p className="total-price">
             {t('burger.totalPrice')}:
             <motion.span
               key={totalPrice}
@@ -94,7 +94,7 @@ export default function Burger() {
               {totalPrice} UAH
             </motion.span>
           </p>
-          <p className='total-kcal'>
+          <p className="total-kcal">
             🔥
             <motion.span
               key={totalKcal}
@@ -107,15 +107,22 @@ export default function Burger() {
           </p>
         </div>
 
-        <div className='burger-actions'>
+        <div className="burger-actions">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsCheckoutOpen(true)}
-            className='checkout-button'
+            className="checkout-button"
           >
             <span>{t('burger.checkout')}</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </motion.button>
@@ -123,7 +130,7 @@ export default function Burger() {
 
         <motion.button
           whileHover={{ color: '#b07a71ff' }}
-          className='reset-button'
+          className="reset-button"
           onClick={resetBuilder}
         >
           {t('burger.reset')}
@@ -131,5 +138,5 @@ export default function Burger() {
       </div>
       {isCheckoutOpen && <Checkout onClose={() => setIsCheckoutOpen(false)} />}
     </>
-  )
+  );
 }

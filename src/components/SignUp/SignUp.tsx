@@ -30,10 +30,10 @@ export default function SignUp() {
   };
 
   return (
-    <div className='signup-wrapper container'>
-      <div className='signup'>
+    <div className="signup-wrapper container">
+      <div className="signup">
         <h2>{t('signup.title')}</h2>
-        {error && <p className='error'>{error}</p>}
+        {error && <p className="error">{error}</p>}
 
         <Form
           onSubmit={handleSignUpSubmit}
@@ -44,9 +44,9 @@ export default function SignUp() {
           submitClassName="signup__form__button"
         />
 
-        <p className='signup-footer'>
+        <p className="signup-footer">
           {t('signup.alreadyHaveAccount')}
-          <Link to="/login" className='signup__form__link'>
+          <Link to="/login" className="signup__form__link">
             {t('signup.login')}
           </Link>
         </p>

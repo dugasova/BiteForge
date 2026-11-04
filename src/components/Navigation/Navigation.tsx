@@ -17,19 +17,15 @@ export default function Navigation() {
       path: '/contact',
       title: t('navigation.contact', 'Contact'),
     },
-  ]
+  ];
   return (
-    <nav className='navigation'>
-      <ul className='navigation__list'>
-        {
-          routes.map((route, index) => (
-            <li key={index} className='navigation__item'>
-              <NavLink to={route.path}>
-                {route.title}
-              </NavLink>
-            </li>
-          ))
-        }
+    <nav className="navigation">
+      <ul className="navigation__list">
+        {routes.map((route, index) => (
+          <li key={index} className="navigation__item">
+            <NavLink to={route.path}>{route.title}</NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );

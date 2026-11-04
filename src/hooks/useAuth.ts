@@ -6,9 +6,11 @@ export default function useAuth() {
   const dispatch = useDispatch<AppDispatch>();
   const { user, loading } = useSelector((state: RootState) => state.auth);
 
-  const signUp = (email: string, password: string) => dispatch(signUpUser({ email, password })).unwrap();
+  const signUp = (email: string, password: string) =>
+    dispatch(signUpUser({ email, password })).unwrap();
 
-  const logIn = (email: string, password: string) => dispatch(logInUser({ email, password })).unwrap();
+  const logIn = (email: string, password: string) =>
+    dispatch(logInUser({ email, password })).unwrap();
 
   const logOut = () => dispatch(logOutUser()).unwrap();
 

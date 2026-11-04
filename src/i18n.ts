@@ -7,11 +7,11 @@ import translationUK from './locales/uk/translation.json';
 
 const resources = {
   en: {
-    translation: translationEN
+    translation: translationEN,
   },
   uk: {
-    translation: translationUK
-  }
+    translation: translationUK,
+  },
 };
 
 i18n
@@ -21,8 +21,8 @@ i18n
     resources,
     fallbackLng: 'en',
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   });
 
 export default i18n;

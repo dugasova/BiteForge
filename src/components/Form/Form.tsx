@@ -25,34 +25,51 @@ export default function Form({
   submitClassName,
 }: FormProps) {
   const { t } = useTranslation();
-  const { control, handleSubmit, formState: { isValid, errors } } = useForm<FormSchema>({
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = useForm<FormSchema>({
     defaultValues: { email: '', password: '' },
     mode: 'onChange',
     resolver: zodResolver(loginSchema(t)),
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`form-container${formClassName ? ` ${formClassName}` : ''}`}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={`form-container${formClassName ? ` ${formClassName}` : ''}`}
+    >
       <div className="form-group">
         <Controller
-          name='email'
+          name="email"
           control={control}
           render={({ field }) => (
-            <Input {...field} type='email' placeholder={t('login.email')} className={inputClassName} />
+            <Input
+              {...field}
+              type="email"
+              placeholder={t('login.email')}
+              className={inputClassName}
+            />
           )}
         />
-        {errors.email && <p className='error'>{errors.email.message}</p>}
+        {errors.email && <p className="error">{errors.email.message}</p>}
       </div>
 
       <div className="form-group">
         <Controller
-          name='password'
+          name="password"
           control={control}
           render={({ field }) => (
-            <Input {...field} type='password' placeholder={t('login.password')} className={inputClassName} />
+            <Input
+              {...field}
+              type="password"
+              placeholder={t('login.password')}
+              className={inputClassName}
+            />
           )}
         />
-        {errors.password && <p className='error'>{errors.password.message}</p>}
+        {errors.password && <p className="error">{errors.password.message}</p>}
       </div>
 
       <button

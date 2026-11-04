@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
 import Home from './components/Home/Home';
@@ -23,16 +23,54 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
-    errorElement: <Suspense><ErrorRouteLazy /></Suspense>,
+    errorElement: (
+      <Suspense>
+        <ErrorRouteLazy />
+      </Suspense>
+    ),
     children: [
       { path: '/', element: <Home /> },
-      { path: '/about', element: <Suspense><AboutRouterLazy /></Suspense> },
-      { path: '/contact', element: <Suspense><ContactRouterLazy /></Suspense> },
-      { path: '/login', element: <Suspense><LoginRouterLazy /></Suspense> },
-      { path: '/signup', element: <Suspense><SignUpRouterLazy /></Suspense> },
+      {
+        path: '/about',
+        element: (
+          <Suspense>
+            <AboutRouterLazy />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/contact',
+        element: (
+          <Suspense>
+            <ContactRouterLazy />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/login',
+        element: (
+          <Suspense>
+            <LoginRouterLazy />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/signup',
+        element: (
+          <Suspense>
+            <SignUpRouterLazy />
+          </Suspense>
+        ),
+      },
       {
         path: '/account',
-        element: <AuthGuard><Suspense><AccountRouterLazy /></Suspense></AuthGuard>,
+        element: (
+          <AuthGuard>
+            <Suspense>
+              <AccountRouterLazy />
+            </Suspense>
+          </AuthGuard>
+        ),
       },
     ],
   },
@@ -43,12 +81,18 @@ function AuthInit() {
 
   useEffect(() => {
     return onAuthStateChanged(auth, (currentUser) => {
-      dispatch(setUser(currentUser ? {
-        uid: currentUser.uid,
-        email: currentUser.email,
-        displayName: currentUser.displayName,
-        photoURL: currentUser.photoURL,
-      } : null));
+      dispatch(
+        setUser(
+          currentUser
+            ? {
+                uid: currentUser.uid,
+                email: currentUser.email,
+                displayName: currentUser.displayName,
+                photoURL: currentUser.photoURL,
+              }
+            : null,
+        ),
+      );
     });
   }, [dispatch]);
 

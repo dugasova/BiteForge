@@ -7,7 +7,7 @@ type BurgerCardProps = {
   review: string;
   price: number;
   img: string;
-}
+};
 
 export default function BurgerCard({ name, rating, review, price, img }: BurgerCardProps) {
   const { t } = useTranslation();

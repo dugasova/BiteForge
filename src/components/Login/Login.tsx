@@ -30,8 +30,8 @@ export default function Login() {
   };
 
   return (
-    <div className='login-wrapper container'>
-      <div className='login'>
+    <div className="login-wrapper container">
+      <div className="login">
         <h2>{t('login.title')}</h2>
 
         {user && (
@@ -40,7 +40,7 @@ export default function Login() {
           </p>
         )}
 
-        {error && <p className='error'>{error}</p>}
+        {error && <p className="error">{error}</p>}
 
         <Form
           onSubmit={handleLoginSubmit}
@@ -51,9 +51,9 @@ export default function Login() {
           submitClassName="login__form__button"
         />
 
-        <p className='login-footer'>
+        <p className="login-footer">
           {t('login.dontHaveAccount')}
-          <Link to="/signup" className='login__form__link'>
+          <Link to="/signup" className="login__form__link">
             {t('login.signup')}
           </Link>
         </p>

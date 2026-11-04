@@ -84,7 +84,10 @@
     font-size: 0.95rem;
     color: var(--text-main);
     font-family: inherit;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
     box-sizing: border-box;
 
     &::placeholder {
@@ -120,7 +123,10 @@
   cursor: pointer;
   color: var(--text-muted);
   z-index: 10;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 
   svg {
     width: 18px;
@@ -185,7 +191,9 @@
     margin-bottom: 0.5rem;
     font-size: 0.95rem;
     color: var(--text-main);
-    transition: background 0.2s ease, border-color 0.2s ease;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .checkout-total {
@@ -230,7 +238,10 @@
   border-radius: 16px;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(16, 185, 129, 0.25);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   letter-spacing: 1px;
 
@@ -282,8 +293,12 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleUp {

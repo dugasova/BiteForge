@@ -11,13 +11,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import type { ContactsFormValues } from './CheckoutForm';
 
-export const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) => z.object({
-  fullName: z.string().min(2, { message: t('checkout.validation.nameMin') }),
-  phoneNumber: z.string().regex(/^\+?[\d\s-]{10,}$/, { message: t('checkout.validation.invalidPhone') }),
-  email: z.string().email({ message: t('checkout.validation.invalidEmail') }),
-  password: z.string().min(isUserLoggedIn ? 0 : 6, { message: t('checkout.validation.passwordMin') }),
-  deliveryAddress: z.string().min(2, { message: t('checkout.validation.deliveryAddressMin') }),
-});
+export const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) =>
+  z.object({
+    fullName: z.string().min(2, { message: t('checkout.validation.nameMin') }),
+    phoneNumber: z
+      .string()
+      .regex(/^\+?[\d\s-]{10,}$/, { message: t('checkout.validation.invalidPhone') }),
+    email: z.string().email({ message: t('checkout.validation.invalidEmail') }),
+    password: z
+      .string()
+      .min(isUserLoggedIn ? 0 : 6, { message: t('checkout.validation.passwordMin') }),
+    deliveryAddress: z.string().min(2, { message: t('checkout.validation.deliveryAddressMin') }),
+  });
 
 export function useCheckout(onClose: () => void) {
   const { user, signUp } = useAuth();
@@ -31,7 +36,12 @@ export function useCheckout(onClose: () => void) {
 
   const fastDeliveryPrice = 20;
 
-  const { control, handleSubmit, formState: { errors }, setValue } = useForm<ContactsFormValues>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm<ContactsFormValues>({
     resolver: zodResolver(contactsSchema(t, !!user)),
     defaultValues: {
       fullName: '',
@@ -49,15 +59,14 @@ export function useCheckout(onClose: () => void) {
     }
   }, [user, setValue]);
 
-
   const onConfirmOrder = async (data: ContactsFormValues) => {
     const targetEmail = user?.email || data.email;
 
     try {
       if (!user) {
         if (!data.password) {
-           setError(t('checkout.validation.passwordRequired'));
-           return;
+          setError(t('checkout.validation.passwordRequired'));
+          return;
         }
         await signUp(targetEmail, data.password);
       }
@@ -83,7 +92,6 @@ export function useCheckout(onClose: () => void) {
         resetBuilder();
         navigate('/account');
       }, 2000);
-
     } catch (saveError) {
       setError(saveError instanceof Error ? saveError.message : String(saveError));
     }
