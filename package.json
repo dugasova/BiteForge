@@ -15,6 +15,9 @@
     "typecheck": "tsc -b",
     "prepare": "husky"
   },
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@reduxjs/toolkit": "^2.11.2",
