@@ -1,140 +1,140 @@
 {
-    "navigation": {
-        "home": "Home",
-        "about": "About",
-        "contact": "Contact",
-        "account": "Account",
-        "logout": "Logout"
-    },
-    "footer": {
-        "description": "Unleash your inner chef and build the perfect burger. Fresh ingredients, unlimited possibilities.",
-        "connect": "Connect with us"
-    },
-    "ingredients": {
-        "title": "Add ingredients"
-    },
-    "prices": {
-        "title": "Our prices",
-        "bacon": "Bacon",
-        "ketchup": "Ketchup",
-        "mayonnaise": "Mayonnaise",
-        "lettuce": "Lettuce",
-        "cheese": "Swiss cheese",
-        "pickles": "Pickles",
-        "sausage": "Sausage",
-        "onions": "Onions",
-        "pepper": "Pepper",
-        "tomato": "Tomato",
-        "mustard": "Mustard",
-        "patty": "Patty"
-    },
-    "burgers": {
-        "title": "Our Burgers",
-        "rating": "Rating",
-        "reviews": {
-            "good": "Good",
-            "veryDelicious": "Very delicious"
-        }
-    },
-    "burger": {
-        "addIngredients": "Add some ingredients",
-        "totalPrice": "Total price",
-        "checkout": "Checkout",
-        "reset": "Reset"
-    },
-    "checkout": {
-        "title": "Your Order Summary",
-        "noIngredients": "No ingredients added yet.",
-        "ingredients": "Ingredients",
-        "confirmOrder": "Confirm Order",
-        "fullName": "Full Name",
-        "email": "Email Address",
-        "phoneNumber": "Phone Number",
-        "password": "Password",
-        "deliveryAddress": "Delivery Address",
-        "total": "Total",
-        "fastDelivery": "Fast Delivery",
-        "nutritionalValue": "Nutritional value",
-        "toastSuccess": "Burger saved successfully!",
-        "validation": {
-            "nameMin": "Full name must be at least 2 characters",
-            "invalidPhone": "Please enter a valid phone number (+ and at least 10 digits)",
-            "invalidEmail": "Please enter a valid email address",
-            "passwordMin": "Password must be at least 6 characters",
-            "deliveryAddressMin": "Delivery address must be at least 2 characters",
-            "passwordRequired": "Password is required"
-        }
-    },
-    "account": {
-        "welcomeBack": "Welcome back",
-        "goBack": "Order Again",
-        "orders": "Your Order History",
-        "noOrders": "You haven't ordered any burgers yet.",
-        "buildFirstBurger": "Build your first burger",
-        "orderDate": "Order Date",
-        "orderPrice": "Order Price",
-        "fastDelivery": "Fast Delivery",
-        "delete": "Delete",
-        "reorder": "Order Again",
-        "loadError": "Failed to load orders.",
-        "reorderSuccess": "Order placed successfully!",
-        "reorderError": "Failed to reorder. Please try again.",
-        "deleteConfirm": "Are you sure you want to delete this order?",
-        "deleteSuccess": "Order deleted successfully.",
-        "deleteError": "Failed to delete order.",
-        "logoutError": "Logout failed. Please try again."
-    },
-    "signup": {
-        "title": "Sign Up",
-        "email": "Email",
-        "password": "Password",
-        "alreadyHaveAccount": "Already have an account?",
-        "login": "Login",
-        "error": "Something went wrong please enter valid data"
-    },
-    "login": {
-        "title": "Login",
-        "email": "Email",
-        "password": "Password",
-        "dontHaveAccount": "Don't have an account?",
-        "signup": "Sign Up",
-        "validation": {
-            "invalidEmail": "Please enter a valid email address",
-            "passwordMin": "Password must be at least 6 characters",
-            "passwordMax": "Password must be at most 12 characters"
-        },
-        "error": "Something went wrong please enter valid data"
-    },
-    "auth": {
-        "signUpSuccess": "Account created successfully!",
-        "logInSuccess": "Logged in successfully!",
-        "logOutSuccess": "You have been logged out.",
-        "logOutError": "Logout failed. Please try again."
-    },
-    "error": {
-        "title": "Oops! Something went wrong",
-        "message": "We're sorry, but an unexpected error has occurred. Please try again later.",
-        "buttonText": "Go to Home"
-    },
-    "contact": {
-        "title": "Get in Touch",
-        "description": "Have a question or feedback? We'd love to hear from you. Build your dream burger and share your experience!",
-        "name": "Full Name",
-        "email": "Email",
-        "subject": "Subject",
-        "message": "Your Message",
-        "send": "Send Message",
-        "addressLabel": "Address",
-        "phoneLabel": "Phone",
-        "hoursLabel": "Opening Hours",
-        "thankYou": "Thank you for contacting us!",
-        "address": "123 Burger Lane, Foodie City, FC 12345",
-        "phone": "+1 (555) 123-4567",
-        "openingHours": "Mon-Sun: 10:00 AM - 10:00 PM",
-        "validation": {
-            "nameMin": "Name must be at least 2 characters",
-            "invalidEmail": "Please enter a valid email address",
-            "messageMin": "Message must be at least 10 characters"
-        }
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "account": "Account",
+    "logout": "Logout"
+  },
+  "footer": {
+    "description": "Unleash your inner chef and build the perfect burger. Fresh ingredients, unlimited possibilities.",
+    "connect": "Connect with us"
+  },
+  "ingredients": {
+    "title": "Add ingredients"
+  },
+  "prices": {
+    "title": "Our prices",
+    "bacon": "Bacon",
+    "ketchup": "Ketchup",
+    "mayonnaise": "Mayonnaise",
+    "lettuce": "Lettuce",
+    "cheese": "Swiss cheese",
+    "pickles": "Pickles",
+    "sausage": "Sausage",
+    "onions": "Onions",
+    "pepper": "Pepper",
+    "tomato": "Tomato",
+    "mustard": "Mustard",
+    "patty": "Patty"
+  },
+  "burgers": {
+    "title": "Our Burgers",
+    "rating": "Rating",
+    "reviews": {
+      "good": "Good",
+      "veryDelicious": "Very delicious"
     }
+  },
+  "burger": {
+    "addIngredients": "Add some ingredients",
+    "totalPrice": "Total price",
+    "checkout": "Checkout",
+    "reset": "Reset"
+  },
+  "checkout": {
+    "title": "Your Order Summary",
+    "noIngredients": "No ingredients added yet.",
+    "ingredients": "Ingredients",
+    "confirmOrder": "Confirm Order",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "phoneNumber": "Phone Number",
+    "password": "Password",
+    "deliveryAddress": "Delivery Address",
+    "total": "Total",
+    "fastDelivery": "Fast Delivery",
+    "nutritionalValue": "Nutritional value",
+    "toastSuccess": "Burger saved successfully!",
+    "validation": {
+      "nameMin": "Full name must be at least 2 characters",
+      "invalidPhone": "Please enter a valid phone number (+ and at least 10 digits)",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordMin": "Password must be at least 6 characters",
+      "deliveryAddressMin": "Delivery address must be at least 2 characters",
+      "passwordRequired": "Password is required"
+    }
+  },
+  "account": {
+    "welcomeBack": "Welcome back",
+    "goBack": "Order Again",
+    "orders": "Your Order History",
+    "noOrders": "You haven't ordered any burgers yet.",
+    "buildFirstBurger": "Build your first burger",
+    "orderDate": "Order Date",
+    "orderPrice": "Order Price",
+    "fastDelivery": "Fast Delivery",
+    "delete": "Delete",
+    "reorder": "Order Again",
+    "loadError": "Failed to load orders.",
+    "reorderSuccess": "Order placed successfully!",
+    "reorderError": "Failed to reorder. Please try again.",
+    "deleteConfirm": "Are you sure you want to delete this order?",
+    "deleteSuccess": "Order deleted successfully.",
+    "deleteError": "Failed to delete order.",
+    "logoutError": "Logout failed. Please try again."
+  },
+  "signup": {
+    "title": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Login",
+    "error": "Something went wrong please enter valid data"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "dontHaveAccount": "Don't have an account?",
+    "signup": "Sign Up",
+    "validation": {
+      "invalidEmail": "Please enter a valid email address",
+      "passwordMin": "Password must be at least 6 characters",
+      "passwordMax": "Password must be at most 12 characters"
+    },
+    "error": "Something went wrong please enter valid data"
+  },
+  "auth": {
+    "signUpSuccess": "Account created successfully!",
+    "logInSuccess": "Logged in successfully!",
+    "logOutSuccess": "You have been logged out.",
+    "logOutError": "Logout failed. Please try again."
+  },
+  "error": {
+    "title": "Oops! Something went wrong",
+    "message": "We're sorry, but an unexpected error has occurred. Please try again later.",
+    "buttonText": "Go to Home"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Have a question or feedback? We'd love to hear from you. Build your dream burger and share your experience!",
+    "name": "Full Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Your Message",
+    "send": "Send Message",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "hoursLabel": "Opening Hours",
+    "thankYou": "Thank you for contacting us!",
+    "address": "123 Burger Lane, Foodie City, FC 12345",
+    "phone": "+1 (555) 123-4567",
+    "openingHours": "Mon-Sun: 10:00 AM - 10:00 PM",
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "invalidEmail": "Please enter a valid email address",
+      "messageMin": "Message must be at least 10 characters"
+    }
+  }
 }

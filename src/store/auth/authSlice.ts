@@ -1,9 +1,5 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { createUserDocument } from '../../services/ordersService';
 
@@ -39,7 +35,7 @@ export const signUpUser = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Sign up failed');
     }
-  }
+  },
 );
 
 export const logInUser = createAsyncThunk(
@@ -56,19 +52,16 @@ export const logInUser = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Login failed');
     }
-  }
+  },
 );
 
-export const logOutUser = createAsyncThunk(
-  'auth/logOut',
-  async (_, { rejectWithValue }) => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Logout failed');
-    }
+export const logOutUser = createAsyncThunk('auth/logOut', async (_, { rejectWithValue }) => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    return rejectWithValue(error instanceof Error ? error.message : 'Logout failed');
   }
-);
+});
 
 const authSlice = createSlice({
   name: 'auth',

@@ -4,7 +4,6 @@ import Header from '../components/Header/Header';
 import Footer from '../../src/components/Footer/Footer';
 import Loader from '../components/Loader/Loader';
 
-
 export default function Layout() {
   return (
     <>
@@ -20,5 +19,5 @@ export default function Layout() {
         <Footer />
       </footer>
     </>
-  )
+  );
 }

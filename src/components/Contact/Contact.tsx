@@ -9,7 +9,12 @@ import BurgerBg from '../../assets/burgers/burger8.webp';
 export default function Contact() {
   const { t } = useTranslation();
 
-  const { control, handleSubmit, reset, formState: { isValid, errors } } = useForm<ContactFormValues>({
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { isValid, errors },
+  } = useForm<ContactFormValues>({
     defaultValues: { name: '', email: '', subject: '', message: '' },
     mode: 'onChange',
     resolver: zodResolver(contactSchema(t)),
@@ -23,7 +28,7 @@ export default function Contact() {
   return (
     <div className="contact-wrapper container">
       <div className="contact-bg-decoration">
-        <img src={BurgerBg} alt="" className='burger-bg' loading="lazy" />
+        <img src={BurgerBg} alt="" className="burger-bg" loading="lazy" />
       </div>
       <div className="contact-header">
         <h1>{t('contact.title')}</h1>
@@ -57,7 +62,9 @@ export default function Contact() {
 
         <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label htmlFor="contact-name" className="sr-only">{t('contact.name')}</label>
+            <label htmlFor="contact-name" className="sr-only">
+              {t('contact.name')}
+            </label>
             <Controller
               name="name"
               control={control}
@@ -74,7 +81,9 @@ export default function Contact() {
             {errors.name && <span className="error-text">{errors.name.message}</span>}
           </div>
           <div className="form-group">
-            <label htmlFor="contact-email" className="sr-only">{t('contact.email')}</label>
+            <label htmlFor="contact-email" className="sr-only">
+              {t('contact.email')}
+            </label>
             <Controller
               name="email"
               control={control}
@@ -91,7 +100,9 @@ export default function Contact() {
             {errors.email && <span className="error-text">{errors.email.message}</span>}
           </div>
           <div className="form-group">
-            <label htmlFor="contact-subject" className="sr-only">{t('contact.subject')}</label>
+            <label htmlFor="contact-subject" className="sr-only">
+              {t('contact.subject')}
+            </label>
             <Controller
               name="subject"
               control={control}
@@ -106,7 +117,9 @@ export default function Contact() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="contact-message" className="sr-only">{t('contact.message')}</label>
+            <label htmlFor="contact-message" className="sr-only">
+              {t('contact.message')}
+            </label>
             <Controller
               name="message"
               control={control}

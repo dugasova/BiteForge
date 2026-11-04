@@ -5,8 +5,8 @@ export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button 
-      className={`theme-toggle ${theme}`} 
+    <button
+      className={`theme-toggle ${theme}`}
       onClick={toggleTheme}
       aria-label="Toggle dynamic theme"
     >

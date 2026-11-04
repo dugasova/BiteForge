@@ -5,8 +5,9 @@
   justify-content: center;
   align-items: flex-start;
   transition: background 0.3s ease;
-  background: radial-gradient(circle at top right, rgba(76, 175, 80, 0.05) 0%, transparent 40%),
-              radial-gradient(circle at bottom left, rgba(255, 152, 0, 0.05) 0%, transparent 40%);
+  background:
+    radial-gradient(circle at top right, rgba(76, 175, 80, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at bottom left, rgba(255, 152, 0, 0.05) 0%, transparent 40%);
 
   // Theme Variables
   --card-bg: #fafafa;
@@ -19,7 +20,7 @@
   --text-section: #1a1a1a;
   --order-count-bg: rgba(0, 0, 0, 0.05);
   --order-count-text: #666;
-  
+
   --item-bg: #ffffff;
   --item-border: rgba(0, 0, 0, 0.08);
   --item-header-divider: rgba(0, 0, 0, 0.1);
@@ -28,15 +29,15 @@
   --item-text-detail: #888;
   --item-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   --item-hover-border: rgba(76, 175, 80, 0.3);
-  
+
   --pill-bg: #f5f5f5;
   --pill-text: #444;
   --pill-count: #4caf50;
-  
+
   --btn-secondary-bg: #1a1a1a;
   --btn-secondary-text: #ffffff;
   --btn-secondary-hover: #333;
-  
+
   --btn-edit-bg: #f8f9fa;
   --btn-edit-text: #6b7280;
   --btn-edit-border: #e5e7eb;
@@ -49,8 +50,9 @@
 
   // Dark Theme Overrides
   @at-root [data-theme='dark'] & {
-    background: radial-gradient(circle at top right, rgba(76, 175, 80, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at bottom left, rgba(255, 152, 0, 0.1) 0%, transparent 40%);
+    background:
+      radial-gradient(circle at top right, rgba(76, 175, 80, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at bottom left, rgba(255, 152, 0, 0.1) 0%, transparent 40%);
     --card-bg: #1e293b;
     --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     --card-border: rgba(255, 255, 255, 0.08);
@@ -61,7 +63,7 @@
     --text-section: #f8fafc;
     --order-count-bg: rgba(255, 255, 255, 0.1);
     --order-count-text: #cbd5e1;
-    
+
     --item-bg: #334155;
     --item-border: rgba(255, 255, 255, 0.05);
     --item-header-divider: rgba(255, 255, 255, 0.08);
@@ -70,15 +72,15 @@
     --item-text-detail: #94a3b8;
     --item-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     --item-hover-border: rgba(76, 175, 80, 0.5);
-    
+
     --pill-bg: #475569;
     --pill-text: #cbd5e1;
     --pill-count: #81c784;
-    
+
     --btn-secondary-bg: #4caf50;
     --btn-secondary-text: #ffffff;
     --btn-secondary-hover: #43a047;
-    
+
     --btn-edit-bg: #1e293b;
     --btn-edit-text: #94a3b8;
     --btn-edit-border: #334155;
@@ -98,7 +100,10 @@
     box-shadow: var(--card-shadow);
     overflow: hidden;
     border: 1px solid var(--card-border);
-    transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
   }
 
   .account-hero {
@@ -194,7 +199,9 @@
         font-size: 0.9rem;
         font-weight: 600;
         color: var(--order-count-text);
-        transition: background 0.3s ease, color 0.3s ease;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
       }
     }
   }
@@ -210,7 +217,10 @@
     border: 1px solid var(--item-border);
     border-radius: 20px;
     padding: 24px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
 
     &:hover {
       transform: translateY(-4px);
@@ -248,9 +258,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease,
+          transform 0.2s ease;
         border-radius: 8px;
-        
+
         svg {
           width: 18px;
           height: 18px;
@@ -279,7 +292,9 @@
         font-size: 0.75rem;
         font-weight: 800;
         text-transform: uppercase;
-        transition: background 0.3s ease, color 0.3s ease;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
       }
     }
 
@@ -309,7 +324,9 @@
           display: flex;
           align-items: center;
           gap: 6px;
-          transition: background 0.3s ease, color 0.3s ease;
+          transition:
+            background 0.3s ease,
+            color 0.3s ease;
 
           .pill-count {
             color: var(--pill-count);
@@ -324,7 +341,7 @@
   .empty-orders {
     text-align: center;
     padding: 60px 0;
-    
+
     p {
       color: var(--text-muted);
       font-size: 1.1rem;
@@ -338,7 +355,11 @@
     cursor: pointer;
     border-radius: 12px;
     font-weight: 700;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease,
+      color 0.2s ease;
     border: none;
     font-family: inherit;
   }
@@ -361,7 +382,9 @@
     color: var(--btn-secondary-text);
     padding: 12px 24px;
     font-size: 0.95rem;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
 
     &:hover {
       background: var(--btn-secondary-hover);
@@ -386,12 +409,12 @@
       gap: 12px;
       box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
       border: 2px solid rgba(255, 255, 255, 0.2);
-      
+
       .success-icon {
         font-size: 1.5rem;
         animation: bounce 1s infinite alternate;
       }
-      
+
       p {
         margin: 0;
         font-weight: 700;
@@ -429,7 +452,11 @@
       background: var(--btn-edit-bg);
       color: var(--btn-edit-text);
       border: 1px solid var(--btn-edit-border);
-      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
 
       &:hover {
         background: var(--btn-edit-hover-bg);
@@ -456,14 +483,26 @@
 }
 
 @keyframes slideInRight {
-  from { transform: translateX(120%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 // Responsive

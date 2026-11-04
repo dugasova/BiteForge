@@ -86,7 +86,11 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
       color: #d1d5db;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition:
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
       svg {
         width: 20px;
@@ -97,10 +101,22 @@
         transform: translateY(-5px);
         color: #ffffff;
 
-        &.instagram { background: #e1306c; box-shadow: 0 8px 15px rgba(225, 48, 108, 0.3); }
-        &.twitter { background: #1da1f2; box-shadow: 0 8px 15px rgba(29, 161, 242, 0.3); }
-        &.facebook { background: #1877f2; box-shadow: 0 8px 15px rgba(24, 119, 242, 0.3); }
-        &.github { background: #333333; box-shadow: 0 8px 15px rgba(51, 51, 51, 0.3); }
+        &.instagram {
+          background: #e1306c;
+          box-shadow: 0 8px 15px rgba(225, 48, 108, 0.3);
+        }
+        &.twitter {
+          background: #1da1f2;
+          box-shadow: 0 8px 15px rgba(29, 161, 242, 0.3);
+        }
+        &.facebook {
+          background: #1877f2;
+          box-shadow: 0 8px 15px rgba(24, 119, 242, 0.3);
+        }
+        &.github {
+          background: #333333;
+          box-shadow: 0 8px 15px rgba(51, 51, 51, 0.3);
+        }
       }
     }
   }
@@ -158,12 +174,23 @@
 }
 
 @keyframes gradient-shift {
-  0% { background-position: 100% 0; }
-  50% { background-position: 0 0; }
-  100% { background-position: -100% 0; }
+  0% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
 }

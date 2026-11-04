@@ -34,22 +34,40 @@ describe('authSlice', () => {
 
   describe('signUpUser', () => {
     it('sets loading on pending', () => {
-      const state = reducer(initialState, signUpUser.pending('requestId', { email: 'a@a.com', password: '123456' }));
+      const state = reducer(
+        initialState,
+        signUpUser.pending('requestId', { email: 'a@a.com', password: '123456' }),
+      );
 
       expect(state.loading).toBe(true);
     });
 
     it('sets the user and clears loading on fulfilled', () => {
-      const pending = reducer(initialState, signUpUser.pending('requestId', { email: 'a@a.com', password: '123456' }));
-      const state = reducer(pending, signUpUser.fulfilled(mockUser, 'requestId', { email: 'a@a.com', password: '123456' }));
+      const pending = reducer(
+        initialState,
+        signUpUser.pending('requestId', { email: 'a@a.com', password: '123456' }),
+      );
+      const state = reducer(
+        pending,
+        signUpUser.fulfilled(mockUser, 'requestId', { email: 'a@a.com', password: '123456' }),
+      );
 
       expect(state.user).toEqual(mockUser);
       expect(state.loading).toBe(false);
     });
 
     it('clears loading without setting a user on rejected', () => {
-      const pending = reducer(initialState, signUpUser.pending('requestId', { email: 'a@a.com', password: '123456' }));
-      const state = reducer(pending, signUpUser.rejected(new Error('Sign up failed'), 'requestId', { email: 'a@a.com', password: '123456' }));
+      const pending = reducer(
+        initialState,
+        signUpUser.pending('requestId', { email: 'a@a.com', password: '123456' }),
+      );
+      const state = reducer(
+        pending,
+        signUpUser.rejected(new Error('Sign up failed'), 'requestId', {
+          email: 'a@a.com',
+          password: '123456',
+        }),
+      );
 
       expect(state.user).toBeNull();
       expect(state.loading).toBe(false);
@@ -58,20 +76,32 @@ describe('authSlice', () => {
 
   describe('logInUser', () => {
     it('sets loading on pending', () => {
-      const state = reducer(initialState, logInUser.pending('requestId', { email: 'a@a.com', password: '123456' }));
+      const state = reducer(
+        initialState,
+        logInUser.pending('requestId', { email: 'a@a.com', password: '123456' }),
+      );
 
       expect(state.loading).toBe(true);
     });
 
     it('sets the user and clears loading on fulfilled', () => {
-      const state = reducer(initialState, logInUser.fulfilled(mockUser, 'requestId', { email: 'a@a.com', password: '123456' }));
+      const state = reducer(
+        initialState,
+        logInUser.fulfilled(mockUser, 'requestId', { email: 'a@a.com', password: '123456' }),
+      );
 
       expect(state.user).toEqual(mockUser);
       expect(state.loading).toBe(false);
     });
 
     it('clears loading without setting a user on rejected', () => {
-      const state = reducer(initialState, logInUser.rejected(new Error('Login failed'), 'requestId', { email: 'a@a.com', password: '123456' }));
+      const state = reducer(
+        initialState,
+        logInUser.rejected(new Error('Login failed'), 'requestId', {
+          email: 'a@a.com',
+          password: '123456',
+        }),
+      );
 
       expect(state.user).toBeNull();
       expect(state.loading).toBe(false);

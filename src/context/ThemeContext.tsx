@@ -1,11 +1,5 @@
 import { useState, useEffect, type FC, type ReactNode } from 'react';
-import {
-  type Theme,
-  getInitialTheme,
-  applyTheme,
-  saveTheme,
-  toggleThemeValue,
-} from './themeUtils';
+import { type Theme, getInitialTheme, applyTheme, saveTheme, toggleThemeValue } from './themeUtils';
 import { ThemeContext } from './useTheme';
 
 export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -20,9 +14,5 @@ export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setTheme((prev) => toggleThemeValue(prev));
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };

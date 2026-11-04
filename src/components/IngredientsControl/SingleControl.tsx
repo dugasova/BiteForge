@@ -13,14 +13,14 @@ export default function SingleControl({ img, name }: SingleControlProps) {
   const quantity = (stateBuilder.ingredients as { [key: string]: number })[name] ?? 0;
 
   return (
-    <li className='ingredient-control'>
-      <img className='ingredient-control__img' src={img} alt={name} />
-      <div className='controls-wrapper'>
+    <li className="ingredient-control">
+      <img className="ingredient-control__img" src={img} alt={name} />
+      <div className="controls-wrapper">
         <motion.button
           whileHover={{ scale: 1.1, backgroundColor: '#f3f4f6' }}
           whileTap={{ scale: 0.9 }}
           onClick={() => removeIngredient(name)}
-          className='ingredient-control__button minus'
+          className="ingredient-control__button minus"
           aria-label={`Remove ${name}`}
         >
           -
@@ -30,12 +30,12 @@ export default function SingleControl({ img, name }: SingleControlProps) {
           whileHover={{ scale: 1.1, backgroundColor: '#f3f4f6' }}
           whileTap={{ scale: 0.9 }}
           onClick={() => addIngredient(name)}
-          className='ingredient-control__button'
+          className="ingredient-control__button"
           aria-label={`Add ${name}`}
         >
           +
         </motion.button>
       </div>
     </li>
-  )
+  );
 }

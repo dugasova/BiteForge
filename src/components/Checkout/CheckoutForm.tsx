@@ -22,7 +22,9 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
   return (
     <div className="checkout-form">
       <div className="form-group">
-        <label htmlFor="fullname" className="sr-only">{t('checkout.fullName')}</label>
+        <label htmlFor="fullname" className="sr-only">
+          {t('checkout.fullName')}
+        </label>
         <Controller
           name="fullName"
           control={control}
@@ -40,7 +42,9 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
       </div>
 
       <div className="form-group">
-        <label htmlFor="email" className="sr-only">{t('checkout.email')}</label>
+        <label htmlFor="email" className="sr-only">
+          {t('checkout.email')}
+        </label>
         <Controller
           name="email"
           control={control}
@@ -60,7 +64,9 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
 
       {!user && (
         <div className="form-group">
-          <label htmlFor="password" className="sr-only">{t('checkout.password')}</label>
+          <label htmlFor="password" className="sr-only">
+            {t('checkout.password')}
+          </label>
           <Controller
             name="password"
             control={control}
@@ -79,7 +85,9 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
       )}
 
       <div className="form-group">
-        <label htmlFor="phoneNumber" className="sr-only">{t('checkout.phoneNumber')}</label>
+        <label htmlFor="phoneNumber" className="sr-only">
+          {t('checkout.phoneNumber')}
+        </label>
         <Controller
           name="phoneNumber"
           control={control}
@@ -97,7 +105,9 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
       </div>
 
       <div className="form-group full-width">
-        <label htmlFor="deliveryAddress" className="sr-only">{t('checkout.deliveryAddress')}</label>
+        <label htmlFor="deliveryAddress" className="sr-only">
+          {t('checkout.deliveryAddress')}
+        </label>
         <Controller
           name="deliveryAddress"
           control={control}
@@ -111,10 +121,12 @@ function CheckoutForm({ control, errors, user }: CheckoutFormProps) {
             />
           )}
         />
-        {errors.deliveryAddress && <span className="error-text">{errors.deliveryAddress.message}</span>}
+        {errors.deliveryAddress && (
+          <span className="error-text">{errors.deliveryAddress.message}</span>
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default CheckoutForm
+export default CheckoutForm;

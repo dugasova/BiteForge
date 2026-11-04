@@ -21,8 +21,14 @@ export default function Account() {
     if (!email) return;
     const unsubscribe = subscribeToOrders(
       email,
-      (data) => { setOrders(data); setLoading(false); },
-      () => { toast.error(t('account.loadError')); setLoading(false); },
+      (data) => {
+        setOrders(data);
+        setLoading(false);
+      },
+      () => {
+        toast.error(t('account.loadError'));
+        setLoading(false);
+      },
     );
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,8 +68,8 @@ export default function Account() {
   const displayName = orders.at(-1)?.fullName ?? user?.email ?? '';
 
   return (
-    <div className='account-wrapper container'>
-      <div className='account-card'>
+    <div className="account-wrapper container">
+      <div className="account-card">
         <div className="account-hero">
           <div className="hero-content">
             <span className="welcome-text">{t('account.welcomeBack')}</span>
@@ -97,7 +103,9 @@ export default function Account() {
                   <div className="order-header">
                     <span className="order-date">{new Date(order.date).toLocaleDateString()}</span>
                     <div className="order-header-right">
-                      {order.fastDelivery && <span className="badge-fast">{t('account.fastDelivery')}</span>}
+                      {order.fastDelivery && (
+                        <span className="badge-fast">{t('account.fastDelivery')}</span>
+                      )}
                     </div>
                     <span className="order-price">{order.totalPrice.toFixed(2)} UAH</span>
                   </div>
