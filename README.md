@@ -84,10 +84,12 @@ The app runs at http://localhost:5173.
 | `npm run build`        | Type-check and build for production into `dist/`     |
 | `npm run preview`      | Serve the production build locally                   |
 | `npm run lint`         | Run ESLint                                           |
+| `npm run lint:fix`     | Run ESLint and auto-fix what it can                  |
 | `npm run format`       | Format all files with Prettier                       |
 | `npm run format:check` | Check formatting without changing files              |
 | `npm run typecheck`    | Run the TypeScript compiler without emitting files   |
 | `npm test`             | Run unit tests (Vitest)                              |
+| `npm run test:watch`   | Run unit tests in watch mode                         |
 | `npm run test:e2e`     | Run end-to-end tests (Playwright, starts dev server) |
 
 Before the first e2e run, install the browsers: `npx playwright install`.
