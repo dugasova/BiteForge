@@ -76,7 +76,7 @@ export function useCheckout(onClose: () => void) {
         await signUp(targetEmail, data.password);
       }
 
-      const order = {
+      const order: Order = {
         fullName: data.fullName,
         email: targetEmail,
         phoneNumber: data.phoneNumber,
@@ -89,7 +89,7 @@ export function useCheckout(onClose: () => void) {
         date: new Date().toISOString(),
       };
 
-      await saveOrder(targetEmail, order as Order);
+      await saveOrder(targetEmail, order);
       toast.success(t('checkout.toastSuccess'));
 
       setTimeout(() => {

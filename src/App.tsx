@@ -1,13 +1,13 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
 import Home from './components/Home/Home';
 import Layout from './pages/Layout';
 import AuthGuard from './HOC/AuthGuard';
 import { ThemeProvider } from './context/ThemeContext';
 import { Provider } from 'react-redux';
-import { store, setUser, type AppDispatch } from './store';
+import { store, setUser, toAuthUser } from './store';
+import { useAppDispatch } from './store/hooks';
 import { auth } from './firebase';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -77,22 +77,11 @@ const router = createBrowserRouter([
 ]);
 
 function AuthInit() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     return onAuthStateChanged(auth, (currentUser) => {
-      dispatch(
-        setUser(
-          currentUser
-            ? {
-                uid: currentUser.uid,
-                email: currentUser.email,
-                displayName: currentUser.displayName,
-                photoURL: currentUser.photoURL,
-              }
-            : null,
-        ),
-      );
+      dispatch(setUser(currentUser ? toAuthUser(currentUser) : null));
     });
   }, [dispatch]);
 

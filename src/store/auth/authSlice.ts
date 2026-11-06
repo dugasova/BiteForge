@@ -1,5 +1,17 @@
-import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import {
+  createSlice,
+  createAsyncThunk,
+  isPending,
+  isFulfilled,
+  isRejected,
+  type PayloadAction,
+} from '@reduxjs/toolkit';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  type User,
+} from 'firebase/auth';
 import { auth } from '../../firebase';
 import { createUserDocument } from '../../services/ordersService';
 
@@ -20,18 +32,22 @@ const initialState: AuthState = {
   loading: true,
 };
 
+export const toAuthUser = (user: User): AuthUser => {
+  return {
+    uid: user.uid,
+    email: user.email,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+  };
+};
+
 export const signUpUser = createAsyncThunk(
   'auth/signUp',
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
       await createUserDocument(email);
-      return {
-        uid: result.user.uid,
-        email: result.user.email,
-        displayName: result.user.displayName,
-        photoURL: result.user.photoURL,
-      };
+      return toAuthUser(result.user);
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Sign up failed');
     }
@@ -43,12 +59,7 @@ export const logInUser = createAsyncThunk(
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
-      return {
-        uid: result.user.uid,
-        email: result.user.email,
-        displayName: result.user.displayName,
-        photoURL: result.user.photoURL,
-      };
+      return toAuthUser(result.user);
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Login failed');
     }
@@ -74,28 +85,18 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signUpUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(signUpUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.loading = false;
-      })
-      .addCase(signUpUser.rejected, (state) => {
-        state.loading = false;
-      })
-      .addCase(logInUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(logInUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.loading = false;
-      })
-      .addCase(logInUser.rejected, (state) => {
-        state.loading = false;
-      })
       .addCase(logOutUser.fulfilled, (state) => {
         state.user = null;
+        state.loading = false;
+      })
+      .addMatcher(isPending(signUpUser, logInUser), (state) => {
+        state.loading = true;
+      })
+      .addMatcher(isFulfilled(signUpUser, logInUser), (state, action) => {
+        state.user = action.payload;
+        state.loading = false;
+      })
+      .addMatcher(isRejected(signUpUser, logInUser), (state) => {
         state.loading = false;
       });
   },

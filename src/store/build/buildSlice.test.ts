@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import reducer, {
-  addIngredient,
-  removeIngredient,
-  resetBuilder,
-  toggleFastDelivery,
-} from './buildSlice';
+import reducer, { addIngredient, removeIngredient, resetBuilder } from './buildSlice';
 
 const initialState = reducer(undefined, { type: '@@INIT' });
 
@@ -15,7 +10,6 @@ describe('buildSlice', () => {
       sequence: [],
       totalPrice: 10,
       totalKcal: 200,
-      fastDelivery: false,
     });
   });
 
@@ -82,20 +76,10 @@ describe('buildSlice', () => {
     });
   });
 
-  describe('toggleFastDelivery', () => {
-    it('toggles fastDelivery on and off', () => {
-      let state = reducer(initialState, toggleFastDelivery());
-      expect(state.fastDelivery).toBe(true);
-
-      state = reducer(state, toggleFastDelivery());
-      expect(state.fastDelivery).toBe(false);
-    });
-  });
-
   describe('resetBuilder', () => {
     it('resets the state back to the initial values', () => {
       let state = reducer(initialState, addIngredient('bacon'));
-      state = reducer(state, toggleFastDelivery());
+      state = reducer(state, addIngredient('cheese'));
 
       state = reducer(state, resetBuilder());
 
