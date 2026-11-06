@@ -1,4 +1,11 @@
-import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  isPending,
+  isFulfilled,
+  isRejected,
+  type PayloadAction,
+} from '@reduxjs/toolkit';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -78,28 +85,18 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signUpUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(signUpUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.loading = false;
-      })
-      .addCase(signUpUser.rejected, (state) => {
-        state.loading = false;
-      })
-      .addCase(logInUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(logInUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.loading = false;
-      })
-      .addCase(logInUser.rejected, (state) => {
-        state.loading = false;
-      })
       .addCase(logOutUser.fulfilled, (state) => {
         state.user = null;
+        state.loading = false;
+      })
+      .addMatcher(isPending(signUpUser, logInUser), (state) => {
+        state.loading = true;
+      })
+      .addMatcher(isFulfilled(signUpUser, logInUser), (state, action) => {
+        state.user = action.payload;
+        state.loading = false;
+      })
+      .addMatcher(isRejected(signUpUser, logInUser), (state) => {
         state.loading = false;
       });
   },
