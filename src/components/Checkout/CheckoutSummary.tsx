@@ -5,8 +5,8 @@ interface CheckoutSummaryProps {
   totalPrice: number;
   totalKcal: number;
   fastDelivery: boolean;
+  orderTotal: number;
   setFastDelivery: (value: boolean) => void;
-  fastDeliveryPrice: number;
   onSubmit: () => void;
 }
 
@@ -16,7 +16,7 @@ export default function CheckoutSummary({
   totalKcal,
   fastDelivery,
   setFastDelivery,
-  fastDeliveryPrice,
+  orderTotal,
   onSubmit,
 }: CheckoutSummaryProps) {
   const { t } = useTranslation();
@@ -61,9 +61,7 @@ export default function CheckoutSummary({
 
       <div className="checkout-total">
         <span>{t('checkout.total')}:</span>
-        <span className="total-price">
-          {totalPrice + (fastDelivery ? fastDeliveryPrice : 0)} UAH
-        </span>
+        <span className="total-price">{orderTotal} UAH</span>
       </div>
 
       <button onClick={onSubmit} className="checkout-confirm-button">

@@ -18,9 +18,9 @@ export default function Checkout({ onClose }: CheckoutProps) {
     error,
     fastDelivery,
     setFastDelivery,
-    fastDeliveryPrice,
     ingredientEntries,
     totalPrice,
+    orderTotal,
     totalKcal,
   } = useCheckout(onClose);
 
@@ -52,7 +52,7 @@ export default function Checkout({ onClose }: CheckoutProps) {
           totalKcal={totalKcal}
           fastDelivery={fastDelivery}
           setFastDelivery={setFastDelivery}
-          fastDeliveryPrice={fastDeliveryPrice}
+          orderTotal={orderTotal}
           onSubmit={handleSubmit(onConfirmOrder)}
         />
       </div>

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { contactsSchema } from './useCheckout';
+import { contactsSchema, getOrderTotal, FAST_DELIVERY_PRICE } from './useCheckout';
 
 const t = (key: string) => key;
 
@@ -83,5 +83,15 @@ describe('contactsSchema', () => {
         expect(result.error.issues[0].message).toBe('checkout.validation.deliveryAddressMin');
       }
     });
+  });
+});
+
+describe('getOrderTotal', () => {
+  it('returns the burger price when fast delivery is off', () => {
+    expect(getOrderTotal(45, false)).toBe(45);
+  });
+
+  it('adds the fast delivery price when fast delivery is on', () => {
+    expect(getOrderTotal(45, true)).toBe(45 + FAST_DELIVERY_PRICE);
   });
 });

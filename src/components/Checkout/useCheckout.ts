@@ -11,6 +11,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import type { ContactsFormValues } from './CheckoutForm';
 
+export const FAST_DELIVERY_PRICE = 20;
+
+export const getOrderTotal = (totalPrice: number, fastDelivery: boolean): number => {
+  return fastDelivery ? totalPrice + FAST_DELIVERY_PRICE : totalPrice;
+};
+
 export const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boolean) =>
   z.object({
     fullName: z.string().min(2, { message: t('checkout.validation.nameMin') }),
@@ -33,8 +39,7 @@ export function useCheckout(onClose: () => void) {
 
   const [error, setError] = useState('');
   const [fastDelivery, setFastDelivery] = useState(false);
-
-  const fastDeliveryPrice = 20;
+  const orderTotal = getOrderTotal(totalPrice, fastDelivery);
 
   const {
     control,
@@ -77,7 +82,7 @@ export function useCheckout(onClose: () => void) {
         phoneNumber: data.phoneNumber,
         deliveryAddress: data.deliveryAddress,
         ingredients,
-        totalPrice,
+        totalPrice: orderTotal,
         totalKcal,
         fastDelivery,
         id: Date.now(),
@@ -109,8 +114,8 @@ export function useCheckout(onClose: () => void) {
     error,
     fastDelivery,
     setFastDelivery,
-    fastDeliveryPrice,
     ingredientEntries,
+    orderTotal,
     totalPrice,
     totalKcal,
   };
