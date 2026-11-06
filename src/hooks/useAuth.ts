@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { type RootState, type AppDispatch } from '../store';
 import { signUpUser, logInUser, logOutUser } from '../store/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 export default function useAuth() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { user, loading } = useSelector((state: RootState) => state.auth);
+  const dispatch = useAppDispatch();
+  const { user, loading } = useAppSelector((state) => state.auth);
 
   const signUp = (email: string, password: string) =>
     dispatch(signUpUser({ email, password })).unwrap();
