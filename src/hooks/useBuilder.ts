@@ -4,7 +4,6 @@ import {
   addIngredient as addAction,
   removeIngredient as removeAction,
   resetBuilder as resetAction,
-  toggleFastDelivery as toggleAction,
 } from '../store/build/buildSlice';
 
 export default function useBuilder() {
@@ -23,15 +22,10 @@ export default function useBuilder() {
     dispatch(resetAction());
   };
 
-  const toggleFastDelivery = () => {
-    dispatch(toggleAction());
-  };
-
   return {
     stateBuilder,
     addIngredient,
     removeIngredient,
     resetBuilder,
-    toggleFastDelivery,
   };
 }

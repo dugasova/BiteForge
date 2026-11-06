@@ -6,7 +6,6 @@ interface BuildState {
   sequence: string[];
   totalPrice: number;
   totalKcal: number;
-  fastDelivery: boolean;
 }
 
 const initialState: BuildState = {
@@ -14,7 +13,6 @@ const initialState: BuildState = {
   sequence: [],
   totalPrice: 10,
   totalKcal: 200,
-  fastDelivery: false,
 };
 
 const getIngredientInfo = (ingredientName: string) => {
@@ -53,12 +51,8 @@ const buildSlice = createSlice({
       state.totalKcal -= kcal;
     },
     resetBuilder: () => initialState,
-    toggleFastDelivery: (state) => {
-      state.fastDelivery = !state.fastDelivery;
-    },
   },
 });
 
-export const { addIngredient, removeIngredient, resetBuilder, toggleFastDelivery } =
-  buildSlice.actions;
+export const { addIngredient, removeIngredient, resetBuilder } = buildSlice.actions;
 export default buildSlice.reducer;
