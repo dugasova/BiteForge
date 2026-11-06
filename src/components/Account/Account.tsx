@@ -8,6 +8,7 @@ import BurgerIllustration from '../../assets/burgers/burger5.webp';
 import { subscribeToOrders, saveOrder, deleteOrder } from '../../services/ordersService';
 import type { Order } from '../../types/order';
 import Loader from '../Loader/Loader';
+import OrderCard from './OrderCard';
 
 export default function Account() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -99,43 +100,12 @@ export default function Account() {
           ) : orders.length > 0 ? (
             <div className="orders-grid">
               {orders.map((order) => (
-                <div key={order.id} className="order-item">
-                  <div className="order-header">
-                    <span className="order-date">{new Date(order.date).toLocaleDateString()}</span>
-                    <div className="order-header-right">
-                      {order.fastDelivery && (
-                        <span className="badge-fast">{t('account.fastDelivery')}</span>
-                      )}
-                    </div>
-                    <span className="order-price">{order.totalPrice.toFixed(2)} UAH</span>
-                  </div>
-                  <div className="order-details">
-                    <p className="detail-title">{t('checkout.ingredients')}:</p>
-                    <div className="ingredients-pills">
-                      {Object.entries(order.ingredients).map(([name, count]) => (
-                        <div key={name} className="pill">
-                          {name} <span className="pill-count">x{count}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="order-actions">
-                      <button
-                        className="btn-reorder"
-                        onClick={() => handleInstantReorder(order)}
-                        title={t('account.reorder')}
-                      >
-                        {t('account.reorder')}
-                      </button>
-                      <button
-                        className="btn-edit"
-                        onClick={() => handleDeleteOrder(order)}
-                        title={t('account.delete')}
-                      >
-                        {t('account.delete')}
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <OrderCard
+                  key={order.id}
+                  order={order}
+                  onDelete={handleDeleteOrder}
+                  onReorder={handleInstantReorder}
+                />
               ))}
             </div>
           ) : (

@@ -30,45 +30,15 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: '/', element: <Home /> },
-      {
-        path: '/about',
-        element: (
-          <Suspense>
-            <AboutRouterLazy />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/contact',
-        element: (
-          <Suspense>
-            <ContactRouterLazy />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/login',
-        element: (
-          <Suspense>
-            <LoginRouterLazy />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/signup',
-        element: (
-          <Suspense>
-            <SignUpRouterLazy />
-          </Suspense>
-        ),
-      },
+      { path: '/about', element: <AboutRouterLazy /> },
+      { path: '/contact', element: <ContactRouterLazy /> },
+      { path: '/login', element: <LoginRouterLazy /> },
+      { path: '/signup', element: <SignUpRouterLazy /> },
       {
         path: '/account',
         element: (
           <AuthGuard>
-            <Suspense>
-              <AccountRouterLazy />
-            </Suspense>
+            <AccountRouterLazy />
           </AuthGuard>
         ),
       },
