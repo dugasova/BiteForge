@@ -57,7 +57,6 @@ export function useCheckout(onClose: () => void) {
     },
   });
 
-  // Sync email if user logs in while modal is open
   useEffect(() => {
     if (user?.email) {
       setValue('email', user.email);
@@ -69,10 +68,6 @@ export function useCheckout(onClose: () => void) {
 
     try {
       if (!user) {
-        if (!data.password) {
-          setError(t('checkout.validation.passwordRequired'));
-          return;
-        }
         await signUp(targetEmail, data.password);
       }
 
