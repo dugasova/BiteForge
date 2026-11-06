@@ -1,5 +1,10 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  type User,
+} from 'firebase/auth';
 import { auth } from '../../firebase';
 import { createUserDocument } from '../../services/ordersService';
 
@@ -20,18 +25,22 @@ const initialState: AuthState = {
   loading: true,
 };
 
+export const toAuthUser = (user: User): AuthUser => {
+  return {
+    uid: user.uid,
+    email: user.email,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+  };
+};
+
 export const signUpUser = createAsyncThunk(
   'auth/signUp',
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
       await createUserDocument(email);
-      return {
-        uid: result.user.uid,
-        email: result.user.email,
-        displayName: result.user.displayName,
-        photoURL: result.user.photoURL,
-      };
+      return toAuthUser(result.user);
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Sign up failed');
     }
@@ -43,12 +52,7 @@ export const logInUser = createAsyncThunk(
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
-      return {
-        uid: result.user.uid,
-        email: result.user.email,
-        displayName: result.user.displayName,
-        photoURL: result.user.photoURL,
-      };
+      return toAuthUser(result.user);
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Login failed');
     }

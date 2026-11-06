@@ -6,7 +6,7 @@ import Layout from './pages/Layout';
 import AuthGuard from './HOC/AuthGuard';
 import { ThemeProvider } from './context/ThemeContext';
 import { Provider } from 'react-redux';
-import { store, setUser } from './store';
+import { store, setUser, toAuthUser } from './store';
 import { useAppDispatch } from './store/hooks';
 import { auth } from './firebase';
 import { ToastContainer } from 'react-toastify';
@@ -81,18 +81,7 @@ function AuthInit() {
 
   useEffect(() => {
     return onAuthStateChanged(auth, (currentUser) => {
-      dispatch(
-        setUser(
-          currentUser
-            ? {
-                uid: currentUser.uid,
-                email: currentUser.email,
-                displayName: currentUser.displayName,
-                photoURL: currentUser.photoURL,
-              }
-            : null,
-        ),
-      );
+      dispatch(setUser(currentUser ? toAuthUser(currentUser) : null));
     });
   }, [dispatch]);
 
