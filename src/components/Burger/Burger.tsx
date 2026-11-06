@@ -16,8 +16,8 @@ export default function Burger() {
   const { stateBuilder, resetBuilder } = useBuilder();
 
   const sequence = stateBuilder.sequence;
-  const totalPrice = stateBuilder.totalPrice ?? 0;
-  const totalKcal = stateBuilder.totalKcal ?? 0;
+  const totalPrice = stateBuilder.totalPrice;
+  const totalKcal = stateBuilder.totalKcal;
 
   return (
     <>
