@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import Home from './components/Home/Home';
 import Layout from './pages/Layout';
-import AuthGuard from './HOC/AuthGuard';
+import AuthGuard from './routes/AuthGuard';
 import { ThemeProvider } from './context/ThemeContext';
 import { Provider } from 'react-redux';
 import { store, setUser, toAuthUser } from './store';
