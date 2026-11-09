@@ -10,6 +10,7 @@ import { store, setUser, toAuthUser } from './store';
 import { useAppDispatch } from './store/hooks';
 import { auth } from './firebase';
 import { ToastContainer } from 'react-toastify';
+import { MotionConfig } from 'framer-motion';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AboutRouterLazy = lazy(() => import('./routes/AboutRouter'));
@@ -62,9 +63,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <ThemeProvider>
-        <AuthInit />
-        <RouterProvider router={router} />
-        <ToastContainer position="bottom-right" autoClose={3000} />
+        <MotionConfig reducedMotion="user">
+          <AuthInit />
+          <RouterProvider router={router} />
+          <ToastContainer position="bottom-right" autoClose={3000} />
+        </MotionConfig>
       </ThemeProvider>
     </Provider>
   );
