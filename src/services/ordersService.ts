@@ -10,7 +10,7 @@ const userDoc = (email: string) => doc(db, USERS_COLLECTION, email);
 export const createUserDocument = (email: string) => setDoc(userDoc(email), { [ORDERS_FIELD]: [] });
 
 export const saveOrder = (email: string, order: Order) =>
-  updateDoc(userDoc(email), { [ORDERS_FIELD]: arrayUnion(order) });
+  setDoc(userDoc(email), { [ORDERS_FIELD]: arrayUnion(order) }, { merge: true });
 
 export const deleteOrder = (email: string, order: Order) =>
   updateDoc(userDoc(email), { [ORDERS_FIELD]: arrayRemove(order) });
