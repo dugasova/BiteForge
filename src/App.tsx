@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import Home from './components/Home/Home';
 import Layout from './pages/Layout';
-import AuthGuard from './HOC/AuthGuard';
+import AuthGuard from './routes/AuthGuard';
 import { ThemeProvider } from './context/ThemeContext';
 import { Provider } from 'react-redux';
 import { store, setUser, toAuthUser } from './store';
@@ -13,33 +13,32 @@ import { ToastContainer } from 'react-toastify';
 import { MotionConfig } from 'framer-motion';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AboutRouterLazy = lazy(() => import('./routes/AboutRouter'));
-const ContactRouterLazy = lazy(() => import('./routes/ContactRouter'));
-const ErrorRouteLazy = lazy(() => import('./routes/ErrorRoute'));
-const AccountRouterLazy = lazy(() => import('./routes/AccountRouter'));
-const LoginRouterLazy = lazy(() => import('./routes/LoginRouter'));
-const SignUpRouterLazy = lazy(() => import('./routes/SignUpRouter'));
-
+const AboutLazy = lazy(() => import('./components/About/About'));
+const ContactLazy = lazy(() => import('./components/Contact/Contact'));
+const ErrorLazy = lazy(() => import('./components/Error/Error'));
+const AccountLazy = lazy(() => import('./components/Account/Account'));
+const LoginLazy = lazy(() => import('./components/Login/Login'));
+const SignUpLazy = lazy(() => import('./components/SignUp/SignUp'));
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
     errorElement: (
       <Suspense>
-        <ErrorRouteLazy />
+        <ErrorLazy />
       </Suspense>
     ),
     children: [
       { path: '/', element: <Home /> },
-      { path: '/about', element: <AboutRouterLazy /> },
-      { path: '/contact', element: <ContactRouterLazy /> },
-      { path: '/login', element: <LoginRouterLazy /> },
-      { path: '/signup', element: <SignUpRouterLazy /> },
+      { path: '/about', element: <AboutLazy /> },
+      { path: '/contact', element: <ContactLazy /> },
+      { path: '/login', element: <LoginLazy /> },
+      { path: '/signup', element: <SignUpLazy /> },
       {
         path: '/account',
         element: (
           <AuthGuard>
-            <AccountRouterLazy />
+            <AccountLazy />
           </AuthGuard>
         ),
       },
