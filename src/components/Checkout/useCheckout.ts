@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { saveOrder } from '../../services/ordersService';
@@ -31,6 +31,7 @@ export const contactsSchema = (t: (key: string) => string, isUserLoggedIn: boole
   });
 
 export function useCheckout(onClose: () => void) {
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { user, signUp } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -57,22 +58,25 @@ export function useCheckout(onClose: () => void) {
     },
   });
 
-  // Sync email if user logs in while modal is open
   useEffect(() => {
     if (user?.email) {
       setValue('email', user.email);
     }
   }, [user, setValue]);
 
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
+
   const onConfirmOrder = async (data: ContactsFormValues) => {
     const targetEmail = user?.email || data.email;
 
     try {
       if (!user) {
-        if (!data.password) {
-          setError(t('checkout.validation.passwordRequired'));
-          return;
-        }
         await signUp(targetEmail, data.password);
       }
 
@@ -92,7 +96,7 @@ export function useCheckout(onClose: () => void) {
       await saveOrder(targetEmail, order);
       toast.success(t('checkout.toastSuccess'));
 
-      setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         onClose();
         resetBuilder();
         navigate('/account');

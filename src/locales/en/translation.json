@@ -61,8 +61,7 @@
       "invalidPhone": "Please enter a valid phone number (+ and at least 10 digits)",
       "invalidEmail": "Please enter a valid email address",
       "passwordMin": "Password must be at least 6 characters",
-      "deliveryAddressMin": "Delivery address must be at least 2 characters",
-      "passwordRequired": "Password is required"
+      "deliveryAddressMin": "Delivery address must be at least 2 characters"
     }
   },
   "account": {

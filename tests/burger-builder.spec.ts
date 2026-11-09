@@ -161,7 +161,8 @@ test.describe('Burger Builder Flow', () => {
     // 5. Confirm Order
     await page.getByRole('button', { name: /confirm order/i }).click();
 
-    // 6. Verify success toast (checkout.toastSuccess)
-    await expect(page.getByText('Burger saved successfully')).toBeVisible();
+    // 6. Verify success toast (checkout.toastSuccess).
+    // Sign-up + Firestore write go to the real Firebase, so allow more than the default 5s.
+    await expect(page.getByText('Burger saved successfully')).toBeVisible({ timeout: 15_000 });
   });
 });

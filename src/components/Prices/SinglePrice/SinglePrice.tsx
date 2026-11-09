@@ -1,3 +1,4 @@
+import { CURRENCY } from '../../../mockedData';
 import './SinglePrice.scss';
 import { useTranslation } from 'react-i18next';
 
@@ -12,7 +13,7 @@ export default function SinglePrice({ name, price }: SinglePriceProps) {
     <li className="single-price">
       <span className="ingredient-name">{t(`prices.${name}`)}</span>
       <span className="ingredient-price">
-        {price} <small>UAH</small>
+        {price} <small>{CURRENCY}</small>
       </span>
     </li>
   );

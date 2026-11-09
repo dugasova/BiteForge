@@ -32,8 +32,7 @@ export default function Account() {
       },
     );
     return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.email]);
+  }, [user?.email, t]);
 
   const handleLogout = async () => {
     try {

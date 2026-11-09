@@ -20,13 +20,17 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  /* Locally limit parallelism: headless WebKit becomes flaky with more than 2 parallel pages (seen on WSL). */
+  workers: process.env.CI ? 1 : 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: 'http://localhost:5173',
+
+    /* Emulate prefers-reduced-motion so framer-motion animations don't make elements unstable for clicks. */
+    contextOptions: { reducedMotion: 'reduce' },
 
     /* Force English locale so text-based assertions don't depend on the OS/browser locale. */
     locale: 'en-US',
