@@ -1,60 +1,15 @@
-import { lazy, Suspense, useEffect } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth';
-import Home from './pages/Home/Home';
-import Layout from './pages/Layout';
-import AuthGuard from './routes/AuthGuard';
+import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { Provider } from 'react-redux';
-import { store, setUser, toAuthUser } from './store';
-import { useAppDispatch } from './store/hooks';
-import { auth } from './firebase';
+import { store } from './store';
 import { ToastContainer } from 'react-toastify';
 import { MotionConfig } from 'framer-motion';
 import 'react-toastify/dist/ReactToastify.css';
-
-const AboutLazy = lazy(() => import('./pages/About/About'));
-const ContactLazy = lazy(() => import('./pages/Contact/Contact'));
-const ErrorLazy = lazy(() => import('./pages/Error/Error'));
-const AccountLazy = lazy(() => import('./pages/Account/Account'));
-const LoginLazy = lazy(() => import('./pages/Login/Login'));
-const SignUpLazy = lazy(() => import('./pages/SignUp/SignUp'));
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    errorElement: (
-      <Suspense>
-        <ErrorLazy />
-      </Suspense>
-    ),
-    children: [
-      { path: '/', element: <Home /> },
-      { path: '/about', element: <AboutLazy /> },
-      { path: '/contact', element: <ContactLazy /> },
-      { path: '/login', element: <LoginLazy /> },
-      { path: '/signup', element: <SignUpLazy /> },
-      {
-        path: '/account',
-        element: (
-          <AuthGuard>
-            <AccountLazy />
-          </AuthGuard>
-        ),
-      },
-    ],
-  },
-]);
+import { router } from './router';
+import useAuthListener from './hooks/useAuthListener';
 
 function AuthInit() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    return onAuthStateChanged(auth, (currentUser) => {
-      dispatch(setUser(currentUser ? toAuthUser(currentUser) : null));
-    });
-  }, [dispatch]);
-
+  useAuthListener();
   return null;
 }
 
