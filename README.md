@@ -100,6 +100,7 @@ Before the first e2e run, install the browsers: `npx playwright install`.
 - **Pre-commit hook** — husky runs lint-staged on every commit: staged `.ts`/`.tsx` files go through `eslint --fix` and `prettier --write`, other text files through Prettier only.
 - **CI** — GitHub Actions (`.github/workflows/ci.yml`) runs on pushes and pull requests to `main`: format check → lint → typecheck → unit tests → build.
 - **Editor** — `.editorconfig` and `.gitattributes` keep indentation and LF line endings consistent; VS Code suggests the recommended extensions from `.vscode/extensions.json`.
+- **Imports** — `@/` points to `src/` (configured in `tsconfig.app.json` and `vite.config.ts`); use it for cross-folder imports, `./` for files in the same folder.
 
 ## Deployment
 
