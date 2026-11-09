@@ -1,9 +1,9 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { INGREDIENTS } from '../../data';
+import { INGREDIENTS, type IngredientName } from '../../data';
 
 interface BuildState {
-  ingredients: Record<string, number>;
-  sequence: string[];
+  ingredients: Partial<Record<IngredientName, number>>;
+  sequence: IngredientName[];
   totalPrice: number;
   totalKcal: number;
 }
@@ -15,7 +15,7 @@ const initialState: BuildState = {
   totalKcal: 200,
 };
 
-const getIngredientInfo = (ingredientName: string) => {
+const getIngredientInfo = (ingredientName: IngredientName) => {
   const item = INGREDIENTS.find((p) => p.name === ingredientName);
   if (!item) return { price: 0, kcal: 0 };
   return { price: item.price, kcal: item.kcal };
@@ -25,7 +25,7 @@ const buildSlice = createSlice({
   name: 'build',
   initialState,
   reducers: {
-    addIngredient: (state, action: PayloadAction<string>) => {
+    addIngredient: (state, action: PayloadAction<IngredientName>) => {
       const ingredient = action.payload;
       const { price, kcal } = getIngredientInfo(ingredient);
 
@@ -34,7 +34,7 @@ const buildSlice = createSlice({
       state.totalPrice += price;
       state.totalKcal += kcal;
     },
-    removeIngredient: (state, action: PayloadAction<string>) => {
+    removeIngredient: (state, action: PayloadAction<IngredientName>) => {
       const ingredient = action.payload;
       const currentCount = state.ingredients[ingredient] ?? 0;
 

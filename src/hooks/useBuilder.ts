@@ -1,3 +1,4 @@
+import type { IngredientName } from '../data';
 import {
   addIngredient as addAction,
   removeIngredient as removeAction,
@@ -9,12 +10,12 @@ export default function useBuilder() {
   const dispatch = useAppDispatch();
   const stateBuilder = useAppSelector((state) => state.build);
 
-  const addIngredient = (ingredient: string) => {
-    dispatch(addAction(ingredient));
+  const addIngredient = (ingredientName: IngredientName) => {
+    dispatch(addAction(ingredientName));
   };
 
-  const removeIngredient = (ingredient: string) => {
-    dispatch(removeAction(ingredient));
+  const removeIngredient = (ingredientName: IngredientName) => {
+    dispatch(removeAction(ingredientName));
   };
 
   const resetBuilder = () => {

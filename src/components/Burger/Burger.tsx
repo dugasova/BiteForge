@@ -33,7 +33,7 @@ export default function Burger() {
 
           <div className="ingredients-container">
             <AnimatePresence mode="popLayout">
-              {sequence.map((ingredientName: string, index: number) => {
+              {sequence.map((ingredientName, index) => {
                 const itemData = ingredientMap.get(ingredientName);
                 if (!itemData) return null;
 
