@@ -1,7 +1,7 @@
 import './Burgers.scss';
-import { BURGERS } from '../../mockedData';
 import BurgerCard from './BurgerCard';
 import { useTranslation } from 'react-i18next';
+import { BURGERS } from '../../data';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';

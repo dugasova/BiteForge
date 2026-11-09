@@ -1,4 +1,4 @@
-import { CURRENCY } from '../../../mockedData';
+import { CURRENCY } from '../../../data';
 import './SinglePrice.scss';
 import { useTranslation } from 'react-i18next';
 

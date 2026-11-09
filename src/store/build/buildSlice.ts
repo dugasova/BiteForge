@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { dataOfProduct } from '../../mockedData';
+import { INGREDIENTS } from '../../data';
 
 interface BuildState {
   ingredients: Record<string, number>;
@@ -16,7 +16,7 @@ const initialState: BuildState = {
 };
 
 const getIngredientInfo = (ingredientName: string) => {
-  const item = dataOfProduct.find((p) => p.name === ingredientName);
+  const item = INGREDIENTS.find((p) => p.name === ingredientName);
   if (!item) return { price: 0, kcal: 0 };
   return { price: item.price, kcal: item.kcal };
 };
