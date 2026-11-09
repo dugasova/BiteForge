@@ -11,7 +11,7 @@ import SwissCheese from '../assets/ingredients/swiss_cheese.png';
 import Sausage from '../assets/ingredients/sausage.png';
 import Tomato from '../assets/ingredients/tomato.png';
 
-export const dataOfProduct = [
+export const INGREDIENTS = [
   { name: 'bacon', price: 20, img: Bacon, kcal: 100 },
   { name: 'ketchup', price: 5, img: Ketchup, kcal: 100 },
   { name: 'lettuce', price: 10, img: Lettuce, kcal: 100 },
