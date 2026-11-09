@@ -4,7 +4,7 @@ import TopBurger from './../../assets/ingredients/top_bun.png';
 import BottomBurger from './../../assets/ingredients/bottom_bun.png';
 import Checkout from '../Checkout/Checkout';
 import useBuilder from '../../hooks/useBuilder';
-import { dataOfProduct } from '../../mockedData';
+import { CURRENCY, dataOfProduct } from '../../mockedData';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -91,7 +91,7 @@ export default function Burger() {
               animate={{ scale: [1, 1.2, 1], opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              {totalPrice} UAH
+              {totalPrice} {CURRENCY}
             </motion.span>
           </p>
           <p className="total-kcal">

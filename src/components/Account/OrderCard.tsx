@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { Order } from '../../types/order';
+import { CURRENCY } from '../../mockedData';
 
 interface OrderCardProps {
   order: Order;
@@ -16,7 +17,9 @@ function OrderCard({ order, onReorder, onDelete }: OrderCardProps) {
         <div className="order-header-right">
           {order.fastDelivery && <span className="badge-fast">{t('account.fastDelivery')}</span>}
         </div>
-        <span className="order-price">{order.totalPrice.toFixed(2)} UAH</span>
+        <span className="order-price">
+          {order.totalPrice.toFixed(2)} {CURRENCY}
+        </span>
       </div>
       <div className="order-details">
         <p className="detail-title">{t('checkout.ingredients')}:</p>

@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { CURRENCY } from '../../mockedData';
 
 interface CheckoutSummaryProps {
   ingredientEntries: [string, number][];
@@ -44,7 +45,9 @@ export default function CheckoutSummary({
           </div>
           <div className="checkout-total border-bottom">
             <span>{t('checkout.total')}:</span>
-            <span className="total-price">{totalPrice.toFixed(2)} UAH</span>
+            <span className="total-price">
+              {totalPrice.toFixed(2)} {CURRENCY}
+            </span>
           </div>
         </>
       )}
@@ -61,7 +64,9 @@ export default function CheckoutSummary({
 
       <div className="checkout-total">
         <span>{t('checkout.total')}:</span>
-        <span className="total-price">{orderTotal} UAH</span>
+        <span className="total-price">
+          {orderTotal} {CURRENCY}
+        </span>
       </div>
 
       <button onClick={onSubmit} className="checkout-confirm-button">

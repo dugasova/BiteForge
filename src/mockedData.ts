@@ -19,6 +19,9 @@ import HamburgerBurger from './assets/burgers/burger5.webp';
 import DoubleHamburgerBurger from './assets/burgers/burger6.webp';
 import HamburgerBurgerBurger from './assets/burgers/burger7.webp';
 import TripleBurger from './assets/burgers/burger8.webp';
+
+export const CURRENCY = 'UAH';
+
 export const BURGERS = [
   {
     id: 1,

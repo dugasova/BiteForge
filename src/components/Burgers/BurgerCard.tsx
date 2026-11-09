@@ -1,3 +1,4 @@
+import { CURRENCY } from '../../mockedData';
 import './BurgerCard.scss';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +20,9 @@ export default function BurgerCard({ name, rating, review, price, img }: BurgerC
       <h2 className="burger-item__name">{name}</h2>
       <p className="burger-item__review">{t(`burgers.reviews.${review}`)}</p>
       <p className="burger-item__rating">{displayRating}</p>
-      <p className="burger-item__price">{price} UAH</p>
+      <p className="burger-item__price">
+        {price} {CURRENCY}
+      </p>
     </li>
   );
 }
