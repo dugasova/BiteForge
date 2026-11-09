@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { CURRENCY } from '../../data';
+import { CURRENCY } from '@/data';
 
 interface CheckoutSummaryProps {
   ingredientEntries: [string, number][];

@@ -3,9 +3,9 @@ import './SignUp.scss';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import useAuth from '../../hooks/useAuth';
-import Form from '../../components/Form/Form';
-import type { FormSchema } from '../../components/Form/Form';
+import useAuth from '@/hooks/useAuth';
+import Form from '@/components/Form/Form';
+import type { FormSchema } from '@/components/Form/Form';
 
 export default function SignUp() {
   const [error, setError] = useState('');

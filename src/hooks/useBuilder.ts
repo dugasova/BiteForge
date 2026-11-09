@@ -1,10 +1,10 @@
-import type { IngredientName } from '../data';
+import type { IngredientName } from '@/data';
 import {
   addIngredient as addAction,
   removeIngredient as removeAction,
   resetBuilder as resetAction,
-} from '../store/build/buildSlice';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
+} from '@/store/build/buildSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 export default function useBuilder() {
   const dispatch = useAppDispatch();

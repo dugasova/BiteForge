@@ -1,7 +1,7 @@
 import './IngredientsControl.scss';
 import SingleControl from './SingleControl';
 import { useTranslation } from 'react-i18next';
-import { INGREDIENTS } from '../../data';
+import { INGREDIENTS } from '@/data';
 
 export default function IngredientsControl() {
   const { t } = useTranslation();

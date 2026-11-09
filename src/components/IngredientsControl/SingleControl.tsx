@@ -1,7 +1,7 @@
 import './SingleControl.scss';
-import useBuilder from '../../hooks/useBuilder';
+import useBuilder from '@/hooks/useBuilder';
 import { motion } from 'framer-motion';
-import type { IngredientName } from '../../data';
+import type { IngredientName } from '@/data';
 
 interface SingleControlProps {
   img: string;

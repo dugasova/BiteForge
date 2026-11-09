@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './Login.scss';
 import { useNavigate, Link } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import Form from '../../components/Form/Form';
-import type { FormSchema } from '../../components/Form/Form';
+import Form from '@/components/Form/Form';
+import type { FormSchema } from '@/components/Form/Form';
 
 export default function Login() {
   const { t } = useTranslation();

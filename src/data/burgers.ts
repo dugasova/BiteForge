@@ -1,11 +1,11 @@
-import Cheeseburger from '../assets/burgers/burger1.webp';
-import Hamburger from '../assets/burgers/burger3.webp';
-import DoubleCheeseburger from '../assets/burgers/burger2.webp';
-import DoubleHamburger from '../assets/burgers/burger4.webp';
-import HamburgerBurger from '../assets/burgers/burger5.webp';
-import DoubleHamburgerBurger from '../assets/burgers/burger6.webp';
-import HamburgerBurgerBurger from '../assets/burgers/burger7.webp';
-import TripleBurger from '../assets/burgers/burger8.webp';
+import Cheeseburger from '@/assets/burgers/burger1.webp';
+import Hamburger from '@/assets/burgers/burger3.webp';
+import DoubleCheeseburger from '@/assets/burgers/burger2.webp';
+import DoubleHamburger from '@/assets/burgers/burger4.webp';
+import HamburgerBurger from '@/assets/burgers/burger5.webp';
+import DoubleHamburgerBurger from '@/assets/burgers/burger6.webp';
+import HamburgerBurgerBurger from '@/assets/burgers/burger7.webp';
+import TripleBurger from '@/assets/burgers/burger8.webp';
 
 export const BURGERS = [
   {

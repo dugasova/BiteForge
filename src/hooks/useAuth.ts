@@ -1,5 +1,5 @@
-import { signUpUser, logInUser, logOutUser } from '../store/auth/authSlice';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { signUpUser, logInUser, logOutUser } from '@/store/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 export default function useAuth() {
   const dispatch = useAppDispatch();

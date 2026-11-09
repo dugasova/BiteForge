@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './Burger.scss';
-import TopBurger from './../../assets/ingredients/top_bun.png';
-import BottomBurger from './../../assets/ingredients/bottom_bun.png';
-import Checkout from '../Checkout/Checkout';
-import useBuilder from '../../hooks/useBuilder';
-import { CURRENCY, INGREDIENTS } from '../../data';
+import TopBurger from '@/assets/ingredients/top_bun.png';
+import BottomBurger from '@/assets/ingredients/bottom_bun.png';
+import Checkout from '@/components/Checkout/Checkout';
+import useBuilder from '@/hooks/useBuilder';
+import { CURRENCY, INGREDIENTS } from '@/data';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 

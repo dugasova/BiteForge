@@ -12,8 +12,8 @@ import {
   signOut,
   type User,
 } from 'firebase/auth';
-import { auth } from '../../firebase';
-import { createUserDocument } from '../../services/ordersService';
+import { auth } from '@/firebase';
+import { createUserDocument } from '@/services/ordersService';
 
 export interface AuthUser {
   uid: string;
