@@ -7,8 +7,8 @@ import { toast } from 'react-toastify';
 import BurgerIllustration from '../../assets/burgers/burger5.webp';
 import { subscribeToOrders, saveOrder, deleteOrder } from '../../services/ordersService';
 import type { Order } from '../../types/order';
-import Loader from '../Loader/Loader';
 import OrderCard from './OrderCard';
+import Loader from '../../components/Loader/Loader';
 
 export default function Account() {
   const [orders, setOrders] = useState<Order[]>([]);
