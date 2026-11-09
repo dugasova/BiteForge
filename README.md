@@ -117,18 +117,20 @@ The `VITE_FIREBASE_*` variables must be set in the Cloudflare dashboard as **bui
 ```
 src/
 ├── assets/          # Ingredient, burger and logo images
-├── components/      # Feature components (Burger, Checkout, Account, …)
+├── components/      # Reusable UI and feature parts (Burger, Checkout, Header, Form, …)
 ├── context/         # Theme context and helpers
-├── HOC/             # AuthGuard — protects routes for signed-in users
-├── hooks/           # useAuth, useBuilder
+├── hooks/           # useAuth, useAuthListener, useBuilder
 ├── locales/         # en / uk translation files
-├── pages/           # Layout and page-level components
-├── routes/          # Lazy-loaded route wrappers
+├── pages/           # Route pages (Home, About, Account, Login, …) and Layout
+├── routes/          # AuthGuard — protects routes for signed-in users
 ├── services/        # Firestore access (orders)
-├── store/           # Redux slices (auth, build) with unit tests
+├── store/           # Redux slices (auth, build), typed hooks, unit tests
+├── test/            # Vitest setup (Firebase mock)
 ├── types/           # Shared TypeScript types
+├── App.tsx          # App providers (Redux, theme, motion, toasts)
 ├── firebase.ts      # Firebase initialisation
 ├── i18n.ts          # i18next setup
-└── mockedData.ts    # Ingredient and burger catalog data
+├── mockedData.ts    # Ingredient and burger catalog data
+└── router.tsx       # Route definitions (lazy-loaded pages)
 tests/               # Playwright e2e tests
 ```
