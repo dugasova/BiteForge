@@ -24,4 +24,6 @@ export const INGREDIENTS = [
   { name: 'cheese', price: 25, img: SwissCheese, kcal: 100 },
   { name: 'sausage', price: 10, img: Sausage, kcal: 100 },
   { name: 'tomato', price: 25, img: Tomato, kcal: 100 },
-];
+] as const;
+
+export type IngredientName = (typeof INGREDIENTS)[number]['name'];

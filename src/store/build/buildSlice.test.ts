@@ -36,9 +36,10 @@ describe('buildSlice', () => {
     });
 
     it('treats an unknown ingredient as price/kcal 0 but still tracks it', () => {
+      // @ts-expect-error — unknown name is rejected by the type
       const state = reducer(initialState, addIngredient('unknown'));
 
-      expect(state.ingredients.unknown).toBe(1);
+      expect(state.ingredients).toEqual({ unknown: 1 });
       expect(state.sequence).toEqual(['unknown']);
       expect(state.totalPrice).toBe(initialState.totalPrice);
       expect(state.totalKcal).toBe(initialState.totalKcal);

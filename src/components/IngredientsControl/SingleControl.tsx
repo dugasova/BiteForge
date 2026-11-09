@@ -1,16 +1,17 @@
 import './SingleControl.scss';
 import useBuilder from '../../hooks/useBuilder';
 import { motion } from 'framer-motion';
+import type { IngredientName } from '../../data';
 
 interface SingleControlProps {
   img: string;
-  name: string;
+  name: IngredientName;
 }
 
 export default function SingleControl({ img, name }: SingleControlProps) {
   const { addIngredient, removeIngredient, stateBuilder } = useBuilder();
 
-  const quantity = (stateBuilder.ingredients as { [key: string]: number })[name] ?? 0;
+  const quantity = stateBuilder.ingredients[name] ?? 0;
 
   return (
     <li className="ingredient-control">
