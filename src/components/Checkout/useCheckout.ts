@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { saveOrder } from '../../services/ordersService';
-import type { Order } from '../../types/order';
-import useBuilder from '../../hooks/useBuilder';
-import useAuth from '../../hooks/useAuth';
+import { saveOrder } from '@/services/ordersService';
+import type { Order } from '@/types/order';
+import useBuilder from '@/hooks/useBuilder';
+import useAuth from '@/hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';

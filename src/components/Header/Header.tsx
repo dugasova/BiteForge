@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import './Header.scss';
-import Navigation from '../Navigation/Navigation';
-import Logo from './../../assets/logo/logo.png';
+import Navigation from '@/components/Navigation/Navigation';
+import Logo from '@/assets/logo/logo.png';
 import { useTranslation } from 'react-i18next';
-import MobileMenu from '../MobileMenu/MobileMenu';
+import MobileMenu from '@/components/MobileMenu/MobileMenu';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useAuth from '../../hooks/useAuth';
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
-import Button from '../Button/Button';
+import useAuth from '@/hooks/useAuth';
+import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
+import Button from '@/components/Button/Button';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { INGREDIENTS, type IngredientName } from '../../data';
+import { INGREDIENTS, type IngredientName } from '@/data';
 
 interface BuildState {
   ingredients: Partial<Record<IngredientName, number>>;

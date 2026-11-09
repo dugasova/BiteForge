@@ -1,5 +1,5 @@
 import './Prices.scss';
-import { INGREDIENTS } from '../../data';
+import { INGREDIENTS } from '@/data';
 import SinglePrice from './SinglePrice/SinglePrice';
 import { useTranslation } from 'react-i18next';
 

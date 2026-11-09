@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import './Account.scss';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import BurgerIllustration from '../../assets/burgers/burger5.webp';
-import { subscribeToOrders, saveOrder, deleteOrder } from '../../services/ordersService';
-import type { Order } from '../../types/order';
+import BurgerIllustration from '@/assets/burgers/burger5.webp';
+import { subscribeToOrders, saveOrder, deleteOrder } from '@/services/ordersService';
+import type { Order } from '@/types/order';
 import OrderCard from './OrderCard';
-import Loader from '../../components/Loader/Loader';
+import Loader from '@/components/Loader/Loader';
 
 export default function Account() {
   const [orders, setOrders] = useState<Order[]>([]);

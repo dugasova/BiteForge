@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import type { Order } from '../../types/order';
-import { CURRENCY } from '../../data';
+import type { Order } from '@/types/order';
+import { CURRENCY } from '@/data';
 
 interface OrderCardProps {
   order: Order;

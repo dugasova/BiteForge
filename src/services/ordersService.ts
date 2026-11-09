@@ -1,6 +1,6 @@
-import { db } from '../firebase';
+import { db } from '@/firebase';
 import { doc, setDoc, updateDoc, onSnapshot, arrayUnion, arrayRemove } from 'firebase/firestore';
-import type { Order } from '../types/order';
+import type { Order } from '@/types/order';
 
 const USERS_COLLECTION = 'users';
 const ORDERS_FIELD = 'savedBurger';

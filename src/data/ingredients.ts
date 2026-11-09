@@ -1,15 +1,15 @@
-import Bacon from '../assets/ingredients/bacon.png';
-import Ketchup from '../assets/ingredients/ketchup.png';
-import Lettuce from '../assets/ingredients/lettuce.png';
-import Mayonnaise from '../assets/ingredients/mayonnaise.png';
-import Mustard from '../assets/ingredients/mustard.png';
-import Onions from '../assets/ingredients/onions.png';
-import Patty from '../assets/ingredients/patty.png';
-import Pepper from '../assets/ingredients/pepper.png';
-import Pickles from '../assets/ingredients/pickles.png';
-import SwissCheese from '../assets/ingredients/swiss_cheese.png';
-import Sausage from '../assets/ingredients/sausage.png';
-import Tomato from '../assets/ingredients/tomato.png';
+import Bacon from '@/assets/ingredients/bacon.png';
+import Ketchup from '@/assets/ingredients/ketchup.png';
+import Lettuce from '@/assets/ingredients/lettuce.png';
+import Mayonnaise from '@/assets/ingredients/mayonnaise.png';
+import Mustard from '@/assets/ingredients/mustard.png';
+import Onions from '@/assets/ingredients/onions.png';
+import Patty from '@/assets/ingredients/patty.png';
+import Pepper from '@/assets/ingredients/pepper.png';
+import Pickles from '@/assets/ingredients/pickles.png';
+import SwissCheese from '@/assets/ingredients/swiss_cheese.png';
+import Sausage from '@/assets/ingredients/sausage.png';
+import Tomato from '@/assets/ingredients/tomato.png';
 
 export const INGREDIENTS = [
   { name: 'bacon', price: 20, img: Bacon, kcal: 100 },

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
-import Logo from './../../assets/logo/logo.png';
+import Logo from '@/assets/logo/logo.png';
 import './MobileMenu.scss';
 
 interface MobileMenuProps {
