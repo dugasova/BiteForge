@@ -4,7 +4,7 @@ import TopBurger from './../../assets/ingredients/top_bun.png';
 import BottomBurger from './../../assets/ingredients/bottom_bun.png';
 import Checkout from '../Checkout/Checkout';
 import useBuilder from '../../hooks/useBuilder';
-import { CURRENCY, dataOfProduct } from '../../mockedData';
+import { CURRENCY, dataOfProduct } from '../../data';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 

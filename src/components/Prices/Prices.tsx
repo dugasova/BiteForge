@@ -1,5 +1,5 @@
 import './Prices.scss';
-import { dataOfProduct } from '../../mockedData';
+import { dataOfProduct } from '../../data';
 import SinglePrice from './SinglePrice/SinglePrice';
 import { useTranslation } from 'react-i18next';
 

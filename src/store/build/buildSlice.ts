@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { dataOfProduct } from '../../mockedData';
+import { dataOfProduct } from '../../data';
 
 interface BuildState {
   ingredients: Record<string, number>;

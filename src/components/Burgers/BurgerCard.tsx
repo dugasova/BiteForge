@@ -1,6 +1,6 @@
-import { CURRENCY } from '../../mockedData';
 import './BurgerCard.scss';
 import { useTranslation } from 'react-i18next';
+import { CURRENCY } from '../../data';
 
 type BurgerCardProps = {
   name: string;

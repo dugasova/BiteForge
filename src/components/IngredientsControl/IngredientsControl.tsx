@@ -1,7 +1,7 @@
 import './IngredientsControl.scss';
-import { dataOfProduct } from '../../mockedData';
 import SingleControl from './SingleControl';
 import { useTranslation } from 'react-i18next';
+import { dataOfProduct } from '../../data';
 
 export default function IngredientsControl() {
   const { t } = useTranslation();
