@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
-import Home from './components/Home/Home';
+import Home from './pages/Home/Home';
 import Layout from './pages/Layout';
 import AuthGuard from './routes/AuthGuard';
 import { ThemeProvider } from './context/ThemeContext';
@@ -13,12 +13,12 @@ import { ToastContainer } from 'react-toastify';
 import { MotionConfig } from 'framer-motion';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AboutLazy = lazy(() => import('./components/About/About'));
-const ContactLazy = lazy(() => import('./components/Contact/Contact'));
-const ErrorLazy = lazy(() => import('./components/Error/Error'));
-const AccountLazy = lazy(() => import('./components/Account/Account'));
-const LoginLazy = lazy(() => import('./components/Login/Login'));
-const SignUpLazy = lazy(() => import('./components/SignUp/SignUp'));
+const AboutLazy = lazy(() => import('./pages/About/About'));
+const ContactLazy = lazy(() => import('./pages/Contact/Contact'));
+const ErrorLazy = lazy(() => import('./pages/Error/Error'));
+const AccountLazy = lazy(() => import('./pages/Account/Account'));
+const LoginLazy = lazy(() => import('./pages/Login/Login'));
+const SignUpLazy = lazy(() => import('./pages/SignUp/SignUp'));
 const router = createBrowserRouter([
   {
     path: '/',

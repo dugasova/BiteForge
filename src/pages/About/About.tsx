@@ -1,4 +1,4 @@
-import Burgers from '../Burgers/Burgers';
+import Burgers from '../../components/Burgers/Burgers';
 
 export default function About() {
   return (
